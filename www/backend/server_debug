@@ -1,0 +1,23 @@
+#!/bin/sh
+
+APPLICATION_NAME=application
+APPLICATION_INI_FILE=server_app.ini
+WSGI_USER=www-data
+WSGI_GROUP=www-data
+PROCESSES=1
+
+OPTIONS="--uid $WSGI_USER --gid $WSGI_GROUP \
+         --ini $APPLICATION_INI_FILE --processes $PROCESSES \
+         --honour-stdin --callable $APPLICATION_NAME"
+
+# TIP: When debugging and moving new files here, make sure they are all: www-data:www-data
+# chown www-data:www-data *
+
+echo "**** Stopping wsgi service (if not already stopped) ****"
+/etc/init.d/wsgi stop
+
+echo "**** Running uwsgi in debug mode, command line: ****"
+echo uwsgi $OPTIONS
+echo " "
+
+uwsgi $OPTIONS
