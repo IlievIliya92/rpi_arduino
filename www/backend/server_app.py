@@ -2,9 +2,12 @@ from flask import Flask
 from flask import request
 from flask import Response
 
-application = Flask(__name__) #Create FLask appplication
+from socket_tools import *
 
+application = Flask(__name__) #Create FLask appplication
 application.config['PROPAGATE_EXCEPTIONS'] = True
+
+SOCKET_FILE_MGR = "/run/mgr.socket"
 
 def resp_js(s):
     return Response(s, mimetype="application/json")
@@ -16,9 +19,24 @@ def set_response_headers(response):
     response.headers['Expires'] = '0'
     return response
 
-@application.route("/backend/test")
+@application.route("/backend/cmd")
 def hello():
-    status = '{"status":"Ok"}'   
+    err = ""
+    cmd = ""
+    
+    # Get all of the arguments from the URL
+    args = request.args.to_dict()
+    
+    for i in sorted(args.keys()):
+        cmd += args[i] + " "
+    
+    if ( len(cmd) == 0 ):
+        err = "Failed to get cmd arguments!"
+    if len(err) == 0:
+        status = run_socket(cmd, SOCKET_FILE_MGR)
+    else:
+        status = '{"status":"Error: %s"}' % err
+  
     return resp_js(status)
     
 # ---- Utility functions
@@ -28,9 +46,11 @@ def run_socket(arg, server_address):
       if arg[-1] != '\n':
           arg += '\n'
       try:
+          print(arg)
           response = unixStreamingSendReceiveJson(server_address, arg)
       except Exception as e:
           response = '{"status":"Error: %s"}' % repr(e)
+      
       if response is None:
           response = '{"status":"Error: Socket didn\'t respond"}'
       return response

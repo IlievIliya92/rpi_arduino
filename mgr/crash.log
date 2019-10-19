@@ -1,0 +1,6 @@
+2019-10-19 07:39:43,946 ERROR    Traceback (most recent call last):
+2019-10-19 07:39:43,947 ERROR      File "mgr.py", line 37, in <module>
+2019-10-19 07:39:43,949 ERROR    Mgr()
+2019-10-19 07:39:43,950 ERROR    NameError
+2019-10-19 07:39:43,950 ERROR    :
+2019-10-19 07:39:43,951 ERROR    name 'Mgr' is not defined
