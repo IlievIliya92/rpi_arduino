@@ -25,7 +25,7 @@ def _initialize():
     mgrSocketOpen()
     initSerial()
     print("Mgr Initialized.")
-    sendData("Con\r\n")
+    sendData("Ready")
     
 def mgr():
     timeout_in_seconds = 1

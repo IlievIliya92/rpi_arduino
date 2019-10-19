@@ -13,11 +13,14 @@ def _handleCommand(cmd_str):
     response = ""
     command = ""
     print(cmd_str)            
-    sendData(cmd_str + "\r\n")
     try:
-        #command = json.loads(cmd_str)
-        #cmd_name = command['cmd']          
-        #print(cmd_name)
+        command = json.loads(cmd_str)
+        cmd_name = command['cmd']          
+        cmd_value = command['value']          
+        sendData(command['cmd'])
+        sendData(command['value'])
+        print(cmd_name)
+        print(cmd_value)        
         response = '{"status":"Ok"}'
         #response = ktm_callCommand(cmd_name, command)                        
     except Exception as e:

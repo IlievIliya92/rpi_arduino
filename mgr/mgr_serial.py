@@ -6,7 +6,7 @@ def initSerial():
 	global ser
 	
 	ser = serial.Serial(
-		port='/dev/ttyACM0',
+		port='/dev/ttyACM1',
 		baudrate=9600,
 		parity=serial.PARITY_NONE,
 		stopbits=serial.STOPBITS_ONE,
@@ -16,4 +16,5 @@ def initSerial():
 	print("Serial Initialized.")
 	
 def sendData(data):
+	data += '*'
 	ser.write(data.encode('utf-8')) 

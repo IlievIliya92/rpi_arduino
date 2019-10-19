@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask
 from flask import request
 from flask import Response
@@ -19,8 +21,8 @@ def set_response_headers(response):
     response.headers['Expires'] = '0'
     return response
 
-@application.route("/backend/cmd")
-def hello():
+@application.route("/backend/test")
+def test():
     err = ""
     cmd = ""
     
@@ -39,6 +41,18 @@ def hello():
   
     return resp_js(status)
     
+@application.route("/backend/cmd")
+def cmd():
+    # Parse the URL arguments
+    cmd = request.args.get('cmd')
+    value = request.args.get('value')
+    
+    package = {"cmd":cmd,
+               "value":value}
+               
+    status = run_socket(json.dumps(package), SOCKET_FILE_MGR)
+    
+    return resp_js(status)
 # ---- Utility functions
 
 
@@ -46,7 +60,6 @@ def run_socket(arg, server_address):
       if arg[-1] != '\n':
           arg += '\n'
       try:
-          print(arg)
           response = unixStreamingSendReceiveJson(server_address, arg)
       except Exception as e:
           response = '{"status":"Error: %s"}' % repr(e)
