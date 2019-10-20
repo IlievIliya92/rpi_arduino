@@ -100,15 +100,19 @@ static void cmd_getToken(uint8_t *token, uint8_t *cmdBuff, int len)
 
 static bool cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
 {
-    bool verified = false;
+    int verified = 0;
+    response_id_t statusId = RCV;
 
     /* Get the magic cookie */
     cmd_getToken(cmdMsg->cmd_cookie, cmd, CMD_COKIE_LEN);
     cmd += CMD_COKIE_LEN - 1;
 
     /* Verify The Coockie */
-    if (strcmp((char *)cmdMsg->cmd_cookie, CMD_COKIE) == 0)
-        verified = true;
+    if (strcmp((char *)cmdMsg->cmd_cookie, CMD_COKIE) == 0) {
+        verified = 1;
+    } else {
+        statusId = CKIE;
+    }
 
     /* Fill in the data for the command packet */
     if (verified)
@@ -116,10 +120,10 @@ static bool cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
         cmd_getToken(cmdMsg->cmd_id, cmd, CMD_ID_LEN);
         cmd += CMD_ID_LEN - 1;
 
-        int id = utils_atoI(cmdMsg->cmd_id, 10);
+        int cmdId = utils_atoI(cmdMsg->cmd_id, 10);
         /* Commands with session Id and payload */
-        if (CHECK_PAYLOAD(id, CMD3) ||
-            CHECK_PAYLOAD(id, CMD4))
+        if (CHECK_PAYLOAD(cmdId, CMD3) ||
+            CHECK_PAYLOAD(cmdId, CMD4))
         {
             cmd_getToken(cmdMsg->cmd_sessionId, cmd, CMD_SESION_ID_LEN);
             cmd += CMD_SESION_ID_LEN - 1;
@@ -129,7 +133,7 @@ static bool cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
             if (verified) {
                 cmd_getStripTrailer(cmdMsg->cmd_payload);
             } else {
-                cmd_sendResponse(TLR, ERR);
+                 statusId = TLR;
             }
         }
         else
@@ -137,17 +141,11 @@ static bool cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
             cmd_getToken(cmdMsg->cmd_trailer, cmd, CMD_TRAILER_LEN);
             verified = cmd_getVerifyTrailer(cmdMsg->cmd_trailer);
             if (!verified) {
-                cmd_sendResponse(TLR, ERR);
+                statusId = TLR;
             }
         }
     }
-
-//    avrSerialxPrintf(&xSerialPort, "%s\r\n", cmdMsg->cmd_cookie);
-//    avrSerialxPrintf(&xSerialPort, "%s\r\n", cmdMsg->cmd_id);
-//    avrSerialxPrintf(&xSerialPort, "%s\r\n", cmdMsg->cmd_sessionId);
-//    avrSerialxPrintf(&xSerialPort, "%s\r\n", cmdMsg->cmd_payload);
-    if (verified)
-        cmd_sendResponse(RCV, OK);
+    cmd_sendResponse(statusId, verified);
 
     return verified;
 }
