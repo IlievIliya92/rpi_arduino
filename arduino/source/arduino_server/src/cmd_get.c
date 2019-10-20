@@ -17,7 +17,7 @@
 #include "generic_cmd_t.h"
 
 /******************************** LOCAL DEFINES *******************************/
-#define CMD_QUEUE_SIZE  10
+#define CMD_QUEUE_SIZE  5
 
 /******************************** GLOBALDATA *******************************/
 extern xComPortHandle xSerialPort;
@@ -79,13 +79,13 @@ static void cmd_getStripTrailer(uint8_t *payload)
     return;
 }
 
-static bool cmd_getVerifyTrailer(uint8_t *payload)
+static int cmd_getVerifyTrailer(uint8_t *payload)
 {
     char *ret = strstr((const char *)payload, CMD_TRAILER);
     if (ret != NULL) {
-        return true;
+        return OK;
     } else {
-        return false;
+        return ERR;
     }
 }
 
@@ -98,10 +98,10 @@ static void cmd_getToken(uint8_t *token, uint8_t *cmdBuff, int len)
     return;
 }
 
-static bool cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
+static command_status_t cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
 {
-    int verified = 0;
-    response_id_t statusId = RCV;
+    command_status_t verified = ERR;
+    response_id_t statusId;
 
     /* Get the magic cookie */
     cmd_getToken(cmdMsg->cmd_cookie, cmd, CMD_COKIE_LEN);
@@ -109,28 +109,30 @@ static bool cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
 
     /* Verify The Coockie */
     if (strcmp((char *)cmdMsg->cmd_cookie, CMD_COKIE) == 0) {
-        verified = 1;
+        verified = OK;
     } else {
         statusId = CKIE;
+        verified = ERR;
     }
 
     /* Fill in the data for the command packet */
-    if (verified)
+    if (verified == OK)
     {
         cmd_getToken(cmdMsg->cmd_id, cmd, CMD_ID_LEN);
         cmd += CMD_ID_LEN - 1;
 
         int cmdId = utils_atoI(cmdMsg->cmd_id, 10);
         /* Commands with session Id and payload */
-        if (CHECK_PAYLOAD(cmdId, CMD3) ||
-            CHECK_PAYLOAD(cmdId, CMD4))
+        if (CHECK_PAYLOAD(cmdId, CMD1_ID) ||
+            CHECK_PAYLOAD(cmdId, CMD2_ID) ||
+            CHECK_PAYLOAD(cmdId, CMD3_ID))
         {
             cmd_getToken(cmdMsg->cmd_sessionId, cmd, CMD_SESION_ID_LEN);
             cmd += CMD_SESION_ID_LEN - 1;
             cmd_getToken(cmdMsg->cmd_payload, cmd, CMD_PAYLOAD_LEN);
             cmd += CMD_PAYLOAD_LEN - 1;
             verified = cmd_getVerifyTrailer(cmdMsg->cmd_payload);
-            if (verified) {
+            if (verified == OK) {
                 cmd_getStripTrailer(cmdMsg->cmd_payload);
             } else {
                  statusId = TLR;
@@ -140,12 +142,15 @@ static bool cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
         {
             cmd_getToken(cmdMsg->cmd_trailer, cmd, CMD_TRAILER_LEN);
             verified = cmd_getVerifyTrailer(cmdMsg->cmd_trailer);
-            if (!verified) {
+            if (verified == ERR) {
                 statusId = TLR;
             }
         }
     }
-    cmd_sendResponse(statusId, verified);
+
+    /* If the command is invalid return the response */
+    if (verified == ERR)
+        cmd_sendResponse(statusId, ERR);
 
     return verified;
 }
@@ -156,18 +161,17 @@ static void cmd_getCmd(void)
     {
         uint8_t cmd_buff[CMD_SIZE];
 
-        const TickType_t xBlockTime = pdMS_TO_TICKS(200);
         genericCmdMsg_t cmdMsg;
         memset(&cmdMsg, 0x0, sizeof(genericCmdMsg_t));
 
         if( xSemaphoreTake(xCmdSemaphore, (TickType_t)10) == pdTRUE)
         {
             cmd_getReceiveInput(cmd_buff, CMD_SIZE);
-            cmd_getParse(&cmdMsg, cmd_buff);
-
-            /* Send command */
-            xQueueSend(xCmdQueue, &cmdMsg, xBlockTime);
-            memset(&cmdMsg, 0x0, sizeof(genericCmdMsg_t));
+            if(cmd_getParse(&cmdMsg, cmd_buff) == OK)
+            {
+                /* Send command */
+                xQueueSend(xCmdQueue, &cmdMsg, portMAX_DELAY);
+            }
 
             xSemaphoreGive(xCmdSemaphore);
         }
