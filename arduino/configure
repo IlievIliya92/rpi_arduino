@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd ./source/arduino_server
+
+source ./scripts/env
+source ./scripts/addtopath
+
+cd -

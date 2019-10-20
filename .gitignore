@@ -1,0 +1,4 @@
+mgr/__pycache__/*
+www/backend/*.pyc
+arduino/source/arduino_server/Debug
+arduino/source/arduino_server/Release

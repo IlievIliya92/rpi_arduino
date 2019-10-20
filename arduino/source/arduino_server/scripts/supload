@@ -1,0 +1,43 @@
+#!/bin/bash
+
+usage(){
+  echo "Usage:"
+  echo "supload <arduino_serial_device>"
+  echo ""
+
+  ls -l /dev/ttyUSB* &>/dev/null
+
+  if [ $? -eq 0 ]; then
+    echo ""
+    echo "Serial device detected on:"
+    ls -l /dev/ttyUSB*
+
+    echo "Uploading to default USB0 device:"
+    supload /dev/ttyUSB0
+    exit
+  fi
+
+  ls -l /dev/ttyACM* &>/dev/null
+  if [ $? -eq 0 ]; then
+    echo ""
+    echo "Serial device detected on:"
+    ls -l /dev/ttyACM0*
+
+    echo "Uploading to default ACM0 device:"
+    supload /dev/ttyACM0
+    exit
+  fi
+
+  echo "No serial device detected!"
+  echo "Please connect the board in order to upload the project."
+  exit
+}
+
+if [ -z "$1" ]
+  then
+  usage
+fi
+
+cd ${EMG_PROJECT_ROOT}/Debug
+avrdude -patmega328p -carduino -P$1 -D -Uflash:w:avr.hex:i
+minicom -D $1
