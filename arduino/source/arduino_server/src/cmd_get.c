@@ -74,7 +74,7 @@ static void cmd_getStripTrailer(uint8_t *payload)
             payload[i++] = '\0';
         }
     }
-    avrSerialxPrintf(&xSerialPort, "SD :%s\r\n", payload);
+    //avrSerialxPrintf(&xSerialPort, "SD :%s\r\n", payload);
 
     return;
 }
@@ -126,22 +126,29 @@ static bool cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
             cmd_getToken(cmdMsg->cmd_payload, cmd, CMD_PAYLOAD_LEN);
             cmd += CMD_PAYLOAD_LEN - 1;
             verified = cmd_getVerifyTrailer(cmdMsg->cmd_payload);
-            if (verified)
+            if (verified) {
                 cmd_getStripTrailer(cmdMsg->cmd_payload);
+            } else {
+                cmd_sendResponse(TLR, ERR);
+            }
         }
         else
         {
             cmd_getToken(cmdMsg->cmd_trailer, cmd, CMD_TRAILER_LEN);
             verified = cmd_getVerifyTrailer(cmdMsg->cmd_trailer);
+            if (!verified) {
+                cmd_sendResponse(TLR, ERR);
+            }
         }
     }
 
-    avrSerialxPrintf(&xSerialPort, "%s\r\n", cmdMsg->cmd_cookie);
-    avrSerialxPrintf(&xSerialPort, "%s\r\n", cmdMsg->cmd_id);
-    avrSerialxPrintf(&xSerialPort, "%s\r\n", cmdMsg->cmd_sessionId);
-    avrSerialxPrintf(&xSerialPort, "%s\r\n", cmdMsg->cmd_payload);
+//    avrSerialxPrintf(&xSerialPort, "%s\r\n", cmdMsg->cmd_cookie);
+//    avrSerialxPrintf(&xSerialPort, "%s\r\n", cmdMsg->cmd_id);
+//    avrSerialxPrintf(&xSerialPort, "%s\r\n", cmdMsg->cmd_sessionId);
+//    avrSerialxPrintf(&xSerialPort, "%s\r\n", cmdMsg->cmd_payload);
+    if (verified)
+        cmd_sendResponse(RCV, OK);
 
-    avrSerialxPrintf(&xSerialPort, "Status :%d.\r\n", verified);
     return verified;
 }
 
@@ -153,6 +160,7 @@ static void cmd_getCmd(void)
 
         const TickType_t xBlockTime = pdMS_TO_TICKS(200);
         genericCmdMsg_t cmdMsg;
+        memset(&cmdMsg, 0x0, sizeof(genericCmdMsg_t));
 
         if( xSemaphoreTake(xCmdSemaphore, (TickType_t)10) == pdTRUE)
         {

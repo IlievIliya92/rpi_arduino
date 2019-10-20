@@ -13,7 +13,7 @@ extern "C" {
 /* S> / CMID / SED / 30 bytest DATA / <E */
 
 /* S>01<E* */
-/* S>0301DATA<E* */
+/* S>0401DATA<E* */
 /* S>0101DATAdsadadasdadasdasdadasdasdasdadadadasdadasdasdas<E* */
 
 #define CMD_COKIE            "S>"
@@ -28,6 +28,9 @@ extern "C" {
 
 #define CMD_END              '*'
 
+#define ERR         0
+#define OK          1
+
 #define CMD_SIZE (CMD_COKIE_LEN + CMD_ID_LEN  \
                   + CMD_SESION_ID_LEN + CMD_PAYLOAD_LEN \
                   + CMD_TRAILER_LEN)
@@ -37,11 +40,11 @@ extern "C" {
 /************************** INTERFACE DATA DEFINITIONS ************************/
 typedef enum
 {
-    CMD0 = 1, // Preamble
-    CMD1,     // Start
-    CMD2,     // Stop
-    CMD3,     // session_Id + Payload
+    CMD1 = 1, // Preamble
+    CMD2,     // Start
+    CMD3,     // Stop
     CMD4,     // session_Id + Payload
+    CMD5,     // session_Id + Payload
     COMMANDS
 } command_id_t;
 
@@ -54,6 +57,15 @@ typedef struct {
     uint8_t cmd_trailer[CMD_TRAILER_LEN];
 } genericCmdMsg_t;
 
+typedef enum
+{
+    RCV = 0,
+    CKIE,
+    TLR,
+    RESPONSES
+} response_id_t;
+
+void cmd_sendResponse(response_id_t id, int status);
 
 #ifdef __cplusplus
 }
