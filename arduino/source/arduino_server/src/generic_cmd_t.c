@@ -20,8 +20,12 @@ typedef const uint8_t command_resp_t;
 
 static command_resp_t *responses[RESPONSES] = {
     (command_resp_t *)"Rdy",
-    (command_resp_t *)"Ckie!",
-    (command_resp_t *)"Trl!"
+    (command_resp_t *)"!C",
+    (command_resp_t *)"!T",
+    (command_resp_t *)"C1",
+    (command_resp_t *)"C2",
+    (command_resp_t *)"C3",
+    (command_resp_t *)"Stp",
 };
 
 
@@ -41,5 +45,4 @@ void cmd_sendResponse(response_id_t id, int status)
 
     return;
 }
-
 

@@ -4,6 +4,8 @@
 #include "freeRTOS/queue.h"
 #include "freeRTOS/semphr.h"
 
+#include "utils/utils.h"
+
 #include "rtos.h"
 /******************************** LOCAL DEFINES *******************************/
 
@@ -34,6 +36,7 @@ void rtos_start(genericTask_t *task[])
         rtos_createTask(task[i]);
     }
 
+    utils_dbgPrint("Server Started!");
     vTaskStartScheduler();
 
     return;

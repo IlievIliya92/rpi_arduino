@@ -14,6 +14,7 @@ extern "C" {
 
 /* S>01<E* */
 /* S>0401DATA<E* */
+/* S>05<E* */
 /* S>0101DATAdsadadasdadasdasdadasdasdasdadadadasdadasdasdas<E* */
 
 #define CMD_COKIE            "S>"
@@ -28,9 +29,6 @@ extern "C" {
 
 #define CMD_END              '*'
 
-#define ERR         0
-#define OK          1
-
 #define CMD_SIZE (CMD_COKIE_LEN + CMD_ID_LEN  \
                   + CMD_SESION_ID_LEN + CMD_PAYLOAD_LEN \
                   + CMD_TRAILER_LEN)
@@ -40,11 +38,17 @@ extern "C" {
 /************************** INTERFACE DATA DEFINITIONS ************************/
 typedef enum
 {
-    CMD1 = 1, // Preamble
-    CMD2,     // Start
-    CMD3,     // Stop
-    CMD4,     // session_Id + Payload
-    CMD5,     // session_Id + Payload
+    ERR = 0,
+    OK
+} command_status_t;
+
+typedef enum
+{
+    START_ID = 1, // Start                      01
+    CMD1_ID,      // session_Id + Payload       02
+    CMD2_ID,      // session_Id + Payload       03
+    CMD3_ID,      // session_Id + Payload       04
+    STOP_ID,      // Stop                       05
     COMMANDS
 } command_id_t;
 
@@ -59,9 +63,13 @@ typedef struct {
 
 typedef enum
 {
-    RCV = 0,
+    RDY = 0,
     CKIE,
     TLR,
+    CMD1,
+    CMD2,
+    CMD3,
+    END,
     RESPONSES
 } response_id_t;
 
