@@ -1,6 +1,7 @@
 /******************************** INCLUDE FILES *******************************/
 /* I/O include files */
 #include "freeRTOS/lib_io/serial.h"
+#include "freeRTOS/lib_io/digitalAnalog.h"
 
 #include "fsm.h"
 #include "cmd_get.h"
@@ -8,7 +9,7 @@
 #include "rtos.h"
 #include "generic_t.h"
 
-#include "freeRTOS/lib_io/digitalAnalog.h"
+
 
 /******************************** LOCAL DEFINES *******************************/
 
@@ -32,6 +33,6 @@ int main(void)
     /* Starts all the tasks from Tasks array & starts the scheduler */
     rtos_start(rtosTasks);
 
-    avrSerialxPrint_P(&xSerialPort, PSTR("\r\n\n Failed to the emg application!\r\n"));
+    avrSerialxPrint_P(&xSerialPort, PSTR("\r\n\n Failed to start the application!\r\n"));
 }
 

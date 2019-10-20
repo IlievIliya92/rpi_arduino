@@ -15,6 +15,7 @@ extern "C" {
 
 /************************* FUNCTION PROTOTYPES **********************/
 int utils_atoI(uint8_t *str, int base);
+void utils_dbgPrint(char *str);
 
 #ifdef __cplusplus
 }
