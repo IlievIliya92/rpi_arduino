@@ -2,6 +2,9 @@
 import serial
 import time
 
+send_delay = 0.02
+send_data_len = 100
+
 port = "/dev/ttyACM0"
 ser = ""
 
@@ -13,15 +16,18 @@ cmds0 = ["S>01<E*", "S>0401DATA<E*", \
         "S>0101DAdsdddddddddddddddddTAdssdasdas*",
         "S>05<E*",]
 
-cmds1 = ["S>01<E*","S>0401DATA1<E*", "S>0401DATA2<E*", \
-         "S>0401DATA3<E*", "S>05<E*"]
+cmds1 = ["S>01<E*","S>0401DATA1<E*", "S>05<E*"]
 
 def run_cmds(cmds):
     global ser
 
     for data in cmds:
+        if data == "S>0401DATA1<E*":
+            for i in range(send_data_len):
+                ser.write(data)
+                time.sleep(send_delay)
         ser.write(data)
-        time.sleep(0.01)
+        time.sleep(send_delay)
 
 def main():
     global ser
