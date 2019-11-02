@@ -81,7 +81,7 @@ transmision of data.
 | Trailer | (fixed) <E                   | 2 bytes  |
 | CMD End | (fixed) *                    | 1 byte   |
 
-Channels:
+*Channels:*
 0x00 - PB5 - Channel 0
 0x01 - PB4 - Channel 1
 
@@ -97,7 +97,7 @@ Channels:
 | Trailer | (fixed) <E               | 2 bytes  |
 | CMD End | (fixed) *                | 1 byte   |
 
-Digital I/O:
+*Digital I/O:*
 
 0x00 - PB0
 0x01 - PB1
@@ -105,7 +105,7 @@ Digital I/O:
 0x03 - PB3
 0x04 - PB4
 
-State:
+*State:*
 0x0 - OFF
 0x1 - ON
 
