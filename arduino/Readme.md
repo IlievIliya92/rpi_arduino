@@ -36,7 +36,7 @@ Arduino Server Schematic
 
 ### 6.1. Server Side:
 
-Command format:
+#### Command format:
 
 | Field   | Value              | Size     |
 |---------|--------------------|----------|
@@ -48,7 +48,7 @@ Command format:
 | CMD End | (fixed) *          | 1 byte   |
 
 
-CMD ID field:
+#### CMD ID field:
 
 | CMD ID | Definition             |
 |--------|------------------------|
@@ -59,7 +59,7 @@ CMD ID field:
 | 05     | Stop Command           |
 
 
-##### Start Command:
+#### Start Command:
 
 Required to be sent first before starting a new
 transmision of data.
@@ -70,7 +70,7 @@ transmision of data.
 | CMID    | 0x01               | 2 bytes  |
 
 
-##### PWM Command:
+#### PWM Command:
 
 | Field   | Value                        | Size     |
 |---------|------------------------------|----------|
@@ -86,7 +86,7 @@ Channels:
 0x01 - PB4 - Channel 1
 
 
-##### DIO Command:
+#### DIO Command:
 
 | Field   | Value                    | Size     |
 |---------|--------------------------|----------|
@@ -109,7 +109,7 @@ State:
 0x0 - OFF
 0x1 - ON
 
-##### Stop Command:
+#### Stop Command:
 
 Required to be sent last to close the current
 exchange of data.
