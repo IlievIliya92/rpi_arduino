@@ -12,9 +12,11 @@ extern "C" {
 
 /* S> / CMID / SED / 30 bytest DATA / <E */
 
-/* S>01<E* */
-/* S>0401DATA<E* */
-/* S>05<E* */
+/* S>01<E*  - START */
+/* S>0201500&700<E* - PWM */
+/* S>05<E*  - STOP */
+
+/* Invalid command */
 /* S>0101DATAdsadadasdadasdasdadasdasdasdadadadasdadasdasdas<E* */
 
 #define CMD_COKIE            "S>"
@@ -35,6 +37,8 @@ extern "C" {
 
 #define CHECK_PAYLOAD(var, id) ((var) == (id))
 
+#define PWM_DATA_TOK    "&"
+
 /************************** INTERFACE DATA DEFINITIONS ************************/
 typedef enum
 {
@@ -45,7 +49,7 @@ typedef enum
 typedef enum
 {
     START_ID = 1, // Start                      01
-    CMD1_ID,      // session_Id + Payload       02
+    PWM_ID,      // session_Id + Payload        02
     CMD2_ID,      // session_Id + Payload       03
     CMD3_ID,      // session_Id + Payload       04
     STOP_ID,      // Stop                       05
@@ -66,9 +70,10 @@ typedef enum
     RDY = 0,
     CKIE,
     TLR,
-    CMD1,
+    PWM,
     CMD2,
     CMD3,
+    INVD,
     END,
     RESPONSES
 } response_id_t;

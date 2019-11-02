@@ -14,6 +14,7 @@
 #include "freeRTOS/lib_io/servoPWM.h"
 
 #include "fsm.h"
+#include "pwm.h"
 #include "generic_cmd_t.h"
 #include "utils/utils.h"
 
@@ -23,7 +24,7 @@
 typedef enum {
     Idle_State,
     Start_State,
-    Cmd1_State,
+    Pwm_State,
     Cmd2_State,
     Cmd3_State,
     Stop_State,
@@ -32,7 +33,7 @@ typedef enum {
 
 typedef enum {
     start_Event,
-    cmd1_Event,
+    pwm_Event,
     cmd2_Event,
     cmd3_Event,
     stop_Event,
@@ -63,7 +64,7 @@ static eSystemState ePreviousState;
 
 /************************ LOCAL FUNCTIONS PROTOTYPES***************************/
 static eSystemState start_handler(void);
-static eSystemState cmd1_handler(void);
+static eSystemState pwm_handler(void);
 static eSystemState cmd2_handler(void);
 static eSystemState cmd3_handler(void);
 static eSystemState stop_handler(void);
@@ -76,15 +77,15 @@ static afEventHandler StateMachine = {
                     },
 
     [Start_State] = {
-                    [cmd1_Event] = cmd1_handler,
+                    [pwm_Event] = pwm_handler,
                     [cmd2_Event] = cmd2_handler,
                     [cmd3_Event] = cmd3_handler,
                     [stop_Event] = stop_handler,
                     [invalid_Event] = NULL
                     },
 
-    [Cmd1_State] = {
-                   [cmd1_Event] = cmd1_handler,
+    [Pwm_State] = {
+                   [pwm_Event] = pwm_handler,
                    [stop_Event] = stop_handler,
                    [invalid_Event] = NULL
                    },
@@ -109,11 +110,17 @@ static eSystemState start_handler(void)
     return Start_State;
 }
 
-static eSystemState cmd1_handler(void)
+static eSystemState pwm_handler(void)
 {
-    cmd_sendResponse(CMD1, OK);
+    #if 0
+    if (pwmProcessData() == 0) {
+        cmd_sendResponse(PWM, OK);
+    } else {
+        cmd_sendResponse(INVD, ERR);
+    }
+#endif
 
-    return Cmd1_State;
+    return Pwm_State;
 }
 
 static eSystemState cmd2_handler(void)
@@ -149,8 +156,8 @@ static eSystemEvent fsm_readEvent(uint8_t *cmd)
         case STOP_ID:
             event = stop_Event;
             break;
-        case CMD1_ID:
-            event = cmd1_Event;
+        case PWM_ID:
+            event = pwm_Event;
             break;
         case CMD2_ID:
             event = cmd2_Event;
@@ -172,6 +179,8 @@ static void fsm_Init(void)
 {
     eNextState = Idle_State;
     ePreviousState = eNextState;
+
+    pwmInit();
 
     return;
 }
