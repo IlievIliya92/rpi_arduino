@@ -77,6 +77,7 @@ extern "C" {
 void start_PWM_hardware(void);									// Set PWM hardware to 20Ms fast PWM.
 void stop_PWM_hardware(void);								 	// Set PWM hardware to 20Ms fast PWM.
 void set_PWM_hardware( uint16_t servoA, uint16_t servoB);		// PWM pulse width in uS for both servos.
+void set_PWM_hardwareChannel( uint16_t pw, uint8_t ch);     // PWM pulse width in uS
 
 #ifdef __cplusplus
 }

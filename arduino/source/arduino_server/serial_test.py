@@ -1,47 +1,92 @@
-
+import json
 import serial
 import time
 
 send_delay = 0.02
-send_data_len = 100
+send_data_len = 20
 
-port = "/dev/ttyACM0"
+START_CMD = "S>01<E*"
+STOP_CMD = "S>05<E*"
+
+PWM_CMD = "S>02"
+DIO_CMD = "S>03"
+
+CMD_TRAILER = "<E*"
+
+port = "/dev/ttyACM1"
 ser = ""
 
-        # VAlid
-cmds0 = ["S>01<E*", "S>0401DATA<E*", \
-        # Invalid
-        "0101DAdsdddddddddddddddddTAdssdasdas*",
-        "S>0101DAdsdddddddddddddddddTAdssdasdas<E*",
-        "S>0101DAdsdddddddddddddddddTAdssdasdas*",
-        "S>05<E*",]
-
-cmds1 = ["S>01<E*","S>0401DATA1<E*", "S>05<E*"]
-
-def run_cmds(cmds):
+def sendCmd(data):
     global ser
+    ser.write(data)
+    time.sleep(send_delay)
+    response = ser.readline()
+    print(response)
+    if "Ok" in response:
+        return True
+    else:
+        return False
 
-    for data in cmds:
-        if data == "S>0401DATA1<E*":
-            for i in range(send_data_len):
-                ser.write(data)
-                time.sleep(send_delay)
-        ser.write(data)
-        time.sleep(send_delay)
+def run_pwm(pwInit = 300, channel ="00"):
+    global ser
+    pwmCmd = ""
+    pwmCmdPayload = pwInit
+
+    ret = sendCmd(START_CMD)
+    while not ret:
+        ret = sendCmd(STOP_CMD)
+        ret = sendCmd(START_CMD)
+
+    if ret:
+        for i in range(send_data_len):
+            pwmCmd = PWM_CMD + channel  + str(pwmCmdPayload + i*50) + CMD_TRAILER
+            ret = sendCmd(pwmCmd)
+            if not ret:
+                sendCmd(STOP_CMD)
+                return
+
+            while not ret:
+                pass
+    sendCmd(STOP_CMD)
+
+def run_dio(enb):
+    global ser
+    dioCmd = ""
+
+    ret = sendCmd(START_CMD)
+    while not ret:
+        ret = sendCmd(STOP_CMD)
+        ret = sendCmd(START_CMD)
+
+    if ret:
+        for i in range(5):
+            led = i
+            pwmCmd = DIO_CMD + "0" + str(led)  + str(enb) + CMD_TRAILER
+            time.sleep(1)
+            ret = sendCmd(pwmCmd)
+            if not ret:
+                sendCmd(STOP_CMD)
+                return
+            while not ret:
+                pass
+    sendCmd(STOP_CMD)
+
 
 def main():
     global ser
 
     try:
-        ser = serial.Serial(port, 38400, timeout=5)
+        ser = serial.Serial(port, 38400, timeout=1)
         ser.close()
         ser.open()
     except serial.SerialException:
         print("Failed to open the serial port!")
         pass
     else:
-        run_cmds(cmds1)
-
+        run_pwm()
+        run_dio(1)
+        time.sleep(4)
+        run_dio(0)
 
 if __name__ == "__main__":
     main()

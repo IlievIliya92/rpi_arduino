@@ -23,7 +23,7 @@ static command_resp_t *responses[RESPONSES] = {
     (command_resp_t *)"!C",
     (command_resp_t *)"!T",
     (command_resp_t *)"PWM",
-    (command_resp_t *)"C2",
+    (command_resp_t *)"DO",
     (command_resp_t *)"C3",
     (command_resp_t *)"INVD",
     (command_resp_t *)"Stp",
@@ -35,7 +35,6 @@ static command_resp_t *responses[RESPONSES] = {
 /******************************* LOCAL FUNCTIONS ******************************/
 
 /***************************** GLOBAL FUNCTIONS ****************************/
-
 void cmd_sendResponse(response_id_t id, int status)
 {
     if (status == ERR) {

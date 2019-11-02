@@ -9,12 +9,12 @@
 #include "freeRTOS/queue.h"
 
 /* serial interface include file. */
-#include "freeRTOS/lib_io/serial.h"
 #include "freeRTOS/lib_io/digitalAnalog.h"
 #include "freeRTOS/lib_io/servoPWM.h"
 
 #include "fsm.h"
 #include "pwm.h"
+#include "dio.h"
 #include "generic_cmd_t.h"
 #include "utils/utils.h"
 
@@ -25,7 +25,7 @@ typedef enum {
     Idle_State,
     Start_State,
     Pwm_State,
-    Cmd2_State,
+    Do_State,
     Cmd3_State,
     Stop_State,
     last_State
@@ -34,7 +34,7 @@ typedef enum {
 typedef enum {
     start_Event,
     pwm_Event,
-    cmd2_Event,
+    do_Event,
     cmd3_Event,
     stop_Event,
     invalid_Event,
@@ -51,10 +51,9 @@ typedef struct sStateMachine
     pfEventHandler pfStateMachineEvnentHandler;
 } sStateMachine_t;
 
-typedef eSystemState (*const afEventHandler[last_State][last_Event])(void);
+typedef eSystemState (*const afEventHandler[last_State][last_Event])(void *args);
 
 /******************************** GLOBALDATA *******************************/
-extern xComPortHandle xSerialPort;
 
 /********************************* LOCAL DATA *********************************/
 static eSystemState eNextState;
@@ -63,11 +62,11 @@ static eSystemState ePreviousState;
 /******************************* INTERFACE DATA *******************************/
 
 /************************ LOCAL FUNCTIONS PROTOTYPES***************************/
-static eSystemState start_handler(void);
-static eSystemState pwm_handler(void);
-static eSystemState cmd2_handler(void);
-static eSystemState cmd3_handler(void);
-static eSystemState stop_handler(void);
+static eSystemState start_handler(void *args);
+static eSystemState pwm_handler(void *args);
+static eSystemState do_handler(void *args);
+static eSystemState cmd3_handler(void *args);
+static eSystemState stop_handler(void *args);
 
 /******************************* LOCAL FUNCTIONS ******************************/
 static afEventHandler StateMachine = {
@@ -78,7 +77,7 @@ static afEventHandler StateMachine = {
 
     [Start_State] = {
                     [pwm_Event] = pwm_handler,
-                    [cmd2_Event] = cmd2_handler,
+                    [do_Event] = do_handler,
                     [cmd3_Event] = cmd3_handler,
                     [stop_Event] = stop_handler,
                     [invalid_Event] = NULL
@@ -90,8 +89,8 @@ static afEventHandler StateMachine = {
                    [invalid_Event] = NULL
                    },
 
-    [Cmd2_State] = {
-                   [cmd2_Event] = cmd2_handler,
+    [Do_State] = {
+                   [do_Event] = do_handler,
                    [stop_Event] = stop_handler,
                    [invalid_Event] = NULL
                    },
@@ -103,41 +102,47 @@ static afEventHandler StateMachine = {
                    },
 };
 
-static eSystemState start_handler(void)
+static eSystemState start_handler(void *args)
 {
     cmd_sendResponse(RDY, OK);
 
     return Start_State;
 }
 
-static eSystemState pwm_handler(void)
+static eSystemState pwm_handler(void *args)
 {
-    #if 0
-    if (pwmProcessData() == 0) {
+    genericCmdMsg_t *cmdMsg = (genericCmdMsg_t *)args;
+
+    if (pwmProcessData(cmdMsg->cmd_sessionId, cmdMsg->cmd_payload) == 0) {
         cmd_sendResponse(PWM, OK);
     } else {
         cmd_sendResponse(INVD, ERR);
     }
-#endif
 
     return Pwm_State;
 }
 
-static eSystemState cmd2_handler(void)
+static eSystemState do_handler(void *args)
 {
-    cmd_sendResponse(CMD2, OK);
+    genericCmdMsg_t *cmdMsg = (genericCmdMsg_t *)args;
 
-    return Cmd2_State;
+    if (dioprocessData(cmdMsg->cmd_sessionId, cmdMsg->cmd_payload) == 0) {
+        cmd_sendResponse(DO, OK);
+    } else {
+        cmd_sendResponse(INVD, ERR);
+    }
+
+    return Do_State;
 }
 
-static eSystemState cmd3_handler(void)
+static eSystemState cmd3_handler(void *args)
 {
     cmd_sendResponse(CMD3, OK);
 
     return Cmd3_State;
 }
 
-static eSystemState stop_handler(void)
+static eSystemState stop_handler(void *args)
 {
     cmd_sendResponse(END, OK);
 
@@ -159,8 +164,8 @@ static eSystemEvent fsm_readEvent(uint8_t *cmd)
         case PWM_ID:
             event = pwm_Event;
             break;
-        case CMD2_ID:
-            event = cmd2_Event;
+        case DO_ID:
+            event = do_Event;
             break;
         case CMD3_ID:
             event = cmd3_Event;
@@ -181,6 +186,7 @@ static void fsm_Init(void)
     ePreviousState = eNextState;
 
     pwmInit();
+    dioInit();
 
     return;
 }
@@ -203,7 +209,7 @@ static void fsm_Task(void *pvParameters)
         ePreviousState = eNextState;
         if((eNextState < last_State) && (eNewEvent < last_Event) && StateMachine[eNextState][eNewEvent] != NULL)
         {
-            eNextState = (*StateMachine[eNextState][eNewEvent])();
+            eNextState = (*StateMachine[eNextState][eNewEvent])(&cmdMsg);
         }
         else
         {

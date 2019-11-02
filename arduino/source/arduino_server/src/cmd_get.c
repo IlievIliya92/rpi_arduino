@@ -124,7 +124,7 @@ static command_status_t cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
         int cmdId = utils_atoI(cmdMsg->cmd_id, 10);
         /* Commands with session Id and payload */
         if (CHECK_PAYLOAD(cmdId, PWM_ID) ||
-            CHECK_PAYLOAD(cmdId, CMD2_ID) ||
+            CHECK_PAYLOAD(cmdId, DO_ID) ||
             CHECK_PAYLOAD(cmdId, CMD3_ID))
         {
             cmd_getToken(cmdMsg->cmd_sessionId, cmd, CMD_SESION_ID_LEN);

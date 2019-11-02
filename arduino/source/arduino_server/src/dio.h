@@ -1,5 +1,5 @@
-#ifndef _PWM_H_
-#define _PWM_H_
+#ifndef _DIO_H_
+#define _DIO_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,11 +13,11 @@ extern "C" {
 /************************** INTERFACE DATA DEFINITIONS ************************/
 
 /************************* INTERFACE FUNCTION PROTOTYPES **********************/
-void pwmInit(void);
-int pwmProcessData(uint8_t *sesionId, uint8_t *dataStr);
+void dioInit(void);
+int dioprocessData(uint8_t *sesionId, uint8_t *dataStr);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _PWM_H_ */
+#endif /* _DIO_H_ */

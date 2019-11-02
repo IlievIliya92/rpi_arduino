@@ -131,5 +131,56 @@ void set_PWM_hardware( uint16_t servoA, uint16_t servoB)     // PWM pulse width 
 #endif
 }
 
+void set_PWM_hardwareChannel( uint16_t pw, uint8_t ch)     // PWM pulse width in uS
+{
+    uint8_t OCRA;
+    uint8_t OCRB;
+
+#if defined( portUSE_TIMER0_PWM )
+
+    switch (ch)
+    {
+        case 0:
+            OCRA = (uint8_t)( (float)pw * configCPU_CLOCK_HZ  / pwmCLOCK_PRESCALER / 1000000 ); // This calculation is just wrong,
+            taskENTER_CRITICAL();
+            pwmOCRa = OCRA;
+            taskEXIT_CRITICAL();
+            break;
+        case 1:
+            OCRB = (uint8_t)( (float)pw * configCPU_CLOCK_HZ  / pwmCLOCK_PRESCALER / 1000000 ); // but I have no interest to fix it.
+            taskENTER_CRITICAL();
+            pwmOCRb = OCRB;
+            taskEXIT_CRITICAL();
+            break;
+
+        default:
+            break;
+    }
+
+#elif defined( portUSE_TIMER1_PWM )
+    // pwmOCRx is set in uS, so convert from uS to # of steps to pwmICR1
+    switch (ch)
+    {
+        case 0:
+            OCRA = (uint16_t)( (float)pw * (configCPU_CLOCK_HZ/(pwmCLOCK_PRESCALER*pwmBASE_HZ) - 1) * pwmBASE_HZ / 1000000.0 );
+            taskENTER_CRITICAL();
+            pwmOCRa = OCRA;
+            taskEXIT_CRITICAL();
+            break;
+
+        case 1:
+            OCRB = (uint16_t)( (float)pw * (configCPU_CLOCK_HZ/(pwmCLOCK_PRESCALER*pwmBASE_HZ) - 1) * pwmBASE_HZ / 1000000.0 );
+            taskENTER_CRITICAL();
+            pwmOCRb = OCRB;
+            taskEXIT_CRITICAL();
+            break;
+
+        default:
+            break;
+    }
+#endif
+}
+
+
 #endif // #if defined(portUSE_TIMER0_PWM) || defined(portUSE_TIMER1_PWM)
 

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
+#include <ctype.h>
 
 #include <avr/io.h>
 #include <util/delay_basic.h>
@@ -23,6 +24,11 @@
 #define DEFAULT_PULSE_WIDTH  300     // default pulse width when servo is attached
 
 /******************************** TYPEDEFS ************************************/
+typedef enum pwmCh_t {
+    PWMCH0 = 0,
+    PWMCH1,
+    PWMCHN
+} pwmCh_t;
 
 /******************************** GLOBALDATA *******************************/
 extern xComPortHandle xSerialPort;
@@ -35,21 +41,33 @@ extern xComPortHandle xSerialPort;
 
 /******************************* LOCAL FUNCTIONS ******************************/
 static
-void pwmSetValues(uint16_t pwA, uint16_t pwB)
+int pwmIsValidCh(uint8_t ch)
 {
-    if (pwA < MIN_PULSE_WIDTH) {
-        pwA = MIN_PULSE_WIDTH;
-    } else if (pwA > MAX_PULSE_WIDTH) {
-        pwA = MAX_PULSE_WIDTH;
+    if (ch > PWMCHN)
+        return -1;
+
+    return 0;
+}
+
+static
+int pwmIsValidData(uint16_t data)
+{
+    if (data == 0)
+        return -1;
+
+    return 0;
+}
+
+static
+void pwmSetValue(uint16_t pw, uint8_t ch)
+{
+    if (pw < MIN_PULSE_WIDTH) {
+        pw = MIN_PULSE_WIDTH;
+    } else if (pw > MAX_PULSE_WIDTH) {
+        pw = MAX_PULSE_WIDTH;
     }
 
-    if (pwB < MIN_PULSE_WIDTH) {
-        pwB = MIN_PULSE_WIDTH;
-    } else if (pwB > MAX_PULSE_WIDTH) {
-        pwB = MAX_PULSE_WIDTH;
-    }
-
-    set_PWM_hardware(pwA, pwB);
+    set_PWM_hardwareChannel(pw, ch);
 
     return;
 }
@@ -57,26 +75,33 @@ void pwmSetValues(uint16_t pwA, uint16_t pwB)
 void pwmInit(void)
 {
     start_PWM_hardware();
+    set_PWM_hardware(MIN_PULSE_WIDTH, MIN_PULSE_WIDTH);
 
     return;
 }
 
-
-int pwmProcessData(uint8_t *dataStr)
+int pwmProcessData(uint8_t *sesionId, uint8_t *dataStr)
 {
-    if (dataStr == NULL)
+    if (dataStr == NULL || sesionId == NULL)
         return -1;
-    char *token;
-    uint16_t pw[2];
 
-    /* get the first token */
-    token = strtok((char *)dataStr, PWM_DATA_TOK);
-    pw[0] = atoi(token);
+    uint8_t ch = atoi((char *)sesionId);
+    uint16_t data = atoi((char *)dataStr);
 
-    token = strtok(NULL, PWM_DATA_TOK);
-    pw[1] = atoi(token);
+    if (pwmIsValidCh(ch) < 0 || pwmIsValidData(data) < 0)
+        return -1;
 
-    pwmSetValues(pw[0], pw[1]);
+    switch(ch)
+    {
+        case PWMCH0:
+            pwmSetValue(data, PWMCH0);
+        break;
+
+        case PWMCH1:
+            pwmSetValue(data, PWMCH1);
+        break;
+
+    }
 
     return 0;
 }
