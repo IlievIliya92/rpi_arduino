@@ -30,7 +30,7 @@ extern "C" {
 #define CMD_COKIE_LEN        3 /* 16bitsCOOKIE + \n */
 #define CMD_ID_LEN           3 /* 16bitsID + \n */
 #define CMD_SESION_ID_LEN    3 /* 16bitsSID + \n */
-#define CMD_PAYLOAD_LEN      10 /* 30bytePayload + \n */
+#define CMD_PAYLOAD_LEN      11 /* 10bytePayload + \n */
 #define CMD_TRAILER_LEN      3 /* 16bitsTLR + \n */
 
 #define CMD_TRAILER          "<E"
