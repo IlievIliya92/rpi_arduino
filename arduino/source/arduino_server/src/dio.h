@@ -13,8 +13,7 @@ extern "C" {
 /************************** INTERFACE DATA DEFINITIONS ************************/
 
 /************************* INTERFACE FUNCTION PROTOTYPES **********************/
-void dioInit(void);
-int dioprocessData(uint8_t *sesionId, uint8_t *dataStr);
+genericCmdHandler_t *getDioCmdHandler(void);
 
 #ifdef __cplusplus
 }

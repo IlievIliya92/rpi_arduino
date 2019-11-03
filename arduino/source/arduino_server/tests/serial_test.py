@@ -1,4 +1,3 @@
-import json
 import serial
 import time
 
@@ -13,7 +12,7 @@ DIO_CMD = "S>03"
 
 CMD_TRAILER = "<E*"
 
-port = "/dev/ttyACM1"
+port = "/dev/ttyACM0"
 ser = ""
 
 def sendCmd(data):

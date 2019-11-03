@@ -13,8 +13,7 @@ extern "C" {
 /************************** INTERFACE DATA DEFINITIONS ************************/
 
 /************************* INTERFACE FUNCTION PROTOTYPES **********************/
-void pwmInit(void);
-int pwmProcessData(uint8_t *sesionId, uint8_t *dataStr);
+genericCmdHandler_t *getPwmCmdHandler(void);
 
 #ifdef __cplusplus
 }

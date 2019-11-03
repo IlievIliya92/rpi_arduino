@@ -9,6 +9,7 @@
 
 #include "freeRTOS/FreeRTOS.h"
 
+#include "dio.h"
 #include "generic_cmd_t.h"
 
 /* serial interface include file. */
@@ -90,7 +91,7 @@ void dioSetValue(uint16_t state, uint8_t dio)
     return;
 }
 
-/***************************** INTERFACE FUNCTIONS ****************************/
+static
 void dioInit(void)
 {
     /* Set as outputs B0 - B0 */
@@ -103,7 +104,8 @@ void dioInit(void)
     return;
 }
 
-int dioprocessData(uint8_t *sesionId, uint8_t *dataStr)
+static
+int dioProcessData(uint8_t *sesionId, uint8_t *dataStr)
 {
     if (dataStr == NULL || sesionId == NULL)
         return -1;
@@ -117,5 +119,16 @@ int dioprocessData(uint8_t *sesionId, uint8_t *dataStr)
     dioSetValue(state, dio);
 
     return 0;
+}
+
+/***************************** INTERFACE FUNCTIONS ****************************/
+genericCmdHandler_t dio = {
+    dioInit,
+    dioProcessData
+};
+
+genericCmdHandler_t *getDioCmdHandler(void)
+{
+    return &dio;
 }
 

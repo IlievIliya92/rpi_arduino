@@ -12,10 +12,12 @@ extern "C" {
 #include "freeRTOS/semphr.h"
 
 /*********************************** DEFINES **********************************/
+#define COMMAND_HANDLERS    2
 
 /************************** INTERFACE DATA DEFINITIONS ************************/
 typedef void (*voidVoid_t)(void);
 typedef void (*voidVoidPtr_t)(void *);
+typedef int (*voidVoid2Uint8_t)(uint8_t *, uint8_t *);
 
 /* Generic tasks structure */
 typedef struct {
@@ -27,6 +29,11 @@ typedef struct {
    void *data;
    void *args;
 } genericTask_t;
+
+typedef struct {
+   voidVoid_t initCmd;
+    voidVoid2Uint8_t processData;
+} genericCmdHandler_t;
 
 
 #ifdef __cplusplus

@@ -112,8 +112,10 @@ static eSystemState start_handler(void *args)
 static eSystemState pwm_handler(void *args)
 {
     genericCmdMsg_t *cmdMsg = (genericCmdMsg_t *)args;
+    genericCmdHandler_t *pwm = NULL;
 
-    if (pwmProcessData(cmdMsg->cmd_sessionId, cmdMsg->cmd_payload) == 0) {
+    pwm = getPwmCmdHandler();
+    if (pwm->processData(cmdMsg->cmd_sessionId, cmdMsg->cmd_payload) == 0) {
         cmd_sendResponse(PWM, OK);
     } else {
         cmd_sendResponse(INVD, ERR);
@@ -125,8 +127,11 @@ static eSystemState pwm_handler(void *args)
 static eSystemState do_handler(void *args)
 {
     genericCmdMsg_t *cmdMsg = (genericCmdMsg_t *)args;
+    genericCmdHandler_t *dio = NULL;
 
-    if (dioprocessData(cmdMsg->cmd_sessionId, cmdMsg->cmd_payload) == 0) {
+    dio = getDioCmdHandler();
+
+    if (dio->processData(cmdMsg->cmd_sessionId, cmdMsg->cmd_payload) == 0) {
         cmd_sendResponse(DO, OK);
     } else {
         cmd_sendResponse(INVD, ERR);
@@ -182,11 +187,19 @@ static eSystemEvent fsm_readEvent(uint8_t *cmd)
 
 static void fsm_Init(void)
 {
+    int i = 0;
+
     eNextState = Idle_State;
     ePreviousState = eNextState;
 
-    pwmInit();
-    dioInit();
+    /* Initialize the command handlers */
+    genericCmdHandler_t *cmds[COMMAND_HANDLERS];
+
+    cmds[0] = getPwmCmdHandler();
+    cmds[1] = getDioCmdHandler();
+
+    for (i = 0; i < COMMAND_HANDLERS; i++)
+        cmds[i]->initCmd();
 
     return;
 }

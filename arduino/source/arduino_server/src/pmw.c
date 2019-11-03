@@ -11,6 +11,7 @@
 #include "freeRTOS/semphr.h"
 #include "freeRTOS/queue.h"
 
+#include "pwm.h"
 #include "generic_cmd_t.h"
 
 /* serial interface include file. */
@@ -71,7 +72,8 @@ void pwmSetValue(uint16_t pw, uint8_t ch)
 
     return;
 }
-/***************************** INTERFACE FUNCTIONS ****************************/
+
+static
 void pwmInit(void)
 {
     start_PWM_hardware();
@@ -80,6 +82,7 @@ void pwmInit(void)
     return;
 }
 
+static
 int pwmProcessData(uint8_t *sesionId, uint8_t *dataStr)
 {
     if (dataStr == NULL || sesionId == NULL)
@@ -105,3 +108,16 @@ int pwmProcessData(uint8_t *sesionId, uint8_t *dataStr)
 
     return 0;
 }
+
+/***************************** INTERFACE FUNCTIONS ****************************/
+
+genericCmdHandler_t pwm = {
+    pwmInit,
+    pwmProcessData
+};
+
+genericCmdHandler_t *getPwmCmdHandler(void)
+{
+    return &pwm;
+}
+
