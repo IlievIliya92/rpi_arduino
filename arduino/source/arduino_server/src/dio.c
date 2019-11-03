@@ -18,19 +18,7 @@
 /******************************** LOCAL DEFINES *******************************/
 
 /******************************** TYPEDEFS ************************************/
-typedef enum dioCh_t {
-    DIO0 = 0,
-    DIO1,
-    DIO2,
-    DIO3,
-    DIO4,
-    DION
-} dioCh_t;
 
-typedef enum dioStates_t {
-    OFF = 0,
-    ON
-} dioStates_t;
 /******************************** GLOBALDATA *******************************/
 extern xComPortHandle xSerialPort;
 

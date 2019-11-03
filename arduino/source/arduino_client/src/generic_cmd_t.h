@@ -12,19 +12,6 @@ extern "C" {
 
 /* S> / CMID / SED / 30 bytest DATA / <E */
 
-/* S>01<E*  - START */
-
-/* S>02002000<E* - PWM */
-/* S>0200300<E* - PWM */
-
-/* S>03001<E* - DO - ON */
-/* S>03000<E* - DO - OFF */
-
-/* S>05<E*  - STOP */
-
-/* Invalid command */
-/* S>0101DATAdsadadasdadasdasdadasdasdasdadadadasdadasdasdas<E* */
-
 #define CMD_COKIE            "S>"
 
 #define CMD_COKIE_LEN        3 /* 16bitsCOOKIE + \n */
@@ -53,12 +40,17 @@ typedef enum
 typedef enum
 {
     START_ID = 1, // Start                      01
-    PWM_ID,       // session_Id + Payload        02
+    PWM_ID,       // session_Id + Payload       02
     DO_ID,        // session_Id + Payload       03
     CMD3_ID,      // session_Id + Payload       04
     STOP_ID,      // Stop                       05
     COMMANDS
 } command_id_t;
+
+typedef enum cmdFieldVersion_t {
+    SRT = 0,
+    EXTD
+} cmdFieldVersion_t;
 
 typedef enum pwmCh_t {
     PWMCH0 = 0,
@@ -88,21 +80,6 @@ typedef struct {
     uint8_t cmd_payload[CMD_PAYLOAD_LEN];
     uint8_t cmd_trailer[CMD_TRAILER_LEN];
 } genericCmdMsg_t;
-
-typedef enum
-{
-    RDY = 0,
-    CKIE,
-    TLR,
-    PWM,
-    DO,
-    CMD3,
-    INVD,
-    END,
-    RESPONSES
-} response_id_t;
-
-void cmd_sendResponse(response_id_t id, int status);
 
 #ifdef __cplusplus
 }

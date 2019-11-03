@@ -25,11 +25,6 @@
 #define DEFAULT_PULSE_WIDTH  300     // default pulse width when servo is attached
 
 /******************************** TYPEDEFS ************************************/
-typedef enum pwmCh_t {
-    PWMCH0 = 0,
-    PWMCH1,
-    PWMCHN
-} pwmCh_t;
 
 /******************************** GLOBALDATA *******************************/
 extern xComPortHandle xSerialPort;

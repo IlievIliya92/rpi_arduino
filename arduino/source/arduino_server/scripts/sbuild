@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ${EMG_PROJECT_ROOT}
+cd ${SERVER_PROJECT_ROOT}
 ./run_cmake
-cd ${EMG_PROJECT_ROOT}/Debug
+cd ${SERVER_PROJECT_ROOT}/Debug
 make
