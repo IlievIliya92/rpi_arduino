@@ -20,7 +20,7 @@
 #include "cmds.h"
 
 /******************************** LOCAL DEFINES *******************************/
-
+#define DIFF_INTERVAL   5
 
 /******************************** GLOBALDATA *******************************/
 
@@ -36,6 +36,8 @@ static void serial_Init(void)
 {
     /* Set as output */
     DDRB |= _BV(DDB5);
+
+    cmds_pwmSendCmd(START_ID, 0, 0);
 
     return;
 }
@@ -56,6 +58,9 @@ static void serial_Task(void *pvParameters)
     extern QueueHandle_t xAdcQueue;
     xADCArray adcValues;
 
+    static uint16_t adcValOld[2] = {0};
+    uint16_t diff;
+
     const TickType_t xBlockTime = pdMS_TO_TICKS(200);
 
     xLastWakeTime = xTaskGetTickCount();
@@ -63,18 +68,30 @@ static void serial_Task(void *pvParameters)
     while(1)
     {
         xQueueReceive( xAdcQueue, &adcValues, xBlockTime);
-        PORTB |=  _BV(PORTB5);
 
-        cmds_pwmSendCmd(START_ID, 0, 0);
+        if( adcValues.adc0 > adcValOld[0] )
+            diff = adcValues.adc0 - adcValOld[0];
+        else
+            diff = adcValOld[0]- adcValues.adc0 ;
 
-        cmds_pwmSendCmd(PWM_ID, PWMCH0, adcValues.adc0);
-        cmds_pwmSendCmd(PWM_ID, PWMCH1, adcValues.adc1);
+        if (diff > DIFF_INTERVAL) {
+            PORTB |=  _BV(PORTB5);
+            cmds_pwmSendCmd(PWM_ID, PWMCH0, adcValues.adc0);
+            adcValOld[0] = adcValues.adc0;
 
-        cmds_pwmSendCmd(STOP_ID, 0, 0);
+        }
 
-        vTaskDelayUntil( &xLastWakeTime, (10 / portTICK_PERIOD_MS));
+        if( adcValues.adc1 > adcValOld[1] )
+            diff = adcValues.adc1 - adcValOld[1];
+        else
+            diff = adcValOld[1]- adcValues.adc1 ;
+
+        if (diff > DIFF_INTERVAL) {
+            PORTB |=  _BV(PORTB5);
+            cmds_pwmSendCmd(PWM_ID, PWMCH1, adcValues.adc1);
+            adcValOld[1] = adcValues.adc1;
+        }
         PORTB &= ~_BV(PORTB5);
-        vTaskDelayUntil( &xLastWakeTime, (40 / portTICK_PERIOD_MS));
     }
 
     return;

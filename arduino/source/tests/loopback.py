@@ -32,7 +32,7 @@ def main():
     while True:
         cmd = serc.readline()
 #        print(cmd)
-        time.sleep(send_delay)
+        time.sleep(0.01)
         sers.write(cmd)
 
 if __name__ == "__main__":

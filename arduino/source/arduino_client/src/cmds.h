@@ -14,6 +14,7 @@ extern "C" {
 
 /************************* INTERFACE FUNCTION PROTOTYPES **********************/
 void cmds_pwmSendCmd(command_id_t id, uint8_t sid, uint16_t data);
+void cmds_receiveInput(char *buff, uint8_t len);
 
 #ifdef __cplusplus
 }

@@ -57,6 +57,8 @@ int pwmIsValidData(uint16_t data)
 static
 void pwmSetValue(uint16_t pw, uint8_t ch)
 {
+    pw += MIN_PULSE_WIDTH;
+
     if (pw < MIN_PULSE_WIDTH) {
         pw = MIN_PULSE_WIDTH;
     } else if (pw > MAX_PULSE_WIDTH) {
