@@ -1,0 +1,319 @@
+2020-01-10 00:01:41,468 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-10 00:01:41,480 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-10 00:01:41,491 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-10 00:01:41,502 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-10 00:01:41,515 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-10 00:01:41,526 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-10 00:01:41,536 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-10 00:01:41,547 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-10 00:01:41,563 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-10 00:01:41,578 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-10 00:04:52,407 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-10 00:05:58,196 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-10 00:06:48,572 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:07:29,012 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:09:27,470 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:10:24,758 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:11:19,108 ERROR    Failed to read ADC data. 'value'
+2020-01-10 00:11:20,149 INFO     Serial port opened & start confirmed.
+2020-01-10 00:11:20,190 ERROR    Failed to read ADC data. 'value'
+2020-01-10 00:15:30,410 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:15:35,040 ERROR    Failed to read ADC data. 'value'
+2020-01-10 00:15:36,080 INFO     Serial port opened & start confirmed.
+2020-01-10 00:15:46,610 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:16:05,790 ERROR    Failed to read ADC data. 'value'
+2020-01-10 00:16:06,831 INFO     Serial port opened & start confirmed.
+2020-01-10 00:16:10,440 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:19:25,784 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:19:41,758 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:19:59,905 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:21:03,460 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:21:03,579 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:21:36,889 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:21:50,338 ERROR    Failed to read ADC data. 'value'
+2020-01-10 00:21:51,379 INFO     Serial port opened & start confirmed.
+2020-01-10 00:21:58,073 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:22:10,541 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:22:30,734 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:22:36,570 ERROR    Failed to read ADC data. 'value'
+2020-01-10 00:22:37,611 INFO     Serial port opened & start confirmed.
+2020-01-10 00:22:44,619 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:22:58,460 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:23:13,466 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:23:20,312 ERROR    Failed to read ADC data. 'value'
+2020-01-10 00:23:21,353 INFO     Serial port opened & start confirmed.
+2020-01-10 00:23:23,515 INFO     Light 1 enabled.
+2020-01-10 00:23:24,599 INFO     Light 1 enabled.
+2020-01-10 00:23:25,683 INFO     Light 1 enabled.
+2020-01-10 00:23:26,766 INFO     Light 1 enabled.
+2020-01-10 00:23:27,850 INFO     Light 1 enabled.
+2020-01-10 00:23:28,934 INFO     Light 1 enabled.
+2020-01-10 00:23:30,018 INFO     Light 1 enabled.
+2020-01-10 00:23:31,102 INFO     Light 1 enabled.
+2020-01-10 00:23:32,185 INFO     Light 1 enabled.
+2020-01-10 00:23:33,269 INFO     Light 1 enabled.
+2020-01-10 00:23:34,352 INFO     Light 1 enabled.
+2020-01-10 00:23:35,436 INFO     Light 1 enabled.
+2020-01-10 00:23:36,520 INFO     Light 1 enabled.
+2020-01-10 00:23:37,604 INFO     Light 1 enabled.
+2020-01-10 00:23:38,687 INFO     Light 1 enabled.
+2020-01-10 00:23:40,769 INFO     Failed to enable light 1.
+2020-01-10 00:23:41,892 INFO     Light 1 enabled.
+2020-01-10 00:23:42,981 INFO     Light 1 enabled.
+2020-01-10 00:23:44,071 INFO     Light 1 enabled.
+2020-01-10 00:23:45,155 INFO     Light 1 enabled.
+2020-01-10 00:23:46,239 INFO     Light 1 enabled.
+2020-01-10 00:23:47,322 INFO     Light 1 enabled.
+2020-01-10 00:23:48,406 INFO     Light 1 enabled.
+2020-01-10 00:23:49,489 INFO     Light 1 enabled.
+2020-01-10 00:23:50,573 INFO     Light 1 enabled.
+2020-01-10 00:23:52,657 INFO     Light 1 enabled.
+2020-01-10 00:23:53,796 INFO     Light 1 enabled.
+2020-01-10 00:23:54,885 INFO     Light 1 enabled.
+2020-01-10 00:23:55,969 INFO     Light 1 enabled.
+2020-01-10 00:23:57,053 INFO     Light 1 enabled.
+2020-01-10 00:23:58,136 INFO     Light 1 enabled.
+2020-01-10 00:23:59,220 INFO     Light 1 enabled.
+2020-01-10 00:24:00,304 INFO     Light 1 enabled.
+2020-01-10 00:24:01,388 INFO     Light 1 enabled.
+2020-01-10 00:24:02,471 INFO     Light 1 enabled.
+2020-01-10 00:24:03,555 INFO     Light 1 enabled.
+2020-01-10 00:24:04,638 INFO     Light 1 enabled.
+2020-01-10 00:24:05,102 ERROR    Failed to read ADC data. 'value'
+2020-01-10 00:25:05,833 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:25:10,529 ERROR    Failed to read ADC data. 'value'
+2020-01-10 00:25:11,570 INFO     Serial port opened & start confirmed.
+2020-01-10 00:25:22,397 INFO     Light 1 enabled.
+2020-01-10 00:25:23,490 INFO     Light 1 enabled.
+2020-01-10 00:25:24,574 INFO     Light 1 enabled.
+2020-01-10 00:25:25,658 INFO     Light 1 enabled.
+2020-01-10 00:25:26,741 INFO     Light 1 enabled.
+2020-01-10 00:25:27,825 INFO     Light 1 enabled.
+2020-01-10 00:25:28,908 INFO     Light 1 enabled.
+2020-01-10 00:25:29,299 ERROR    Failed to read ADC data. 'value'
+2020-01-10 00:27:37,424 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:27:43,095 ERROR    Failed to read ADC data. 'value'
+2020-01-10 00:27:44,135 INFO     Serial port opened & start confirmed.
+2020-01-10 00:27:52,803 INFO     Light 1 enabled.
+2020-01-10 00:27:58,218 INFO     Light 1 enabled.
+2020-01-10 00:28:03,634 INFO     Light 1 enabled.
+2020-01-10 00:28:09,033 INFO     Light 1 enabled.
+2020-01-10 00:28:14,448 INFO     Light 1 enabled.
+2020-01-10 00:28:23,420 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:36:23,075 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:36:28,144 INFO     Serial port opened & start confirmed.
+2020-01-10 00:36:49,242 INFO     Failed to enable light 1.
+2020-01-10 00:36:55,325 INFO     Failed to enable light 1.
+2020-01-10 00:36:58,910 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:37:29,402 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:37:43,171 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:37:50,035 INFO     Serial port opened & start confirmed.
+2020-01-10 00:38:03,371 INFO     Light 1 enabled.
+2020-01-10 00:38:09,454 INFO     Failed to enable light 1.
+2020-01-10 00:38:14,538 INFO     Light 1 enabled.
+2020-01-10 00:38:20,620 INFO     Failed to enable light 1.
+2020-01-10 00:38:25,708 INFO     Light 1 enabled.
+2020-01-10 00:38:31,791 INFO     Failed to enable light 1.
+2020-01-10 00:38:36,302 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:38:58,898 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:39:08,392 INFO     Serial port opened & start confirmed.
+2020-01-10 00:39:25,075 INFO     Failed to enable light 1.
+2020-01-10 00:39:31,158 INFO     Failed to enable light 1.
+2020-01-10 00:39:37,240 INFO     Failed to enable light 1.
+2020-01-10 00:39:43,323 INFO     Failed to enable light 1.
+2020-01-10 00:39:49,366 INFO     Light 1 enabled.
+2020-01-10 00:39:55,449 INFO     Failed to enable light 1.
+2020-01-10 00:40:00,532 INFO     Light 1 enabled.
+2020-01-10 00:40:06,615 INFO     Failed to enable light 1.
+2020-01-10 00:40:11,697 INFO     Light 1 enabled.
+2020-01-10 00:40:17,779 INFO     Failed to enable light 1.
+2020-01-10 00:40:22,863 INFO     Light 1 enabled.
+2020-01-10 00:40:28,946 INFO     Failed to enable light 1.
+2020-01-10 00:40:34,029 INFO     Light 1 enabled.
+2020-01-10 00:40:40,112 INFO     Failed to enable light 1.
+2020-01-10 00:40:45,196 INFO     Light 1 enabled.
+2020-01-10 00:40:51,278 INFO     Failed to enable light 1.
+2020-01-10 00:40:52,725 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:43:53,395 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:44:13,047 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:44:32,697 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:44:38,827 INFO     Serial port opened & start confirmed.
+2020-01-10 00:45:13,062 INFO     Light 1 enabled.
+2020-01-10 00:45:24,227 INFO     Light 1 enabled.
+2020-01-10 00:45:35,393 INFO     Light 1 enabled.
+2020-01-10 00:45:46,559 INFO     Light 1 enabled.
+2020-01-10 00:45:53,629 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:46:03,113 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:46:09,003 INFO     Serial port opened & start confirmed.
+2020-01-10 00:46:13,287 ERROR    Failed to read ADC data. Expecting ',' delimiter: line 1 column 29 (char 28)
+2020-01-10 00:46:43,492 INFO     Light 1 enabled.
+2020-01-10 00:46:54,658 INFO     Light 1 enabled.
+2020-01-10 00:47:05,824 INFO     Light 1 enabled.
+2020-01-10 00:47:16,991 INFO     Light 1 enabled.
+2020-01-10 00:47:28,157 INFO     Light 1 enabled.
+2020-01-10 00:47:39,323 INFO     Light 1 enabled.
+2020-01-10 00:47:50,488 INFO     Light 1 enabled.
+2020-01-10 00:47:52,338 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:48:06,851 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:48:12,553 INFO     Serial port opened & start confirmed.
+2020-01-10 00:48:17,020 ERROR    Failed to read ADC data. Expecting ',' delimiter: line 1 column 30 (char 29)
+2020-01-10 00:48:56,986 INFO     Light 1 enabled.
+2020-01-10 00:49:10,335 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:49:16,243 INFO     Serial port opened & start confirmed.
+2020-01-10 00:49:20,507 ERROR    Failed to read ADC data. Expecting ':' delimiter: line 1 column 35 (char 34)
+2020-01-10 00:50:00,790 INFO     Light 1 enabled.
+2020-01-10 00:50:11,961 INFO     Light 1 enabled.
+2020-01-10 00:50:23,126 INFO     Light 1 enabled.
+2020-01-10 00:50:34,292 INFO     Light 1 enabled.
+2020-01-10 00:50:45,458 INFO     Light 1 enabled.
+2020-01-10 00:50:56,624 INFO     Light 1 enabled.
+2020-01-10 00:51:07,788 INFO     Light 1 enabled.
+2020-01-10 00:51:10,196 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:51:20,528 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:51:26,820 INFO     Serial port opened & start confirmed.
+2020-01-10 00:51:40,740 INFO     Light 1 enabled.
+2020-01-10 00:51:46,823 INFO     Setting up light 1 Failed.
+2020-01-10 00:51:51,907 INFO     Light 1 enabled.
+2020-01-10 00:51:57,989 INFO     Setting up light 1 Failed.
+2020-01-10 00:51:59,366 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:54:24,451 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:54:43,335 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:55:04,750 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:55:47,172 INFO     Serial port opened & start confirmed.
+2020-01-10 00:56:20,914 INFO     Serial port closed & stop confirmed.
+2020-01-10 00:56:31,607 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 00:56:39,035 INFO     Serial port opened & start confirmed.
+2020-01-10 00:56:41,782 ERROR    Failed to read ADC data. Expecting ',' delimiter: line 1 column 34 (char 33)
+2020-01-10 00:57:23,369 INFO     Serial port closed & stop confirmed.
+2020-01-10 01:02:46,581 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 01:02:51,533 INFO     Serial port opened & start confirmed.
+2020-01-10 01:03:16,456 INFO     Serial port closed & stop confirmed.
+2020-01-10 01:05:30,963 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 01:05:45,328 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 01:05:50,037 INFO     Serial port opened & start confirmed.
+2020-01-10 01:05:56,508 INFO     Setting up light 1 failed.
+2020-01-10 01:06:01,590 INFO     Light 1 enabled.
+2020-01-10 01:06:06,672 INFO     Light 1 enabled.
+2020-01-10 01:06:11,754 INFO     Light 1 enabled.
+2020-01-10 01:06:16,836 INFO     Light 1 enabled.
+2020-01-10 01:06:21,918 INFO     Light 1 enabled.
+2020-01-10 01:06:26,999 INFO     Light 1 enabled.
+2020-01-10 01:06:32,081 INFO     Light 1 enabled.
+2020-01-10 01:06:37,163 INFO     Light 1 enabled.
+2020-01-10 01:06:42,245 INFO     Light 1 enabled.
+2020-01-10 01:06:47,327 INFO     Light 1 enabled.
+2020-01-10 01:06:52,409 INFO     Light 1 enabled.
+2020-01-10 01:06:57,490 INFO     Light 1 enabled.
+2020-01-10 01:07:02,572 INFO     Light 1 enabled.
+2020-01-10 01:07:07,654 INFO     Light 1 enabled.
+2020-01-10 01:07:12,736 INFO     Light 1 enabled.
+2020-01-10 01:07:17,818 INFO     Light 1 enabled.
+2020-01-10 01:07:22,900 INFO     Light 1 enabled.
+2020-01-10 01:07:27,982 INFO     Light 1 enabled.
+2020-01-10 01:07:33,064 INFO     Light 1 enabled.
+2020-01-10 01:07:38,146 INFO     Light 1 enabled.
+2020-01-10 01:07:43,228 INFO     Light 1 enabled.
+2020-01-10 01:07:48,310 INFO     Light 1 enabled.
+2020-01-10 01:07:53,392 INFO     Light 1 enabled.
+2020-01-10 01:07:58,474 INFO     Light 1 enabled.
+2020-01-10 01:08:03,556 INFO     Light 1 enabled.
+2020-01-10 01:08:08,638 INFO     Light 1 enabled.
+2020-01-10 01:08:13,720 INFO     Light 1 enabled.
+2020-01-10 01:08:18,801 INFO     Light 1 enabled.
+2020-01-10 01:08:23,883 INFO     Light 1 enabled.
+2020-01-10 01:08:28,965 INFO     Light 1 enabled.
+2020-01-10 01:08:34,047 INFO     Light 1 enabled.
+2020-01-10 01:08:39,129 INFO     Light 1 enabled.
+2020-01-10 01:08:44,211 INFO     Light 1 enabled.
+2020-01-10 01:08:49,293 INFO     Light 1 enabled.
+2020-01-10 01:08:54,375 INFO     Light 1 enabled.
+2020-01-10 01:08:59,457 INFO     Light 1 enabled.
+2020-01-10 01:09:04,539 INFO     Light 1 enabled.
+2020-01-10 01:09:09,621 INFO     Light 1 enabled.
+2020-01-10 01:09:14,703 INFO     Light 1 enabled.
+2020-01-10 01:09:19,785 INFO     Light 1 enabled.
+2020-01-10 01:09:24,867 INFO     Light 1 enabled.
+2020-01-10 01:09:29,948 INFO     Light 1 enabled.
+2020-01-10 01:09:35,030 INFO     Light 1 enabled.
+2020-01-10 01:09:40,112 INFO     Light 1 enabled.
+2020-01-10 01:09:45,194 INFO     Light 1 enabled.
+2020-01-10 01:09:50,276 INFO     Light 1 enabled.
+2020-01-10 01:09:50,345 INFO     Serial port closed & stop confirmed.
+2020-01-10 09:22:27,068 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:22:27,099 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:22:27,126 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:22:27,163 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:22:27,195 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:22:27,221 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:22:27,247 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:22:27,275 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:22:27,304 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:22:27,340 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:22:58,067 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:23:06,760 INFO     Serial port opened & start confirmed.
+2020-01-10 09:23:08,602 INFO     Serial port closed & stop confirmed.
+2020-01-10 09:34:39,751 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:35:04,518 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:35:34,070 INFO     Serial port opened & start confirmed.
+2020-01-10 09:35:41,845 INFO     Serial port closed & stop confirmed.
+2020-01-10 09:36:05,088 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:36:23,949 INFO     Serial port opened & start confirmed.
+2020-01-10 09:36:28,085 INFO     Serial port closed & stop confirmed.
+2020-01-10 09:36:32,590 INFO     Serial port opened & start confirmed.
+2020-01-10 09:36:35,285 INFO     Serial port closed & stop confirmed.
+2020-01-10 09:46:08,635 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:46:23,751 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:47:08,051 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:48:50,778 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 09:57:37,647 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:00:14,277 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:00:25,402 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:01:07,009 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:01:24,611 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:03:07,438 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:03:39,898 INFO     Serial port opened & start confirmed.
+2020-01-10 10:03:57,602 INFO     Light 1 status 1 updated.
+2020-01-10 10:05:25,723 INFO     Serial port closed & stop confirmed.
+2020-01-10 10:05:39,344 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:05:46,348 INFO     Serial port opened & start confirmed.
+2020-01-10 10:06:29,517 INFO     Light 1 status 1 updated.
+2020-01-10 10:07:02,146 INFO     Serial port closed & stop confirmed.
+2020-01-10 10:07:22,001 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:07:28,644 INFO     Serial port opened & start confirmed.
+2020-01-10 10:08:12,167 INFO     Light 1 status 1 updated.
+2020-01-10 10:09:02,249 INFO     Light 1 status 1 updated.
+2020-01-10 10:09:52,331 INFO     Light 1 status 1 updated.
+2020-01-10 10:10:08,703 INFO     Serial port closed & stop confirmed.
+2020-01-10 10:15:17,666 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:16:09,301 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:17:52,462 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:18:06,303 INFO     Serial port opened & start confirmed.
+2020-01-10 10:18:42,629 INFO     Light 1 status 1 updated.
+2020-01-10 10:19:32,711 INFO     Light 1 status 1 updated.
+2020-01-10 10:20:22,793 INFO     Light 1 status 1 updated.
+2020-01-10 10:21:12,874 INFO     Light 1 status 1 updated.
+2020-01-10 10:22:02,956 INFO     Light 1 status 1 updated.
+2020-01-10 10:22:53,038 INFO     Light 1 status 1 updated.
+2020-01-10 10:23:28,365 INFO     Serial port closed & stop confirmed.
+2020-01-10 10:24:00,558 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:25:43,443 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:26:36,639 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:39:00,839 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:39:11,294 ERROR    Failed to read ADC data. 'value'
+2020-01-10 10:39:21,321 INFO     Serial port opened & start confirmed.
+2020-01-10 10:39:25,224 INFO     Serial port closed & stop confirmed.
+2020-01-10 10:39:29,642 INFO     Serial port opened & start confirmed.
+2020-01-10 10:39:34,068 INFO     Serial port closed & stop confirmed.
+2020-01-10 10:41:32,667 ERROR    Failed to read ADC data. 'value'
+2020-01-10 10:41:42,711 INFO     Serial port opened & start confirmed.
+2020-01-10 10:41:48,451 INFO     Serial port closed & stop confirmed.
+2020-01-10 10:41:52,465 INFO     Serial port opened & start confirmed.
+2020-01-10 10:42:10,376 INFO     Serial port closed & stop confirmed.
+2020-01-10 10:42:14,670 ERROR    Failed to read ADC data. 'value'
+2020-01-10 10:42:24,697 INFO     Serial port opened & start confirmed.
+2020-01-10 10:42:24,752 ERROR    Failed to read ADC data. 'value'
+2020-01-10 10:43:00,930 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-10 10:43:07,733 INFO     Serial port opened & start confirmed.
+2020-01-10 10:45:13,551 INFO     Serial port closed & stop confirmed.
+2020-01-10 10:45:19,479 INFO     Serial port opened & start confirmed.
+2020-01-10 10:49:23,979 INFO     Serial port closed & stop confirmed.

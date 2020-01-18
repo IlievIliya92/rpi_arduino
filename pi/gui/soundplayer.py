@@ -9,19 +9,25 @@ from constants import *
 from logger import *
 
 def buttonClick(sound):
-    if sound == 0:
-        playsound(APPSOUNDS + 'ButtonClick.wav')
-    elif sound == 1:
-        playsound(APPSOUNDS + 'ButtonClick1.wav')
+    try:
+        if sound == 0:
+            playsound(APPSOUNDS + 'ButtonClick.wav')
+        elif sound == 1:
+            playsound(APPSOUNDS + 'ButtonClick1.wav')
+    except Exception as e:
+        pass
 
 class Player:
     def __init__(self, volume):
-        self.volume = volume
-        self.index = 0
-        self.playlist = [f for f in listdir(AUDIODIR) if isfile(join(AUDIODIR, f))]
-        self.player = vlc.MediaPlayer(AUDIODIR + self.playlist[self.index])
-        self.songs = len(self.playlist)
-        self.playing = False
+        try:
+            self.volume = volume
+            self.index = 0
+            self.playlist = [f for f in listdir(AUDIODIR) if isfile(join(AUDIODIR, f))]
+            self.player = vlc.MediaPlayer(AUDIODIR + self.playlist[self.index])
+            self.songs = len(self.playlist)
+            self.playing = False
+        except Exception as e:
+            pass
 
 
     def stop(self):

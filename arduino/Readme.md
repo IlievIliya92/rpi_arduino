@@ -110,12 +110,10 @@ exchange of data.
 | CMID    | 0x05               | 2 bytes  |
 
 
-
 ### Usage
-Run the test script:
-
-Go to tests directory:
-    cd [root_or_the_project]/arduino/source/arduino_server/tests/
 
 Run the test:
-    python serial_test.py
+    python cmds_test.py
+
+To verify that the serial communication is working properly.
+

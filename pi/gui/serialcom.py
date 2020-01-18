@@ -26,7 +26,7 @@ def _findPort():
 class SerialCom:
     def __init__(self):
         self.ser = None
-        self.port =  _findPort()
+        self.port = '/dev/ttyACM0'# _findPort()
         self.send_delay = 0.08
         self.connected = False
 
