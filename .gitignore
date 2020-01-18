@@ -1,8 +1,6 @@
-mgr/__pycache__/*
-www/backend/*.pyc
-arduino/source/arduino_server/Debug
-arduino/source/arduino_server/Release
-arduino/source/arduino_server/schematics/*.fzz
+arduino/source/arduino_src/Debug
+arduino/source/arduino_src/Release
+arduino/source/arduino_src/schematics/*.fzz
 
-arduino/source/arduino_client/Debug
-arduino/source/arduino_client/Release
+pi/gui/__pycache__
+pi/gui/logs/*
