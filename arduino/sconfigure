@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ./source/arduino_server
+cd ./source/arduino_src
 
 source ./scripts/senv
 source ./scripts/saddtopath
