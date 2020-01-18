@@ -16,7 +16,7 @@ remi application on a host PC and having the Arduino board connected to it.
 
 ![Boards Setup Dbg](https://github.com/IlievIliya92/rpi_arduino/blob/master/media/smartHomeDbg.png)
 
-To build and run the arduino application follow the instructions in the arduino directory Readme.md file.
+To build and run the Arduino application follow the instructions in the  Readme.md file insed the arduino directory.
 To deploy the remi application follow the guide inside the pi directory.
 
 ## Built With
@@ -31,4 +31,3 @@ To deploy the remi application follow the guide inside the pi directory.
 ## License
 
 This project is licensed under the MIT License.
-
