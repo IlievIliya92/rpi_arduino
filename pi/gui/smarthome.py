@@ -50,7 +50,6 @@ class smartHome(App):
 
         # --- --- ---  --- BODY Properties --- --- --- --- --- --- ---  #
         self.bodyUpdate(DARK, '0.8', FAVICON_DIS)
-#        self.page.children['body'].style['white-space'] = 'pre-wrap'
         # --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---   #
 
         #--- --- --- --- ---  Menu panel --- --- --- --- --- #
@@ -96,13 +95,12 @@ class smartHome(App):
         # --- --- --- --- --- --- --- --- --- --- #
 
 
-
         # --- --- --- --- --- Header Container --- --- --- --- --- #
-        headerCont = gui.Widget(width='98%', height=46, margin='5px', layout_orientation=gui.Widget.LAYOUT_HORIZONTAL, style=CONTAINER)
+        titleCont = gui.Widget(width='98%', height=46, margin='5px', layout_orientation=gui.Widget.LAYOUT_HORIZONTAL, style=CONTAINER)
 
         self.title = gui.Label('HOME', width='55%', height=24, margin='4px',
                                        style=TITLE)
-        headerCont.append([self.title])
+        titleCont.append([self.title])
         # --- --- --- --- --- --- --- --- --- --- --- --- --- --- #
 
         # --- --- --- --- HOME --- --- --- --- ---  #
@@ -160,7 +158,7 @@ class smartHome(App):
         horizontalContainer.append([subContainerLeft, subContainerRight])
         # --- --- --- --- --- --- --- --- --- --- #
 
-        self.homeContainer.append([menubar, headerCont, horizontalContainer])
+        self.homeContainer.append([menubar, titleCont, horizontalContainer])
         # --- --- --- --- HOME END --- --- --- --- ---  #
 
         # --- --- --- --- ENTERTAINMENT  --- --- --- --- #
@@ -388,4 +386,4 @@ class smartHome(App):
 if __name__ == "__main__":
 # starts the webserver
 #    import ssl
-    start(smartHome, debug=True, address='0.0.0.0', port=8081, start_browser=False, multiple_instance=True) #username='Iliya', password='admin'
+    start(smartHome, debug=True, address='0.0.0.0', port=8081, start_browser=True, multiple_instance=True) #username='Iliya', password='admin'

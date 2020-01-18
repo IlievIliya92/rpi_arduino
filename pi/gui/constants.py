@@ -39,29 +39,6 @@ WHITESTAR = ' ⚝'
 FAVICON_ENB = 'faviconenb.ico'
 FAVICON_DIS = 'favicondisb.ico'
 
-# ---  Color Theme --- #
-DARK = 'Black'
-BRIGHT = 'White'
-
-BODY = DARK
-
-BCK = DARK
-TEXT_COL = BRIGHT
-
-CONTAINER_BCK = DARK
-DATE = BRIGHT
-
-BTN_BCK = DARK
-BTN_CLR = BRIGHT
-
-BTN_RAD = '2px'
-LBL_RAD = '0px'
-HEADER_BORDER = DARK
-INNER_TITLES_BCK = DARK
-INNER_TITLES = BRIGHT
-TEMP_BCK = DARK
-TEMP_TEXT = BRIGHT
-
 # --- Arduino Serial Commands --- #
 START_CMD = "S>01<E*"
 STOP_CMD = "S>05<E*"
