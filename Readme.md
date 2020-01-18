@@ -9,12 +9,12 @@ Rasberry Pi via simple predefined protocol.
 
 Set up the project following the image below
 
-[Boards Setup](https://github.com/IlievIliya92/rpi_arduino/blob/master/media/smartHome.png)
+![Boards Setup](https://github.com/IlievIliya92/rpi_arduino/blob/master/media/smartHome.png)
 
 For test and development purpouses the project can be set up in the following maner. Running the
 remi application on a host PC and having the Arduino board connected to it.
 
-[Boards Setup](https://github.com/IlievIliya92/rpi_arduino/blob/master/media/smartHomeDbg.png)
+![Boards Setup Dbg](https://github.com/IlievIliya92/rpi_arduino/blob/master/media/smartHomeDbg.png)
 
 To build and run the arduino application follow the instructions in the arduino directory Readme.md file.
 To deploy the remi application follow the guide inside the pi directory.
@@ -31,10 +31,3 @@ To deploy the remi application follow the guide inside the pi directory.
 ## License
 
 This project is licensed under the MIT License.
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
