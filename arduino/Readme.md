@@ -1,4 +1,4 @@
-## Arduino boards SetUp
+## Arduino board SetUp
 
 ### Clone the repository
 
@@ -15,28 +15,18 @@
 #### 2.1. Configure the server.
     source sconfigure
 
-### 3. Connect the boards
-
-#### 3.1. Connect the server board
-PORTB0 - PORTB1 are setup as digital outputs controled
-by the commands available for digital I/O.
-
-Arduino Server Schematic
-![alt text](https://github.com/IlievIliya92/rpi_arduino/blob/master/arduino/source/arduino_server/schematic/arudino_servo_douts.png
- "Arduino Server Schemtaic")
-
-
-### 4. Build the project
+### 3. Build the project
     sbuild
 
-### 5. Upload to the target
+### 4. Upload to the target
     supload [name_of_the_serial_device]
 
-### 6. Serial Port commands:
+* The name_of_the_serial_device argument is optional. The supload script will look for serial devices connected to the host pc and upload to the first found. In case you have more than one connected it is mandatory to specify the name of the serial device.
 
-### 6.1. Server Side:
+### 5. Serial Port commands:
 
-#### Command format:
+All of the commands follow the same basic protocol.
+Header | CMID | SID / DATA / Trailer | CMD End symbol
 
 | Field   | Value              | Size     |
 |---------|--------------------|----------|
@@ -55,7 +45,7 @@ Arduino Server Schematic
 | 01     | Start Command          |
 | 02     | PWM                    |
 | 03     | Digital I/O            |
-| 04     | Empty slot for new CMD |
+| 04     | ADC                    |
 | 05     | Stop Command           |
 
 
