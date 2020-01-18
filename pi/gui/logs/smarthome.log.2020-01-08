@@ -1,0 +1,281 @@
+2020-01-08 09:51:22,346 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 09:51:33,055 ERROR    Failed to send command! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:51:35,432 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 09:51:40,148 ERROR    Failed to send command! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:51:46,216 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 09:51:50,899 ERROR    Failed to send command! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:51:57,184 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 09:52:03,792 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:52:03,792 ERROR    Failed to send command! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:53:12,966 ERROR    Failed to send command! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:53:16,366 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 09:53:21,080 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:53:42,500 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 09:53:50,231 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 09:53:53,118 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:55:00,210 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 09:55:05,913 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:55:05,914 INFO     Serial port closed & stop confirmed.
+2020-01-08 09:55:07,390 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 09:55:10,357 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:55:10,358 INFO     Serial port opened & start confirmed.
+2020-01-08 09:55:10,472 ERROR    Failed to send command! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:55:16,932 ERROR    Failed to send command! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:55:18,319 ERROR    Failed to send command! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:57:01,672 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 09:57:05,622 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:57:13,500 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:57:15,033 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:57:16,315 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:57:17,406 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:57:17,406 INFO     Serial port closed & stop confirmed.
+2020-01-08 09:57:17,968 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:57:17,968 INFO     Serial port closed & stop confirmed.
+2020-01-08 09:57:19,144 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 09:57:19,145 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:00:12,742 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 10:00:18,986 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:00:20,727 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 10:00:28,460 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:00:28,460 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:00:28,489 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:00:28,711 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:00:42,797 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 10:00:47,999 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:00:48,490 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:00:48,519 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:00:48,550 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:00:48,579 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:00:48,612 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:00:52,068 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 10:01:41,931 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:01:41,934 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:01:41,935 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:02:06,979 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:02:06,980 ERROR    Failed to close serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:02:16,267 ERROR    Serial comm device not found! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 10:02:19,097 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:02:54,525 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:03:01,454 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:03:05,186 ERROR    Failed to open serial port! 'SerialCom' object has no attribute 'ser'
+2020-01-08 10:05:34,497 INFO     Serial port opened & start confirmed.
+2020-01-08 10:06:17,527 INFO     Serial port opened & start confirmed.
+2020-01-08 10:09:26,978 ERROR    Failed to open serial port! [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-01-08 10:11:23,595 INFO     Serial port opened & start confirmed.
+2020-01-08 10:13:52,212 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:13:56,606 INFO     Serial port opened & start confirmed.
+2020-01-08 10:13:58,353 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:14:02,467 INFO     Serial port opened & start confirmed.
+2020-01-08 10:14:25,182 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:14:35,034 INFO     Serial port opened & start confirmed.
+2020-01-08 10:14:37,064 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:21:18,382 INFO     Serial port opened & start confirmed.
+2020-01-08 10:21:40,561 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:22:40,960 INFO     Serial port opened & start confirmed.
+2020-01-08 10:22:51,612 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:29:54,393 INFO     Serial ports detected: ['/dev/ttyACM1']
+2020-01-08 10:30:25,989 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:32:18,036 INFO     Serial ports detected: ['/dev/ttyACM1']
+2020-01-08 10:32:36,690 INFO     Serial ports detected: ['/dev/ttyACM1']
+2020-01-08 10:32:48,437 INFO     Serial port opened & start confirmed.
+2020-01-08 10:33:11,717 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:33:36,134 INFO     Serial ports detected: ['/dev/ttyACM1']
+2020-01-08 10:33:53,843 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:34:18,644 INFO     Serial ports detected: ['/dev/ttyACM1']
+2020-01-08 10:34:34,676 INFO     Serial ports detected: ['/dev/ttyACM1']
+2020-01-08 10:34:48,214 INFO     Serial port opened & start confirmed.
+2020-01-08 10:35:11,397 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:35:30,841 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:35:37,131 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:35:45,571 INFO     Serial port opened & start confirmed.
+2020-01-08 10:36:46,471 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:37:09,401 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:37:16,541 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:37:21,482 INFO     Serial port opened & start confirmed.
+2020-01-08 10:37:28,708 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:37:44,365 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:37:51,013 INFO     Serial port opened & start confirmed.
+2020-01-08 10:38:00,562 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:38:22,627 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:38:36,448 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:38:44,188 INFO     Serial port opened & start confirmed.
+2020-01-08 10:39:57,190 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:40:16,945 INFO     Serial port opened & start confirmed.
+2020-01-08 10:40:49,105 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:40:55,393 INFO     Serial port opened & start confirmed.
+2020-01-08 10:41:25,627 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:41:37,456 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:41:49,714 INFO     Serial port opened & start confirmed.
+2020-01-08 10:42:05,752 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:42:10,192 ERROR    Failed to read ADC data. 'value'
+2020-01-08 10:42:11,232 INFO     Serial port opened & start confirmed.
+2020-01-08 10:43:42,536 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:43:49,360 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:43:54,421 ERROR    Failed to read ADC data. 'value'
+2020-01-08 10:43:55,458 INFO     Serial port opened & start confirmed.
+2020-01-08 10:44:03,687 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:44:21,351 ERROR    Failed to read ADC data. 'value'
+2020-01-08 10:44:22,391 INFO     Serial port opened & start confirmed.
+2020-01-08 10:44:27,694 INFO     Serial port closed & stop confirmed.
+2020-01-08 10:52:36,813 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:55:48,611 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:56:04,370 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:56:28,035 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:56:28,083 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:56:28,130 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:56:28,175 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:56:28,220 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:56:28,262 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:56:28,306 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:56:28,354 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:56:28,399 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:56:28,442 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:56:54,124 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:57:32,332 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:57:44,637 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:58:03,366 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:58:45,744 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:59:35,627 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 10:59:52,133 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:00:14,861 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:00:32,976 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:00:41,139 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:00:54,063 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:01:08,333 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:01:28,526 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:01:53,933 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:02:08,916 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:02:35,447 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:05:12,114 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:05:17,028 ERROR    Failed to read ADC data. 'value'
+2020-01-08 11:05:26,334 INFO     Serial port opened & start confirmed.
+2020-01-08 11:06:07,018 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:06:12,633 ERROR    Failed to read ADC data. 'value'
+2020-01-08 11:06:13,674 INFO     Serial port opened & start confirmed.
+2020-01-08 11:06:29,314 INFO     Serial port closed & stop confirmed.
+2020-01-08 11:06:58,940 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:07:08,787 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:07:13,081 ERROR    Failed to read ADC data. 'value'
+2020-01-08 11:07:14,121 INFO     Serial port opened & start confirmed.
+2020-01-08 11:07:19,337 INFO     Serial port closed & stop confirmed.
+2020-01-08 11:07:23,731 INFO     Serial port opened & start confirmed.
+2020-01-08 11:07:23,741 ERROR    Failed to read ADC data. 'value'
+2020-01-08 11:07:48,694 INFO     Serial port closed & stop confirmed.
+2020-01-08 11:08:23,993 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:09:14,250 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:09:26,359 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:09:42,762 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:09:52,033 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:10:22,850 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:11:06,797 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:11:19,917 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:11:36,530 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:11:58,852 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:12:07,733 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:12:17,451 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:12:35,466 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:12:53,248 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:13:00,488 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:13:12,604 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:13:43,937 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:15:11,051 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:16:23,815 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:16:29,303 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:18:24,093 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:18:48,787 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:19:22,787 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:19:22,987 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:19:34,773 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:19:45,277 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:20:16,529 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:23:19,418 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:24:03,998 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:24:20,159 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:24:48,786 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:25:20,832 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:25:46,955 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:26:16,593 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:26:37,481 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:26:48,156 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:31:14,767 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:31:14,780 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:31:14,793 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:31:14,806 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:31:14,819 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:31:14,836 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:31:14,848 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:31:14,864 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:31:14,877 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:31:14,894 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:31:41,889 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:32:28,463 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:33:01,072 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:33:45,270 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:33:52,590 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:35:07,931 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:35:15,211 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:35:26,051 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:35:43,481 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:35:56,453 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:36:00,509 ERROR    Failed to read ADC data. 'value'
+2020-01-08 11:36:01,549 INFO     Serial port opened & start confirmed.
+2020-01-08 11:36:36,991 INFO     Serial port closed & stop confirmed.
+2020-01-08 11:36:40,591 ERROR    Failed to read ADC data. 'value'
+2020-01-08 11:36:41,631 INFO     Serial port opened & start confirmed.
+2020-01-08 11:36:56,399 INFO     Serial port closed & stop confirmed.
+2020-01-08 11:37:00,277 ERROR    Failed to read ADC data. 'value'
+2020-01-08 11:37:01,317 INFO     Serial port opened & start confirmed.
+2020-01-08 11:37:15,564 INFO     Serial port closed & stop confirmed.
+2020-01-08 11:37:23,948 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:38:38,166 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:38:38,234 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:39:26,799 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:39:49,794 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:39:49,831 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:39:49,868 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:39:49,907 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:39:49,947 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:39:49,988 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:39:50,030 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:39:50,067 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:39:50,104 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:39:50,145 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:40:00,103 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:40:20,967 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:41:10,513 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:41:28,618 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:42:48,203 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:47:08,538 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:47:25,404 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:47:33,234 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 11:48:40,125 ERROR    Failed to read ADC data. 'value'
+2020-01-08 11:48:41,166 INFO     Serial port opened & start confirmed.
+2020-01-08 11:48:44,110 INFO     Serial port closed & stop confirmed.
+2020-01-08 11:48:46,795 ERROR    Failed to read ADC data. 'value'
+2020-01-08 11:48:47,835 INFO     Serial port opened & start confirmed.
+2020-01-08 11:48:48,826 ERROR    Failed to read ADC data. 'value'
+2020-01-08 12:06:09,820 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 12:07:13,071 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 12:07:40,955 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 19:08:56,466 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 19:09:04,495 ERROR    Failed to read ADC data. 'value'
+2020-01-08 19:09:05,536 INFO     Serial port opened & start confirmed.
+2020-01-08 19:09:07,748 INFO     Serial port closed & stop confirmed.
+2020-01-08 19:12:21,226 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 19:13:27,723 INFO     Serial port opened & start confirmed.
+2020-01-08 19:16:06,502 INFO     Serial port closed & stop confirmed.
+2020-01-08 19:19:50,558 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 19:21:03,528 ERROR    Failed to read ADC data. 'value'
+2020-01-08 19:21:04,568 INFO     Serial port opened & start confirmed.
+2020-01-08 19:21:08,565 INFO     Serial port closed & stop confirmed.
+2020-01-08 19:21:11,601 ERROR    Failed to read ADC data. 'value'
+2020-01-08 19:21:12,641 INFO     Serial port opened & start confirmed.
+2020-01-08 19:24:45,907 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 19:24:46,111 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 19:25:01,197 ERROR    Failed to read ADC data. 'value'
+2020-01-08 19:25:01,233 INFO     Serial port opened & start confirmed.
+2020-01-08 19:25:12,563 ERROR    Failed to read ADC data. 'value'
+2020-01-08 19:26:16,644 INFO     Serial ports detected: ['/dev/ttyACM0']
+2020-01-08 19:27:45,338 ERROR    Failed to read ADC data. 'value'
+2020-01-08 19:27:46,379 INFO     Serial port opened & start confirmed.
+2020-01-08 19:40:57,219 INFO     Serial port closed & stop confirmed.

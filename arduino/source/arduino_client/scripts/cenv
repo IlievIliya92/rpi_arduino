@@ -1,9 +1,0 @@
-#!/bin/bash
-
-PREFIX=$HOME/local/avr
-export PREFIX
-
-PATH=$PATH:$PREFIX/bin
-export PATH
-
-export CLIENT_PROJECT_ROOT=$(pwd)

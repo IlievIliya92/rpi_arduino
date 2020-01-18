@@ -1,8 +1,0 @@
-#!/bin/bash
-
-cd ./source/arduino_client
-
-source ./scripts/cenv
-source ./scripts/caddtopath
-
-cd -

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-SCRIPTPATH=`dirname $(readlink -f $BASH_SOURCE)`
-
-export PATH=$PATH:$SCRIPTPATH

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-cd ${CLIENT_PROJECT_ROOT}
-./run_cmake
-cd ${CLIENT_PROJECT_ROOT}/Debug
-make

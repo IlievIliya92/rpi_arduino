@@ -1,0 +1,9 @@
+2020-01-09 23:27:48,988 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-09 23:27:58,528 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-09 23:28:14,268 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-09 23:28:35,282 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-09 23:29:04,094 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
+2020-01-09 23:29:18,792 ERROR    Failed to read ADC data. 'value'
+2020-01-09 23:29:19,832 INFO     Serial port opened & start confirmed.
+2020-01-09 23:29:21,386 INFO     Serial port closed & stop confirmed.
+2020-01-09 23:34:54,588 INFO     Serial ports detected: ['/dev/ttyACM0', '/dev/ttyACM0']
