@@ -1,6 +1,6 @@
-## Arduino board SetUp
+## Rasberry Pi board SetUp
 
-### Build the project
+### Start the server
     cd [PROJECT_PATH]]/pi_arduino/pi
     source piconfigure
     picheck_requirements
