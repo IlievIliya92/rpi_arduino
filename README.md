@@ -7,6 +7,10 @@ Rasberry Pi via simple predefined protocol.
 
 ## Getting Started
 
+Clone the repository
+
+git clone https://github.com/IlievIliya92/rpi_arduino.git
+
 Set up the project following the image below
 
 ![Boards Setup](https://github.com/IlievIliya92/rpi_arduino/blob/master/media/smartHome.png)

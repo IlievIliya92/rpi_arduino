@@ -1,8 +1,0 @@
-#!/bin/bash
-
-cd ./source/arduino_src
-
-source ./scripts/senv
-source ./scripts/saddtopath
-
-cd -

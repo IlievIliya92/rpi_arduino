@@ -47,10 +47,13 @@ class smartHome(App):
             print(e)
             sys.exit()
 
-
         # --- --- ---  --- BODY Properties --- --- --- --- --- --- ---  #
         self.bodyUpdate(DARK, '0.8', FAVICON_DIS)
         # --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---   #
+
+
+        # --- --- --- --- --- Header Container --- --- --- --- --- #
+
 
         #--- --- --- --- ---  Menu panel --- --- --- --- --- #
         menu = gui.Menu(width='99%', height=22, style=MENU)
@@ -94,8 +97,7 @@ class smartHome(App):
         menubar.append(menu)
         # --- --- --- --- --- --- --- --- --- --- #
 
-
-        # --- --- --- --- --- Header Container --- --- --- --- --- #
+        # --- --- --- --- --- Title Container --- --- --- --- --- #
         titleCont = gui.Widget(width='98%', height=46, margin='5px', layout_orientation=gui.Widget.LAYOUT_HORIZONTAL, style=CONTAINER)
 
         self.title = gui.Label('HOME', width='55%', height=24, margin='4px',
@@ -193,7 +195,7 @@ class smartHome(App):
 
         musicPlayerCont.append([self.prevBtn, self.playBtn, self.nextBtn, self.sliderVol, self.songTitle])
 
-        self.entertainmentContainer.append([menubar, headerCont, self.musicLabel, musicPlayerCont, self.img0, self.img1, self.img2, self.img3])
+        self.entertainmentContainer.append([menubar, titleCont, self.musicLabel, musicPlayerCont, self.img0, self.img1, self.img2, self.img3])
         # --- --- --- --- ENTERTAINMENT END --- --- --- --- #
 
         # --- --- --- --- MODES  --- --- --- ---#
@@ -225,25 +227,25 @@ class smartHome(App):
         self.smartLight.onchange.connect(self.on_check_smartL)
         self.modesCont.append([self.smartLight, self.smartLightTresh, self.smartHeater, self.smarHeaterTresh])
 
-        self.modesContainer.append([menubar, headerCont, self.modesCont])
+        self.modesContainer.append([menubar, titleCont, self.modesCont])
         # --- --- --- --- MODES END --- --- --- ---#
 
         # --- --- --- --- LIGHTS --- --- --- ---#
         self.lightsContainer = gui.Widget(width='90%', height='70%', margin='5px auto', style=CONTAINER)
-        self.lightsContainer.append([menubar, headerCont])
+        self.lightsContainer.append([menubar, titleCont])
         # --- --- --- --- LIGHTS END --- --- --- ---#
 
 
         # --- --- --- --- HEATER --- --- --- ---#
         self.heaterContainer = gui.Widget(width='90%', height='70%', margin='5px auto', style=CONTAINER)
 
-        self.heaterContainer.append([menubar, headerCont])
+        self.heaterContainer.append([menubar, titleCont])
         # --- --- --- --- HEATER END --- --- --- ---#
 
         # --- --- --- --- SECURITY --- --- --- ---#
         self.securityContainer  = gui.Widget(width='90%', height='70%', margin='5px auto', style=CONTAINER)
 
-        self.securityContainer.append([menubar, headerCont, subContainerLeft])
+        self.securityContainer.append([menubar, titleCont, subContainerLeft])
         # --- --- --- --- SECURITY END --- --- --- ---#
 
         # this flag will be used to stop the measure Timer

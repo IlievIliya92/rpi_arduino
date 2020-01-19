@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd ${PI_PROJECT_ROOT}/python
+python3 smarthome.py
+
+cd -

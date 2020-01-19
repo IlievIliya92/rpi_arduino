@@ -1,0 +1,101 @@
+#!/bin/bash
+
+install_package() {
+    printf "\nDo you want to install the package $1 ? [y/n]\n"
+    while : ; do
+    read -n 1 k <&1
+    if [[ $k = q ]] ; then
+    printf "\nQuitting from the program\n"
+    break
+    elif [[ $k = y ]] ; then
+    printf "\Instaling the required package $1\n"
+    pip3 install $1
+    break
+    else
+    printf "\nQuitting from the program\n"
+    break
+    fi
+    done
+}
+
+printf "\n Checking for installed required packages:\n\n"
+
+
+if python3 -c 'import PySimpleGUI;'; then
+    echo '[+] PySimpleGUI found'
+else
+    echo 'PySimpleGUI not found'
+    install_package "PySimpleGUI"
+fi
+
+if python3 -c 'import json;'; then
+    echo '[+] json found'
+else
+    echo 'json not found'
+    install_package "json"
+fi
+
+if python3 -c 'import playsound;'; then
+    echo '[+] playsound found'
+else
+    echo 'playsound not found'
+    install_package "playsound"
+fi
+
+
+if python3 -c 'import vlc;'; then
+    echo '[+] python-vlc found'
+else
+    echo 'python-vlc not found'
+    install_package "python-vlc"
+fi
+
+
+if python3 -c 'import remi;'; then
+    echo '[+] remi found'
+else
+    echo 'remi not found'
+    install_package "remi"
+fi
+
+
+if python3 -c 'import time;'; then
+    echo '[+] time found'
+else
+    echo 'time not found'
+    install_package "time"
+fi
+
+
+if python3 -c 'import glob;'; then
+    echo '[+] glob found'
+else
+    echo 'glob not found'
+    install_package "glob"
+fi
+
+if python3 -c 'import logging;'; then
+    echo '[+] logging found'
+else
+    echo 'logging not found'
+    install_package "logging"
+fi
+
+if python3 -c 'import serial;'; then
+    echo '[+] serial found'
+else
+    echo 'serial not found'
+    install_package "pyserial"
+fi
+
+if python3 -c 'import threading;'; then
+    echo '[+] thread found'
+else
+    echo 'threaded not found'
+    install_package "threaded"
+fi
+
+echo ""
+echo " All the required packages are installed.
+     "
+

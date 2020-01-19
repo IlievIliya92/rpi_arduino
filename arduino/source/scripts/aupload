@@ -29,7 +29,7 @@ usage(){
   fi
 
   echo "No serial device detected!"
-  echo "Please connect the board in order to upload the project."
+  echo "Please connect the board in order to upload the application."
   exit
 }
 
@@ -38,6 +38,6 @@ if [ -z "$1" ]
   usage
 fi
 
-cd ${SERVER_PROJECT_ROOT}/Debug
+cd ${ARDUINO_PROJECT_ROOT}/arduino_src/Debug
 avrdude -patmega328p -carduino -P$1 -D -Uflash:w:server.hex:i
 #minicom -D $1

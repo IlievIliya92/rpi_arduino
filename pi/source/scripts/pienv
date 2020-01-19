@@ -1,0 +1,3 @@
+#!/bin/bash
+
+export PI_PROJECT_ROOT=$(pwd)

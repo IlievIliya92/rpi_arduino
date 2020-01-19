@@ -6,4 +6,4 @@ export PREFIX
 PATH=$PATH:$PREFIX/bin
 export PATH
 
-export SERVER_PROJECT_ROOT=$(pwd)
+export ARDUINO_PROJECT_ROOT=$(pwd)

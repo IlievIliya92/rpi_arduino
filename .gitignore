@@ -2,5 +2,5 @@ arduino/source/arduino_src/Debug
 arduino/source/arduino_src/Release
 arduino/source/arduino_src/schematics/*.fzz
 
-pi/gui/__pycache__
-pi/gui/logs/*
+pi/source/python/__pycache__
+pi/source/python/logs/*

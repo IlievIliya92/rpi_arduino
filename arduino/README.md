@@ -1,29 +1,17 @@
 ## Arduino board SetUp
 
-### Clone the repository
+### Build the project
+    cd [PROJECT_PATH]]/pi_arduino/arduino
+    source aconfigure
+    acheck_requirements
+    abuild
 
-    git clone https://github.com/IlievIliya92/rpi_arduino.git
-
-### Prerequisites
-
-* Run the following command to install required packages:
-
-    sudo apt install cmake gcc-avr avr-libc avrdude python-tk
-
-### 2. Configure the project.
-
-#### 2.1. Configure the server.
-    source sconfigure
-
-### 3. Build the project
-    sbuild
-
-### 4. Upload to the target
-    supload [name_of_the_serial_device]
+### Upload to the target
+    aupload [name_of_the_serial_device]
 
 * The name_of_the_serial_device argument is optional. The supload script will look for serial devices connected to the host pc and upload to the first found. In case you have more than one connected it is mandatory to specify the name of the serial device.
 
-### 5. Serial Port commands:
+### Serial Port commands:
 
 All of the commands follow the same basic protocol.
 Header | CMID | SID / DATA / Trailer | CMD End symbol
@@ -112,8 +100,9 @@ exchange of data.
 
 ### Usage
 
-Run the test:
-    python cmds_test.py
+Once uploaded the application verify that eveything is working using
+the tests script inside the tests directory:
 
-To verify that the serial communication is working properly.
+cd [PROJECT_PATH]/rpi_arduino/arduino/source/tests
+python cmds_test.py
 
