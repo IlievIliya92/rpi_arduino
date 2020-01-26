@@ -1,17 +1,8 @@
 #!/usr/bin/python3
 
-# --- Symbols --- #
+LOGFILE = "./logs/smarthome.log"
 
-AUDIODIR = 'media/audio/'
-APPSOUNDS = 'media/appsounds/'
-
-# --- Audio Player --- #
-PREVIOUS = ' ◀'
-NEXT = ' ▶'
-STOP = ' ◼'
-START = ' ⏯'
-
-# --- Icons --- #
+# --- Unicodes --- #
 USSR = '☭'
 HOME = ' ⌂'
 HOMEON = ' ☗'
@@ -36,24 +27,25 @@ QUATER_MOON = '☽'
 PEACE = ' ☮'
 WHITESTAR = ' ⚝'
 
-FAVICON_ENB = 'faviconenb.ico'
-FAVICON_DIS = 'favicondisb.ico'
-
 # --- Arduino Serial Commands --- #
-START_CMD = "S>01<E*"
-STOP_CMD = "S>05<E*"
-ADC_CMD = "S>04<E*"
+cmds = {
+        'h': 'S>',
+        'start': '01',
+        'pwm': '02',
+        'dio': '03',
+        'adc': '04',
+        'stop': '05',
+        'trl':  '<E*'
+        }
 
-PWM_CMD = "S>02"
-DIO_CMD = "S>03"
 
-CMD_TRAILER = "<E*"
+START_CMD = cmds['h'] + cmds['start'] + cmds['trl']
+STOP_CMD = cmds['h'] + cmds['stop'] + cmds['trl']
+ADC_CMD = cmds['h'] + cmds['adc'] + cmds['trl']
 
 POSITIVE_RESPONSE = "Ok"
 
 # --- Modes --- #
 
 LIGHT_TRESHOLD = 400
-
-
 

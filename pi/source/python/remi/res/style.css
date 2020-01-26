@@ -291,67 +291,171 @@ button:active{
 }
 
 .home_button {
+    font-family: 'Palatino';
+    position:relative;
+    left: 4%;
+    top: 10%;
     background-color: transparent;
     color: burlywood;
     font-size: 100%;
-    position:relative;
-    top: 45%;
-    left: 10%;
     -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;;
-    box-shadow: unset
+    transition-duration: 0.4s;
+    box-shadow: unset;
 }
+
 .home_button:hover {
-    border-radius: 50%;
-    background-color: burlywood;
-    color: black;
+    background-color: transparent;
+    color: white;
 }
 
 .home_button:focus {
-    border-radius: 50%;
-    background-color: burlywood;
+    border-radius: 10%;
+    background-color: black;
     color: black;
 }
 
 .home_button:visited {
     background-color: black;
-    color: burlywood;
+    color: black;
 }
 
 .home_button:active {
     background-color: black;
-    color: burlywood;
+    color: black;
 }
 
-.home_buttonTxt {
-    font-family: 'Palatino';
-    position:relative;
-    top: 45%;
-    left: 10%;
+.menu_button {
     background-color: transparent;
     color: burlywood;
+    font-size: 100%;
+    text-align: center;
+    display: inline-block;
+    position:relative;
+    top: 40%;
+    left: 2%;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    box-shadow: unset;
+}
+
+.menu_button:hover {
+    text-align: center;
+    border-radius: 10%;
+    background-color: white;
+    color: black;
+}
+
+.menu_button:focus {
+    border-radius: 50%;
+    background-color: black;
+    color: black;
+}
+
+.menu_button:visited {
+    background-color: black;
+    color: black;
+}
+
+.menu_button:active {
+    background-color: black;
+    color: black;
+}
+
+.innermenu_button {
+    background-color: transparent;
+    color: burlywood;
+    font-size: 100%;
+    left: 5%;
+    text-align: center;
+    display: inline-block;
+    position:relative;
+    min-width: 100px;
+    transition: opacity 2s linear;
+    opacity: 0.2;
+    box-shadow: unset;
+}
+
+.innermenu_button:hover {
+    opacity: 1;
+    background-color: white;
+}
+
+.innermenu_button:visited {
+    background-color: transparent;
+    color: transparent;
+}
+
+.innermenu_button:active {
+    background-color: transparent;
+    color: transparent;
 }
 
 .slogan {
     font-family: 'Palatino';
+    font-weight: bold;
     position:relative;
-    top: 25%;
+    white-space: pre-wrap;
+    display: block;
+    letter-spacing: 3px;
+    top: 30%;
+    left: 5%;
+    font-size: 220%;
+    background-color: transparent;
+    color: white;
+}
+
+.pageTitle {
+    font-family: 'Palatino';
+    font-weight: bold;
+    position:relative;
+    top: -2%;
     left: 30%;
-    font-size: 120%;
+    font-size: 220%;
+    background-color: transparent;
+    color: black;
+}
+
+.menu_Container {
+    position: relative;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    top: 20%;
+    left: 2%;
     background-color: transparent;
     color: burlywood;
 }
 
+.menu_Container:hover {
+    background-color: transparent;
+}
+
+.homegif {
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    position: relative;
+    color: burlywood;
+    background-color: transparent;
+    left:25%;
+}
+
+.homegif:hover {
+    background-color: white;
+}
+
 .fadein {
-   background-color: white;
-   transition: background-color 2s linear;
+   background-color: black;
+   transition: opacity 2s linear;
+   opacity: 0.2;
 }
 
 .fadein:hover {
+   opacity: 1;
    background-color: black;
 }
 
 /*
+https://cdn.dribbble.com/users/492711/screenshots/1496933/house_animate_gif.gif
+   background-image: url("https://smarthomebuilt.com/wp-content/uploads/2018/03/smart-home-diagram-680x453.jpg");
 .fadeinText {
     background-color: white;
     transition: background-color 5s linear;

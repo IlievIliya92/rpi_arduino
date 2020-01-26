@@ -26,9 +26,13 @@ def _findPort():
 class SerialCom:
     def __init__(self):
         self.ser = None
-        self.port = '/dev/ttyACM0'# _findPort()
         self.send_delay = 0.08
         self.connected = False
+        try:
+            self.port = _findPort()
+        except Exception as e:
+            logger.error("Failed to find the serial device! " + str(e))
+
 
     def connect(self):
         try:

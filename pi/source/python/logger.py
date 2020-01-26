@@ -3,8 +3,10 @@ import logging
 import logging.handlers
 import argparse
 
+from constants import *
+
 # Deafults
-LOG_FILENAME = "./logs/smarthome.log"
+LOG_FILENAME = LOGFILE
 LOG_LEVEL = logging.INFO
 
 # Define and parse command line arguments
