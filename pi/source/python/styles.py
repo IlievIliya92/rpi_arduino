@@ -22,6 +22,9 @@ INNER_TITLES = BRIGHT
 TEMP_BCK = DARK
 TEMP_TEXT = BRIGHT
 
+CONTAINER = {'display': 'block', 'overflow': 'hidden',
+             'border-width': '1px', 'border-color': HEADER_BORDER}
+
 TITLE = {'display': 'block', 'text-align': 'left', 'font-size' : '150%',
          'font-weight' : 'bold', 'overflow': 'hidden', 'color' : BRIGHT,
          'border': '1px solid black', 'opacity': '1', 'background-color': INNER_TITLES_BCK}
@@ -46,10 +49,6 @@ MENU_LV1 = {'background-color': BTN_BCK, 'color': BTN_CLR,
 USER_LBL = {'display': 'block', 'text-align': 'center',
             'border': '1px solid bisque', 'color' : TEMP_TEXT,
             'background-color': TEMP_BCK}
-
-CONTAINER = {'display': 'block', 'overflow': 'hidden',
-             'border-width': '1px', 'border-color': HEADER_BORDER,
-             'background-color': CONTAINER_BCK, 'overflow': 'auto'}
 
 TEXT = {'display': 'block', 'text-align': 'center',
         'font-weight' : 'bold', 'overflow': 'hidden',

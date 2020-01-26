@@ -21,22 +21,39 @@ class smartHome(App):
         res_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'res')
         # static_file_path can be an array of strings allowing to define
         #  multiple resource path in where the resources will be placed
-        super(smartHome, self).__init__(*args, static_file_path=res_path)
+
+        #custom additional html head tags
+        my_html_head = """
+            """
+        #custom css
+        my_css_head = """
+            <link rel="stylesheet" href="./res/styles.css" type="text/css">
+            """
+
+        #custom js
+        my_js_head = """
+            <script></script>
+            """
+
+        #static_file_path can be an array of strings allowing to define
+        #  multiple resource path in where the resources will be placed
+        super(smartHome, self).__init__(*args, path=res_path, html_head=my_html_head, css_head=my_css_head, js_head=my_js_head)
+
 
     def idle(self):
         pass
+        '''
         self.temperature0.set_text('Living Room: ' + str(self.temp0)  + DEGREES)
         self.progress0.set_value(self.temp0)
         self.temperature1.set_text('Bedroom: ' + str(self.temp1)  + DEGREES)
         self.progress1.set_value(self.temp1)
         self.lightvalue0.set_text('Light: ' + str(self.light)  + ' %')
         self.progress2.set_value(self.light)
-
+        '''
     def bodyUpdate(self, color, opa, favicon):
         self.page.children['body'].style['background-color'] = color
-        self.page.children['body'].style['opacity'] = opa
-        self.page.children['head'].set_icon_file("/res:" + favicon)
-
+#        self.page.children['body'].style['opacity'] = opa
+#        self.page.children['head'].set_icon_file("/res:" + favicon)
         self.execute_javascript("location.reload(true);")
 
     def main(self):
@@ -48,25 +65,41 @@ class smartHome(App):
             sys.exit()
 
         # --- --- ---  --- BODY Properties --- --- --- --- --- --- ---  #
-        self.bodyUpdate(DARK, '0.8', FAVICON_DIS)
+
         # --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---   #
 
+        # --- --- --- --- --- Home Container --- --- --- --- --- #
+        self.homeContainer = gui.Container(width='100%', height='100%', style=CONTAINER)
+        self.homeContainer.add_class("fadein")
 
-        # --- --- --- --- --- Header Container --- --- --- --- --- #
+        self.menuTitle = gui.Label('Menu', width='auto', height='auto')
+        self.menuTitle.add_class("home_buttonTxt")
 
+        self.slogan = gui.Label('Looks Like Future\n Feels like home\n', width='auto', height='auto')
+        self.slogan.add_class("slogan")
+
+        self.menuBtn = gui.Button(MENUSYMBOL, width='5%', height='5%')
+        self.menuBtn.add_class("home_button")
+        self.menuBtn.onclick.connect(self.menuBtn_clicked)
+
+        self.homeContainer.append([self.slogan, self.menuTitle, self.menuBtn])
+                # --- --- --- --- --- Header Container --- --- --- --- --- #
+        '''
+        headerCont = gui.Container(width='98%', height=46, margin='5px', layout_orientation=gui.Container.LAYOUT_HORIZONTAL, style=CONTAINER)
+        headerTitle = gui.Label('Smart Home', width='96%', height='auto', margin='0px', style=TEXT)
+        headerTitle.style.update({'font-size':'200%', 'text-align': 'left'})
+        headerCont.append(headerTitle)
 
         #--- --- --- --- ---  Menu panel --- --- --- --- --- #
         menu = gui.Menu(width='99%', height=22, style=MENU)
-        self.home = gui.MenuItem(HOME, width='10%', height=22, style=HOMESTYLE)
+
+        self.home = gui.MenuItem(HOME, width='10%', height=22, style=MENU_LV1)
         self.home.onclick.connect(self.home_clicked)
-        self.connectStatus = gui.MenuItem('Connect', width='120%', height=22, style=CONNECT)
+        self.connectStatus = gui.MenuItem('Connect', width='120%', height=22, style=MENU_LV1)
         self.connectStatus.onclick.connect(self.connect_clicked)
         self.home.append([self.connectStatus])
 
-        modes = gui.MenuItem(MODESSYMBOL, width='10%',
-                                          height=22,
-                                          style={'border': '2px solid azure', 'background-color': BTN_BCK,
-                                                 'color': BTN_CLR, 'border-radius': BTN_RAD})
+        modes = gui.MenuItem(MODESSYMBOL, width='10%', height=22, style=MENU_LV1)
         modes.onclick.connect(self.modes_clicked)
 
         modeslbl = gui.MenuItem("Modes", width='200%', height=22, style=MENU_LV1)
@@ -92,28 +125,33 @@ class smartHome(App):
         heaterlbl = gui.MenuItem("Heaters Configuration", width='200%', height=22, style=MENU_LV1)
         heater.append(heaterlbl)
 
-        menu.append([self.home, modes, security, lights, heater, entertainment])
+        # Remove entertainemnt
+#        menu.append([self.home, modes, security, lights, heater, entertainment])
+        menu.append([self.home, modes, security, lights, heater])
         menubar = gui.MenuBar(width='100%', height='22px')
         menubar.append(menu)
         # --- --- --- --- --- --- --- --- --- --- #
 
         # --- --- --- --- --- Title Container --- --- --- --- --- #
-        titleCont = gui.Widget(width='98%', height=46, margin='5px', layout_orientation=gui.Widget.LAYOUT_HORIZONTAL, style=CONTAINER)
+        titleCont = gui.Container(width='98%', height=46, margin='5px',
+                                  layout_orientation=gui.Container.LAYOUT_HORIZONTAL,
+                                  style=CONTAINER)
 
-        self.title = gui.Label('HOME', width='55%', height=24, margin='4px',
-                                       style=TITLE)
+        self.title = gui.Label('HOME', width='55%', height=24, margin='4px', style=TITLE)
         titleCont.append([self.title])
         # --- --- --- --- --- --- --- --- --- --- --- --- --- --- #
 
         # --- --- --- --- HOME --- --- --- --- ---  #
-        self.homeContainer = gui.Widget(width='90%', height='70%', margin='5px auto', style=CONTAINER)
+        self.homeContainer = gui.Container(width='90%', height='70%',
+                                           margin='0px', style=CONTAINER)
 
         # --- --- --- Left panel --- --- --- #
-        subContainerLeft = gui.Widget(width='50%', margin='8px, 0px, 0px, 0px', style=CONTAINER)
+        subContainerLeft = gui.Container(width='50%', margin='0px', style=CONTAINER)
 
         # --- --- Presence Monitor --- --- #
-        self.presenseCont = gui.Widget(width='80%', height='50%', margin='4%', style=CONTAINER)
-        self.presenseLabel = gui.Label('Presence Monitor', width='96%', height=20, margin='8px', style=TEXT)
+        self.presenseCont = gui.Container(width='80%', height='50%', margin='0px', style=CONTAINER)
+        self.presenseLabel = gui.Label('Presence Monitor', width='96%',
+                                        height=20, margin='0px', style=TEXT)
 
         self.user0 = gui.Label(_usernNames['0'] + MISSING, width='100%', height=20, margin='0px', style=USER_LBL)
         self.user1 = gui.Label(_usernNames['1'] + CHECKED, width='100%', height=20, margin='0px', style=USER_LBL)
@@ -124,12 +162,12 @@ class smartHome(App):
         # --- --- --- --- --- --- --- --- --- --- #
 
         # --- --- ---  Right panel  --- --- --- #
-        subContainerRight = gui.Widget(width='50%', style=CONTAINER)
+        subContainerRight = gui.Container(width='50%', style=CONTAINER)
 
         # ---Temp display --- #
-        self.tempCont = gui.Widget(width='90%', height='90%',  margin='4%', style=CONTAINER)
+        self.tempCont = gui.Container(width='90%', height='90%',  margin='0px', style=CONTAINER)
 
-        self.tempLabel = gui.Label('Temperatute Monitor', width='96%', height=20, margin='4px', style=TEXT)
+        self.tempLabel = gui.Label('Temperatute Monitor', width='96%', height=20, margin='0px', style=TEXT)
 
         self.temp0 = 0
         self.progress0 = gui.Progress(0, 1000, width='100%', height=4, margin='0px', color='red', style=PROGRESSBAR)
@@ -141,7 +179,7 @@ class smartHome(App):
 
         self.tempCont.append([self.tempLabel, self.progress0, self.temperature0, self.progress1, self.temperature1])
 
-        self.lightCont = gui.Widget(width='90%', height='90%', margin='4%', style=CONTAINER)
+        self.lightCont = gui.Container(width='90%', height='90%', margin='4%', style=CONTAINER)
         self.lightLabel = gui.Label('Light Monitor', width='96%', height=20, margin='4px', style=TEXT)
 
         self.light = 0
@@ -155,22 +193,22 @@ class smartHome(App):
         # --- --- --- --- --- --- --- --- --- --- #
 
         # --- --- --- Horizontal panel --- --- --- #
-        horizontalContainer = gui.Widget(width='100%', layout_orientation=gui.Widget.LAYOUT_HORIZONTAL, margin='0px', style=CONTAINER)
+        horizontalContainer = gui.Container(width='100%', layout_orientation=gui.Container.LAYOUT_HORIZONTAL, margin='0px', style=CONTAINER)
 
         horizontalContainer.append([subContainerLeft, subContainerRight])
         # --- --- --- --- --- --- --- --- --- --- #
 
-        self.homeContainer.append([menubar, titleCont, horizontalContainer])
+        self.homeContainer.append([headerCont, menubar, titleCont, horizontalContainer])
         # --- --- --- --- HOME END --- --- --- --- ---  #
 
         # --- --- --- --- ENTERTAINMENT  --- --- --- --- #
-        self.entertainmentContainer = gui.Widget(width='90%', height='100%', margin='5px auto', style=CONTAINER)
+        self.entertainmentContainer = gui.Container(width='90%', height='100%', margin='0px auto', style=CONTAINER)
 
         self.musicLabel = gui.Label('Music', width='30%', height=22, margin='4px', style=TEXT)
         # --- Music Player object --- #
         self.musicPlayer = Player(150)
 
-        musicPlayerCont = gui.Widget(width='100%', layout_orientation=gui.Widget.LAYOUT_HORIZONTAL, margin='0px', height= 30, style=CONTAINER)
+        musicPlayerCont = gui.Container(width='100%', layout_orientation=gui.Container.LAYOUT_HORIZONTAL, margin='0px', height= 30, style=CONTAINER)
 
         self.playBtn = gui.Button(START, width='10%', height=22, margin='4px', style=BTN)
         self.playBtn.onclick.connect(self.playBtn_clicked)
@@ -184,7 +222,7 @@ class smartHome(App):
         self.sliderVol = gui.Slider(10, 0, 100, 5, width='30%', height=22, margin='4px', style=SLIDER)
         self.sliderVol.onchange.connect(self.sliderVol_changed)
 
-        self.songTitle = gui.Label(' ', width='30%', height=24, margin='2px', style=TEXT)
+        self.songTitle = gui.Label(' ', width='30%', height=24, margin='0px', style=TEXT)
 
         self.img0 = gui.Image('/res:tashSultanaCover.jpg', width=240, height=240, margin='10px')
         self.img1 = gui.Image('/res:keranaLogo.jpg', width=240, height=240, margin='10px')
@@ -195,23 +233,23 @@ class smartHome(App):
 
         musicPlayerCont.append([self.prevBtn, self.playBtn, self.nextBtn, self.sliderVol, self.songTitle])
 
-        self.entertainmentContainer.append([menubar, titleCont, self.musicLabel, musicPlayerCont, self.img0, self.img1, self.img2, self.img3])
+        self.entertainmentContainer.append([headerCont, menubar, titleCont, self.musicLabel, musicPlayerCont, self.img0, self.img1, self.img2, self.img3])
         # --- --- --- --- ENTERTAINMENT END --- --- --- --- #
 
         # --- --- --- --- MODES  --- --- --- ---#
-        self.modesContainer = gui.Widget(width='90%', height='70%', margin='5px auto', style=CONTAINER)
+        self.modesContainer = gui.Container(width='90%', height='70%', margin='0px auto', style=CONTAINER)
 
-        self.modesCont = gui.Widget(width='80%', height='50%', style=CONTAINER)
+        self.modesCont = gui.Container(width='80%', height='50%', style=CONTAINER)
 
-        self.smartLight = gui.CheckBoxLabel(SUN, False, width='30%', height='10%', margin='10px', style=CB)
+        self.smartLight = gui.CheckBoxLabel(SUN, False, width='30%', height='10%', margin='0px', style=CB)
         self.smartLightTresh = gui.TextInput(width='30%', height='10%', margin='10px', style=TEXT_INPUT)
         self.smartLightTresh.set_text('25 %')
 
-        self.smartHeater = gui.CheckBoxLabel(TERMOMETER, False, width='30%', height='10%', margin='10px', style=CB)
+        self.smartHeater = gui.CheckBoxLabel(TERMOMETER, False, width='30%', height='10%', margin='0px', style=CB)
         self.smarHeaterTresh = gui.TextInput(width='30%', height='10%', margin='10px', style=TEXT_INPUT)
         self.smarHeaterTresh.set_text('25 ' + DEGREES)
 
-        '''
+
         self.description0 = gui.Label(SUN + ' - SmartLights mode controls your lights automaticaly depending on light level', width='80%', height=50, margin='4px',
                                     style={'display': 'block', 'text-align': 'left',
                                            'overflow': 'visible', #'border': '1px solid bisque',
@@ -223,29 +261,29 @@ class smartHome(App):
                                            'overflow': 'visible', #'border': '1px solid bisque',
                                            'background-color': BCK, 'color': TEXT_COL,
                                            'font-size': '100%'})
-        '''
+
         self.smartLight.onchange.connect(self.on_check_smartL)
         self.modesCont.append([self.smartLight, self.smartLightTresh, self.smartHeater, self.smarHeaterTresh])
 
-        self.modesContainer.append([menubar, titleCont, self.modesCont])
+        self.modesContainer.append([headerCont, menubar, titleCont, self.modesCont])
         # --- --- --- --- MODES END --- --- --- ---#
 
         # --- --- --- --- LIGHTS --- --- --- ---#
-        self.lightsContainer = gui.Widget(width='90%', height='70%', margin='5px auto', style=CONTAINER)
-        self.lightsContainer.append([menubar, titleCont])
+        self.lightsContainer = gui.Container(width='90%', height='70%', margin='0px auto', style=CONTAINER)
+        self.lightsContainer.append([headerCont, menubar, titleCont])
         # --- --- --- --- LIGHTS END --- --- --- ---#
 
 
         # --- --- --- --- HEATER --- --- --- ---#
-        self.heaterContainer = gui.Widget(width='90%', height='70%', margin='5px auto', style=CONTAINER)
+        self.heaterContainer = gui.Container(width='90%', height='70%', margin='0px auto', style=CONTAINER)
 
-        self.heaterContainer.append([menubar, titleCont])
+        self.heaterContainer.append([headerCont, menubar, titleCont])
         # --- --- --- --- HEATER END --- --- --- ---#
 
         # --- --- --- --- SECURITY --- --- --- ---#
-        self.securityContainer  = gui.Widget(width='90%', height='70%', margin='5px auto', style=CONTAINER)
+        self.securityContainer  = gui.Container(width='90%', height='70%', margin='0px auto', style=CONTAINER)
 
-        self.securityContainer.append([menubar, titleCont, subContainerLeft])
+        self.securityContainer.append([headerCont, menubar, titleCont, subContainerLeft])
         # --- --- --- --- SECURITY END --- --- --- ---#
 
         # this flag will be used to stop the measure Timer
@@ -253,11 +291,10 @@ class smartHome(App):
 
         # this flag will be used to stop the modes Timer
         self.stop_modes = False
-
         # --- Start Functions --- #
         self.measure()
         self.modes()
-
+        '''
         # returning the root widget
         return self.homeContainer
 
@@ -289,12 +326,10 @@ class smartHome(App):
         print(">>>>>>>>> ON ERROR: %s\n%s\n%s\n%s"%(message, source, line, col))
         self.execute_javascript('document.onkeydo')
 
-    def home_clicked(self, widget):
-        buttonClick(0)
+    def menuBtn_clicked(self, widget):
         self.set_root_widget(self.homeContainer)
-        self.title.set_text('HOME')
-        print('home')
 
+        '''
     def modes_clicked(self, widget):
         buttonClick(0)
         self.set_root_widget(self.modesContainer)
@@ -383,7 +418,7 @@ class smartHome(App):
             self.ser.disconnect()
 
         super(smartHome, self).on_close()
-
+        '''
 # starts the webserver
 if __name__ == "__main__":
 # starts the webserver
