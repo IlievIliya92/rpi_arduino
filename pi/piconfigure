@@ -5,4 +5,8 @@ cd ./source/
 source ./scripts/pienv
 source ./scripts/piaddtopath
 
+printf "Commands imported:\n\n"
+printf "picheck_requirements - check project requirements\n"
+printf "pistart_server - start the web server\n\n"
+
 cd -

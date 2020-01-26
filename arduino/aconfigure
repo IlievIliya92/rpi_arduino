@@ -5,4 +5,9 @@ cd ./source/
 source ./scripts/aenv
 source ./scripts/aaddtopath
 
+printf "Commands imported:\n\n"
+printf "acheck_requirements - check project requirements\n"
+printf "abuild - build the project\n"
+printf "aupload - upload to the target board\n\n"
+
 cd -

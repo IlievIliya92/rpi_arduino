@@ -4,3 +4,4 @@ arduino/source/arduino_src/schematics/*.fzz
 
 pi/source/python/__pycache__
 pi/source/python/logs/*
+pi/source/python/remi/__pycache__/
