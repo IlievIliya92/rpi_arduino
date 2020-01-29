@@ -145,4 +145,4 @@ class smARTHome(App):
 if __name__ == "__main__":
 # starts the webserver
 #    import ssl
-    start(smARTHome, debug=True, address='0.0.0.0', port=8081, start_browser=True, multiple_instance=True) #username='Iliya', password='admin'
+    start(smARTHome, debug=True, address='0.0.0.0', port=8081, start_browser=True, multiple_instance=True, username='Iliya', password='admin')
