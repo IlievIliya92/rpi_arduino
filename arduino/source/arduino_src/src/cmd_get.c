@@ -89,6 +89,14 @@ static int cmd_getVerifyTrailer(uint8_t *payload)
     }
 }
 
+static uint8_t cmd_verifyCookie(char *cookie)
+{
+    if (strcmp(cookie, CMD_COKIE) == 0)
+        return 1;
+
+    return 0;
+}
+
 
 static void cmd_getToken(uint8_t *token, uint8_t *cmdBuff, int len)
 {
@@ -108,12 +116,13 @@ static command_status_t cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
     cmd += CMD_COKIE_LEN - 1;
 
     /* Verify The Coockie */
-    if (strcmp((char *)cmdMsg->cmd_cookie, CMD_COKIE) == 0) {
+    if (cmd_verifyCookie((char *)cmdMsg->cmd_cookie)) {
         verified = OK;
     } else {
         statusId = CKIE;
         verified = ERR;
     }
+
 
     /* Fill in the data for the command packet */
     if (verified == OK)
