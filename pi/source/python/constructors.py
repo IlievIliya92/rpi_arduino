@@ -23,10 +23,16 @@ def createContainer(w, h, cclass, orientation):
         cont = gui.Container(width=w, height=h, layout_orientation=gui.Container.LAYOUT_VERTICAL)
     elif orientation == 'horizontal':
         cont = gui.Container(width=w, height=h, layout_orientation=gui.Container.LAYOUT_HORIZONTAL)
-
     cont.add_class(cclass)
 
     return cont
+
+def createMenu(text, w, h, mclass, callback):
+    menu = gui.MenuItem(text, width=w, height=h)
+    menu.add_class(mclass)
+    menu.onclick.connect(callback)
+
+    return menu
 
 def modifyStyle(widget, new_style):
     widget.style.update(new_style)

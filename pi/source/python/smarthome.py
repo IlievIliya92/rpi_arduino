@@ -1,11 +1,15 @@
 #!/usr/bin/python3
 
+import sqlite3
 import os
+import time
 import constructors as cstr
 
 from remi import start, App
 from serialcom import SerialCom
+from threading import Timer
 
+#!/usr/bin/python3
 from logger import *
 
 # --- Smart Home app
@@ -18,11 +22,16 @@ class smARTHome(App):
         pass
 
     def main(self):
+        # --- --- --- --- State  --- --- --- --- --- #
         self.ser = SerialCom()
-        # --- --- --- --- BODY --- --- --- --- ---   #
-        self.page.children['head'].set_icon_file("/resources:favicon.ico")
-        # --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---   #
+        self.serConnected = False
 
+        # --- --- --- --- --- --- --- --- --- --- --- #
+
+
+        # --- --- --- --- BODY --- --- --- --- --- ---#
+        self.page.children['head'].set_icon_file("/resources:favicon.ico")
+        # --- --- --- --- --- --- --- --- --- --- --- #
 
         self.homeBtn = cstr.createButton("smART\nHOME", 'auto', 'auto',
                                          "home_button", self.homeBtn_clicked)
@@ -51,6 +60,35 @@ class smARTHome(App):
         centralmContainer.append([self.menuBtn, modesBtn, ligthsBtn, tempBtn, securityBtn])
         self.menuContainer.append([self.homeBtn, centralmContainer, self.connectBtn])
 
+        # --- --- --- --- --- Modes Container --- --- --- --- --- #
+        self.modesContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
+        centralmoContainer= cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
+
+        centralmoContainer.append([self.menuBtn])
+        self.modesContainer.append([self.homeBtn, centralmoContainer, self.connectBtn])
+
+        # --- --- --- --- --- Lights Container --- --- --- --- --- #
+        self.lightsContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
+        centrallContainer= cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
+
+        centrallContainer.append([self.menuBtn])
+        self.lightsContainer.append([self.homeBtn, centralmoContainer, self.connectBtn])
+
+        # --- --- --- --- --- Lights Container --- --- --- --- --- #
+        self.tempContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
+        centraltContainer= cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
+
+        centraltContainer.append([self.menuBtn])
+        self.tempContainer.append([self.homeBtn, centralmoContainer, self.connectBtn])
+
+        # --- --- --- --- --- Security Container --- --- --- --- --- #
+        self.secContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
+        centralsContainer= cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
+
+        centralsContainer.append([self.menuBtn])
+        self.secContainer.append([self.homeBtn, centralmoContainer, self.connectBtn])
+
+
         return self.homeContainer
 
     # listener functions
@@ -75,19 +113,30 @@ class smARTHome(App):
         self.set_root_widget(self.homeContainer)
 
     def connectBtn_clicked(self, widget):
-        pass
+        if not self.serConnected:
+            if self.ser.connect():
+                self.serConnected = True
+                logger.info("Serial communication established.")
+                self.connectBtn.set_text("Disconnect")
+        else:
+            if self.ser.disconnect():
+                logger.info("Failed to connect to the serial device.")
+                self.serConnected = False
+                self.connectBtn.set_text("Connect")
+        self.execute_javascript("location.reload(true);")
+
 
     def modesBtn_clicked(self, widget):
-        pass
+        self.set_root_widget(self.modesContainer)
 
     def lightsBtn_clicked(self, widget):
-        pass
+        self.set_root_widget(self.lightsContainer)
 
     def tempBtn_clicked(self, widget):
-        pass
+        self.set_root_widget(self.tempContainer)
 
     def securityBtn_clicked(self, widget):
-        pass
+        self.set_root_widget(self.secContainer)
 
     def on_close(self):
         super(smARTHome, self).on_close()

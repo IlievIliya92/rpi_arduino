@@ -1,8 +1,8 @@
-import serial
 import json
 import time
 import glob
 
+from serial import *
 from constants import *
 from logger import *
 
@@ -11,12 +11,9 @@ def _findPort():
 
     res = []
     for port in ports:
-        try:
-            s = serial.Serial(port)
-            s.close()
-            res.append(port)
-        except:
-            pass
+        s = Serial(port)
+        s.close()
+        res.append(port)
 
     logger.info("Serial ports detected: " + str(res))
 
@@ -34,12 +31,20 @@ class SerialCom:
             logger.error("Failed to find the serial device! " + str(e))
 
 
+    def verifyResponse(self, response):
+        print(response)
+
+        if POSITIVE_RESPONSE in response:
+            return True
+        else:
+            return False
+
     def connect(self):
         try:
-            self.ser = serial.Serial(self.port, 38400, timeout=1,
-                                     parity=serial.PARITY_NONE,
-                                     stopbits=serial.STOPBITS_ONE,
-                                     bytesize=serial.EIGHTBITS)
+            self.ser = Serial(self.port, 38400, timeout=1,
+                              parity=PARITY_NONE,
+                              stopbits=STOPBITS_ONE,
+                              bytesize=EIGHTBITS)
             self.ser.close()
             self.ser.open()
             self.connected = True
@@ -48,19 +53,17 @@ class SerialCom:
             return False
         else:
             ret = self.sendCmd(START_CMD)
-            while not ret:
-                if POSITIVE_RESPONSE not in ret:
-                    #ret = self.sendCmd(STOP_CMD)
-                    ret = self.sendCmd(START_CMD)
+            while not self.verifyResponse(ret):
+                #ret = self.sendCmd(STOP_CMD)
+                ret = self.sendCmd(START_CMD)
 
             logger.info("Serial port opened & start confirmed.")
             return True
 
     def disconnect(self):
         ret = self.sendCmd(STOP_CMD)
-        while not ret:
-            if POSITIVE_RESPONSE not in ret:
-                ret = self.sendCmd(STOP_CMD)
+        while not self.verifyResponse(ret):
+            ret = self.sendCmd(STOP_CMD)
 
         self.connected = False
         try:
@@ -71,12 +74,6 @@ class SerialCom:
         else:
             logger.info("Serial port closed & stop confirmed.")
             return True
-
-    def toggle(self):
-        if self.connected:
-            self.disconnect()
-        else:
-            self.connect()
 
     def isConnected(self):
         return self.connected
@@ -100,9 +97,9 @@ class SerialCom:
         ret = self.sendCmd(ADC_CMD)
 
         try:
-            while not ret:
-                if POSITIVE_RESPONSE not in ret:
-                    ret = self.sendCmd(ADC_CMD)
+            while not self.verifyResponse(ret):
+                ret = self.sendCmd(ADC_CMD)
+
             adc = json.loads(ret)
             return adc['value']['c0'], adc['value']['c1'], adc['value']['c2'], adc['value']['c3'], adc['value']['c4']
 
@@ -113,7 +110,7 @@ class SerialCom:
     def lightEnable(self, light, enb):
         lightCmd = DIO_CMD + "0" + str(light)  + str(enb) + CMD_TRAILER
         ret = self.sendCmd(lightCmd)
-        if POSITIVE_RESPONSE not in ret:
+        if not self.verifyResponse(ret):
             logger.info("Setting up light "  + str(light) + " failed.")
             return False
 

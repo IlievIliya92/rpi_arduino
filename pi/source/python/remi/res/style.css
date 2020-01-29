@@ -390,6 +390,19 @@ button:active{
     color: transparent;
 }
 
+.gptext {
+    font-family: 'Palatino';
+    font-weight: italic;
+    position:relative;
+    white-space: pre-wrap;
+    display: block;
+    top: 0%;
+    left: 0%;
+    font-size: 100%;
+    background-color: transparent;
+    color: white;
+}
+
 .slogan {
     font-family: 'Palatino';
     font-weight: bold;
