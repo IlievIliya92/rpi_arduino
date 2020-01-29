@@ -65,9 +65,9 @@ class TestCmd:
         cmd = cmds['h'] + data + cmds['trl']
         print(cmd)
         try:
-            self.ser.write(cmd)
+            self.ser.write(cmd.encode())
             time.sleep(self.sendDelay)
-            response = self.ser.readline()
+            response = self.ser.readline().decode()
         except Exception as e:
             print(e)
             pass

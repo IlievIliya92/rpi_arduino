@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd ${ARDUINO_PROJECT_ROOT}/tests
+python3 cmds_test.py
+
+cd -
