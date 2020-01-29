@@ -2,7 +2,7 @@
 
 usage(){
   echo "Usage:"
-  echo "supload <arduino_serial_device>"
+  echo "aupload <arduino_serial_device>"
   echo ""
 
   ls -l /dev/ttyUSB* &>/dev/null
@@ -13,7 +13,7 @@ usage(){
     ls -l /dev/ttyUSB*
 
     echo "Uploading to default USB0 device:"
-    supload /dev/ttyUSB0
+    aupload /dev/ttyUSB0
     exit
   fi
 
@@ -24,7 +24,7 @@ usage(){
     ls -l /dev/ttyACM0*
 
     echo "Uploading to default ACM0 device:"
-    supload /dev/ttyACM0
+    aupload /dev/ttyACM0
     exit
   fi
 
