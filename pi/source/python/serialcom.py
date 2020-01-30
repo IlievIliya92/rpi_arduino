@@ -6,7 +6,7 @@ from serial import *
 from constants import *
 from logger import *
 
-def _findPort():
+def _findPorts():
     ports = glob.glob('/dev/ttyACM[0-9]*')
 
     res = []
@@ -17,48 +17,56 @@ def _findPort():
 
     logger.info("Serial ports detected: " + str(res))
 
-    return res[0]
+    return res
 
 
 class SerialCom:
-    def __init__(self):
+    def __init__(self, dev_id):
         self.ser = None
         self.send_delay = 0.08
         self.connected = False
+        self.dev_id = dev_id
         try:
-            self.port = _findPort()
+            self.ports = _findPorts()
         except Exception as e:
             logger.error("Failed to find the serial device! " + str(e))
 
 
     def verifyResponse(self, response):
-        print(response)
-
         if POSITIVE_RESPONSE in response:
             return True
         else:
             return False
 
     def connect(self):
-        try:
-            self.ser = Serial(self.port, 38400, timeout=1,
-                              parity=PARITY_NONE,
-                              stopbits=STOPBITS_ONE,
-                              bytesize=EIGHTBITS)
-            self.ser.close()
-            self.ser.open()
-            self.connected = True
-        except Exception as e:
-            logger.error("Failed to open serial port! " + str(e))
-            return False
-        else:
-            ret = self.sendCmd(START_CMD)
-            while not self.verifyResponse(ret):
-                #ret = self.sendCmd(STOP_CMD)
-                ret = self.sendCmd(START_CMD)
+            for port in self.ports:
+                try:
 
-            logger.info("Serial port opened & start confirmed.")
-            return True
+                    self.ser = Serial(port, 38400, timeout=1,
+                                      parity=PARITY_NONE,
+                                      stopbits=STOPBITS_ONE,
+                                      bytesize=EIGHTBITS)
+                    self.ser.close()
+                    self.ser.open()
+                    self.connected = True
+                except Exception as e:
+                    logger.error("Failed to open serial port! " + str(e))
+                    return False
+                else:
+                    ret = self.sendCmd(START_CMD)
+                    while not self.verifyResponse(ret):
+                        ret = self.sendCmd(STOP_CMD)
+                        ret = self.sendCmd(START_CMD)
+
+                    device_ID = json.loads(ret)['ID']
+                    if device_ID == self.dev_id:
+                        logger.info("Serial port opened & start confirmed.")
+                        return True
+                    else:
+                        self.connected = False
+                        logger.info("Failed to recognize serial device.")
+
+            return False
 
     def disconnect(self):
         ret = self.sendCmd(STOP_CMD)

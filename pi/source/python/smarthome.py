@@ -9,6 +9,8 @@ from remi import start, App
 from serialcom import SerialCom
 from threading import Timer
 
+from constants import *
+
 #!/usr/bin/python3
 from logger import *
 
@@ -23,7 +25,7 @@ class smARTHome(App):
 
     def main(self):
         # --- --- --- --- State  --- --- --- --- --- #
-        self.ser = SerialCom()
+        self.ser = SerialCom(ARD_DEVICE_ID)
         self.serConnected = False
 
         # --- --- --- --- --- --- --- --- --- --- --- #
@@ -101,12 +103,12 @@ class smARTHome(App):
 
     def menuBtn_clicked(self, widget):
         if self.menuBtnEnb == 1:
-            self.set_root_widget(self.menuContainer)
             self.menuBtn.set_text("X")
+            self.set_root_widget(self.menuContainer)
             self.menuBtnEnb = 0
         elif self.menuBtnEnb == 0:
-            self.set_root_widget(self.homeContainer)
             self.menuBtn.set_text("O")
+            self.set_root_widget(self.homeContainer)
             self.menuBtnEnb = 1
 
     def homeBtn_clicked(self, widget):

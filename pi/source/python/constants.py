@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+ARD_DEVICE_ID = "1"
+
+
 LOGFILE = "./logs/smarthome.log"
 
 # --- Unicodes --- #
