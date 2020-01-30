@@ -36,11 +36,13 @@ class smARTHome(App):
         # --- --- --- --- --- --- --- --- --- --- --- #
 
         self.homeBtn = cstr.createButton("smART\nHOME", 'auto', 'auto',
-                                         "home_button", self.homeBtn_clicked)
+                                         "gp_button", self.homeBtn_clicked)
 
         self.connectBtn = cstr.createButton("Connect", 'auto', 'auto',
-                                            "home_button", self.connectBtn_clicked)
+                                            "gp_button", self.connectBtn_clicked)
         cstr.modifyStyle(self.connectBtn, {'top':'20%'})
+        self.connectStatus = cstr.createLabel("", 'auto', 'auto', "gp_button")
+        cstr.modifyStyle(self.connectStatus, {'top':'22%'})
 
         # --- --- --- --- --- Home Container --- --- --- --- --- #
         self.homeContainer = cstr.createContainer('100%', '100%', "fadein", "vertical")
@@ -50,7 +52,7 @@ class smARTHome(App):
         slogan = cstr.createLabel('Looks Like Art\nFeels Like Home\n', '35%', 'auto', "slogan")
         gifContainer = cstr.createContainer('30%', '100%', "homegif", "vertical")
         centralContainer.append([self.menuBtn, slogan, gifContainer])
-        self.homeContainer.append([self.homeBtn, centralContainer, self.connectBtn])
+        self.homeContainer.append([self.homeBtn, centralContainer, self.connectBtn, self.connectStatus])
 
         # --- --- --- --- --- Menu Container --- --- --- --- --- #
         self.menuContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
@@ -60,35 +62,35 @@ class smARTHome(App):
         tempBtn = cstr.createButton("Temperature", '100px', '85%', "innermenu_button", self.tempBtn_clicked)
         securityBtn = cstr.createButton("Security", '100px', '85%', "innermenu_button", self.securityBtn_clicked)
         centralmContainer.append([self.menuBtn, modesBtn, ligthsBtn, tempBtn, securityBtn])
-        self.menuContainer.append([self.homeBtn, centralmContainer, self.connectBtn])
+        self.menuContainer.append([self.homeBtn, centralmContainer, self.connectBtn, self.connectStatus])
 
         # --- --- --- --- --- Modes Container --- --- --- --- --- #
         self.modesContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
         centralmoContainer= cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
 
         centralmoContainer.append([self.menuBtn])
-        self.modesContainer.append([self.homeBtn, centralmoContainer, self.connectBtn])
+        self.modesContainer.append([self.homeBtn, centralmoContainer, self.connectBtn, self.connectStatus])
 
         # --- --- --- --- --- Lights Container --- --- --- --- --- #
         self.lightsContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
         centrallContainer= cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
 
         centrallContainer.append([self.menuBtn])
-        self.lightsContainer.append([self.homeBtn, centralmoContainer, self.connectBtn])
+        self.lightsContainer.append([self.homeBtn, centralmoContainer, self.connectBtn, self.connectStatus])
 
         # --- --- --- --- --- Lights Container --- --- --- --- --- #
         self.tempContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
         centraltContainer= cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
 
         centraltContainer.append([self.menuBtn])
-        self.tempContainer.append([self.homeBtn, centralmoContainer, self.connectBtn])
+        self.tempContainer.append([self.homeBtn, centralmoContainer, self.connectBtn, self.connectStatus])
 
         # --- --- --- --- --- Security Container --- --- --- --- --- #
         self.secContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
         centralsContainer= cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
 
         centralsContainer.append([self.menuBtn])
-        self.secContainer.append([self.homeBtn, centralmoContainer, self.connectBtn])
+        self.secContainer.append([self.homeBtn, centralmoContainer, self.connectBtn, self.connectStatus])
 
 
         return self.homeContainer
@@ -117,14 +119,20 @@ class smARTHome(App):
     def connectBtn_clicked(self, widget):
         if not self.serConnected:
             if self.ser.connect():
-                self.serConnected = True
-                logger.info("Serial communication established.")
-                self.connectBtn.set_text("Disconnect")
+                if self.ser.isConnected():
+                    self.serConnected = True
+                    self.connectStatus.set_text("Device Authenticated")
+                    logger.info("Serial communication established.")
+                    self.connectBtn.set_text("Disconnect")
+            else:
+                self.serConnected = False
+                self.connectStatus.set_text("Failed to Authenticate the Device")
         else:
             if self.ser.disconnect():
-                logger.info("Failed to connect to the serial device.")
+                self.connectStatus.set_text("")
                 self.serConnected = False
                 self.connectBtn.set_text("Connect")
+
         self.execute_javascript("location.reload(true);")
 
 

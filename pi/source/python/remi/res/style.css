@@ -290,7 +290,7 @@ button:active{
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .12), 0 2px 0px -1px rgba(0, 0, 0, .2);
 }
 
-.home_button {
+.gp_button {
     font-family: 'Palatino';
     position:relative;
     left: 4%;
@@ -303,23 +303,23 @@ button:active{
     box-shadow: unset;
 }
 
-.home_button:hover {
+.gp_button:hover {
     background-color: transparent;
     color: white;
 }
 
-.home_button:focus {
+.gp_button:focus {
     border-radius: 10%;
     background-color: black;
     color: black;
 }
 
-.home_button:visited {
+.gp_button:visited {
     background-color: black;
     color: black;
 }
 
-.home_button:active {
+.gp_button:active {
     background-color: black;
     color: black;
 }
