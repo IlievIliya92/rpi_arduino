@@ -114,7 +114,7 @@ static afEventHandler StateMachine = {
 static eSystemState start_handler(void *args)
 {
     PORTB |= _BV(PORTB5);
-    cmd_sendResponse(RDY, OK);
+    cmd_sendResponse(RDY, OK, NULL);
 
     return Start_State;
 }
@@ -124,9 +124,9 @@ static eSystemState pwm_handler(void *args)
     genericCmdMsg_t *cmdMsg = (genericCmdMsg_t *)args;
 
     if (cmds[0]->processData(cmdMsg->cmd_sessionId, cmdMsg->cmd_payload) == 0) {
-        cmd_sendResponse(PWM, OK);
+        cmd_sendResponse(PWM, OK, NULL);
     } else {
-        cmd_sendResponse(INVD, ERR);
+        cmd_sendResponse(INVD, ERR, NULL);
     }
 
     return Pwm_State;
@@ -137,9 +137,9 @@ static eSystemState do_handler(void *args)
     genericCmdMsg_t *cmdMsg = (genericCmdMsg_t *)args;
 
     if (cmds[1]->processData(cmdMsg->cmd_sessionId, cmdMsg->cmd_payload) == 0) {
-        cmd_sendResponse(DO, OK);
+        cmd_sendResponse(DO, OK, NULL);
     } else {
-        cmd_sendResponse(INVD, ERR);
+        cmd_sendResponse(INVD, ERR, NULL);
     }
 
     return Do_State;
@@ -154,7 +154,7 @@ static eSystemState adc_handler(void *args)
 
     sprintf(values, "{\"c0\":%d,\"c1\":%d,\"c2\":%d,\"c3\":%d,\"c4\":%d}",
                     adcValues.adc0, adcValues.adc1, adcValues.adc2, adcValues.adc3, adcValues.adc4);
-    cmd_sendData(ADCC, OK, values);
+    cmd_sendResponse(ADCC, OK, values);
 
     return Adc_State;
 }
@@ -162,7 +162,7 @@ static eSystemState adc_handler(void *args)
 static eSystemState stop_handler(void *args)
 {
     PORTB &= ~_BV(PORTB5);
-    cmd_sendResponse(END, OK);
+    cmd_sendResponse(END, OK, NULL);
 
     return Idle_State;
 }

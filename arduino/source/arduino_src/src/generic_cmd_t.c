@@ -1,6 +1,7 @@
 /******************************** INCLUDE FILES *******************************/
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 #include "freeRTOS/lib_io/serial.h"
@@ -35,25 +36,33 @@ static command_resp_t *responses[RESPONSES] = {
 /******************************* LOCAL FUNCTIONS ******************************/
 
 /***************************** GLOBAL FUNCTIONS ****************************/
-void cmd_sendResponse(response_id_t id, int status)
+void cmd_sendResponse(response_id_t id, int status, char *value)
 {
-    if (status == ERR) {
-        avrSerialxPrintf(&xSerialPort, "{\"Err\":\"%s\"}\r\n", responses[id]);
-    } else if (status == OK) {
-        avrSerialxPrintf(&xSerialPort, "{\"Ok\":\"%s\"}\r\n", responses[id]);
+    switch(id)
+    {
+        case RDY:
+            (status == OK) ? avrSerialxPrintf(&xSerialPort, "{\"Ok\":\"%s\", \"ID\":\"%d\"}\r\n", responses[id], DEVICE_ID) :
+                             avrSerialxPrintf(&xSerialPort, "{\"Err\":\"%s\"}\r\n", responses[id]);
+            break;
+
+        case CKIE:
+        case  TLR:
+        case  PWM:
+        case   DO:
+        case  END:
+        case INVD:
+            (status == OK) ? avrSerialxPrintf(&xSerialPort, "{\"Ok\":\"%s\"}\r\n", responses[id]) :
+                             avrSerialxPrintf(&xSerialPort, "{\"Err\":\"%s\"}\r\n", responses[id]);
+            break;
+
+        case ADCC:
+            (status == OK) ? avrSerialxPrintf(&xSerialPort, "{\"Ok\":\"%s\",\"value\":%s}\r\n", responses[id], value) :
+                             avrSerialxPrintf(&xSerialPort, "{\"Err\":\"%s\"}\r\n", responses[id]);
+            break;
+
+        default:
+            break;
     }
 
     return;
 }
-
-void cmd_sendData(response_id_t id, int status, char *value)
-{
-    if (status == ERR) {
-        avrSerialxPrintf(&xSerialPort, "{\"Err\":\"%s\"}\r\n", responses[id]);
-    } else if (status == OK) {
-        avrSerialxPrintf(&xSerialPort, "{\"Ok\":\"%s\",\"value\":%s}\r\n", responses[id], value);
-    }
-
-    return;
-}
-

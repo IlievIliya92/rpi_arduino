@@ -102,8 +102,7 @@ typedef enum
     RESPONSES
 } response_id_t;
 
-void cmd_sendResponse(response_id_t id, int status);
-void cmd_sendData(response_id_t id, int status, char *value);
+void cmd_sendResponse(response_id_t id, int status, char *value);
 
 #ifdef __cplusplus
 }

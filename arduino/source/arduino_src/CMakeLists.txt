@@ -20,11 +20,14 @@ set(BAUD 38400)
 set(MCUFOS __AVR_ATmega328P__)
 set(MCU atmega328p)
 
+set(DEVICE_ID 1U)
+
 # Pass defines to compiler
 add_definitions(
     -DF_CPU=${F_CPU}
     -DBAUD=${BAUD}
     -D${MCUFOS}
+    -DDEVICE_ID=${DEVICE_ID}
 )
 set(CMAKE_EXE_LINKER_FLAGS -mmcu=${MCU})
 

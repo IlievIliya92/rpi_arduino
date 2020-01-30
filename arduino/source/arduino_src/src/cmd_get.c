@@ -123,7 +123,6 @@ static command_status_t cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
         verified = ERR;
     }
 
-
     /* Fill in the data for the command packet */
     if (verified == OK)
     {
@@ -158,7 +157,7 @@ static command_status_t cmd_getParse(genericCmdMsg_t *cmdMsg, uint8_t *cmd)
 
     /* If the command is invalid return the response */
     if (verified == ERR)
-        cmd_sendResponse(statusId, ERR);
+        cmd_sendResponse(statusId, ERR, NULL);
 
     return verified;
 }
