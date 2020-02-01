@@ -3,7 +3,7 @@
 ARD_DEVICE_ID = "1"
 
 ADC_READ_INTERVAL = 5
-ADC_KEEP_VALS = 60
+ADC_KEEP_VALS = 10
 
 LOGFILE = "./logs/smarthome.log"
 

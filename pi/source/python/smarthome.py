@@ -143,7 +143,9 @@ class smARTHome(App):
             self.menuBtnEnb = 1
 
     def homeBtn_clicked(self, widget):
+        self.menuBtn.set_text("O")
         self.set_root_widget(self.homeContainer)
+        self.menuBtnEnb = 1
 
     def connectBtn_clicked(self, widget):
         if not self.serConnected:
