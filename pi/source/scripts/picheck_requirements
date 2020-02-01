@@ -21,11 +21,11 @@ install_package() {
 printf "\n Checking for installed required packages:\n\n"
 
 
-if python3 -c 'import PySimpleGUI;'; then
-    echo '[+] PySimpleGUI found'
+if python3 -c 'import pygal;'; then
+    echo '[+] pygal found'
 else
-    echo 'PySimpleGUI not found'
-    install_package "PySimpleGUI"
+    echo 'pygal not found'
+    install_package "pygal"
 fi
 
 if python3 -c 'import json;'; then
