@@ -48,7 +48,6 @@ class SerialCom:
                                       bytesize=EIGHTBITS)
                     self.ser.close()
                     self.ser.open()
-                    self.connected = True
                 except Exception as e:
                     logger.error("Failed to open serial port! " + str(e))
                     return False
@@ -61,6 +60,7 @@ class SerialCom:
                     device_ID = json.loads(ret)['ID']
                     if device_ID == self.dev_id:
                         logger.info("Serial port opened & start confirmed.")
+                        self.connected = True
                         return True
                     else:
                         self.connected = False
@@ -87,7 +87,6 @@ class SerialCom:
         return self.connected
 
     def sendCmd(self, cmd):
-        if self.isConnected():
             try:
                 self.ser.write(cmd.encode('utf-8'))
             except Exception as e:
@@ -96,10 +95,7 @@ class SerialCom:
             else:
                 time.sleep(self.send_delay)
                 response = self.ser.readline().decode()
-                #print(response)
                 return response
-        else:
-            return ''
 
     def readAdcData(self):
         ret = self.sendCmd(ADC_CMD)

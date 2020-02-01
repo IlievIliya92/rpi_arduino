@@ -27,6 +27,7 @@ class smARTHome(App):
         # --- --- --- --- State  --- --- --- --- --- #
         self.ser = SerialCom(ARD_DEVICE_ID)
         self.serConnected = False
+        self.stop_measure = False
 
         # --- --- --- --- --- --- --- --- --- --- --- #
 
@@ -78,20 +79,48 @@ class smARTHome(App):
         centrallContainer.append([self.menuBtn])
         self.lightsContainer.append([self.homeBtn, centralmoContainer, self.connectBtn, self.connectStatus])
 
-        # --- --- --- --- --- Lights Container --- --- --- --- --- #
-        self.tempContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
-        centraltContainer= cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
+        # --- --- --- --- --- Temperature Container --- --- --- --- --- #
+        self.tempContainer = cstr.createContainer('100%', '100%', "fadein", "vertical")
+        centraltContainer = cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
 
-        centraltContainer.append([self.menuBtn])
-        self.tempContainer.append([self.homeBtn, centralmoContainer, self.connectBtn, self.connectStatus])
+        tempGraphContainer = cstr.createContainer('50%', '80%', "menu_Container", "horizontal")
+        cstr.modifyStyle(tempGraphContainer, {'top':'0%', 'left': '5%',
+                                              'text-align': 'left'})
+
+        self.tempGraph = cstr.PyGal(width="100%", height="100%")
+        self.temp1 = cstr.RingBuffer(ADC_KEEP_VALS, 0)
+        self.temp1Curr = cstr.createLabel("", 'auto', 'auto', "gp_button")
+        cstr.modifyStyle(self.temp1Curr, {'color': 'aliceblue', 'left': '5%', 'top': '5%'})
+
+
+        self.temp1SetP = cstr.createLabel("", 'auto', 'auto', "gp_button")
+        cstr.modifyStyle(self.temp1SetP, {'color': 'aliceblue', 'left': '5%', 'top': '5%'})
+        self.temp1Slider = cstr.SvgSlider(10, -10, 18, 1, 100, 10)
+        self.temp1Slider.onchange.connect(self.on_slider1_changed)
+        self.temp1SetP.append(self.temp1Slider)
+
+        self.temp2 = cstr.RingBuffer(ADC_KEEP_VALS, 0)
+        self.tempGraph.create_graph("Temperature")
+        self.temp2Curr = cstr.createLabel("", 'auto', 'auto', "gp_button")
+        cstr.modifyStyle(self.temp2Curr, {'color': 'bisque', 'left': '10%', 'top': '5%'})
+
+
+        self.tempGraph.populate("", self.temp1.get())
+        self.tempGraph.populate("", self.temp2.get())
+        self.tempGraph.render()
+
+        tempGraphContainer.append([self.tempGraph])
+        centraltContainer.append([self.menuBtn, tempGraphContainer,  self.temp1SetP, self.temp1Curr, self.temp2Curr])
+        self.tempContainer.append([self.homeBtn, centraltContainer, self.connectBtn, self.connectStatus])
 
         # --- --- --- --- --- Security Container --- --- --- --- --- #
         self.secContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
         centralsContainer= cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
 
         centralsContainer.append([self.menuBtn])
-        self.secContainer.append([self.homeBtn, centralmoContainer, self.connectBtn, self.connectStatus])
+        self.secContainer.append([self.homeBtn, centralsContainer, self.connectBtn, self.connectStatus])
 
+        self.measure()
 
         return self.homeContainer
 
@@ -149,7 +178,33 @@ class smARTHome(App):
         self.set_root_widget(self.secContainer)
 
     def on_close(self):
+        self.stop_measure = True
+
+        if self.ser.isConnected():
+            self.ser.disconnect()
+
         super(smARTHome, self).on_close()
+
+    def measure(self):
+        if self.ser.isConnected():
+            #print("measure")
+            temp1, temp2, light, humidity, empty = self.ser.readAdcData()
+            self.temp1.append(temp1)
+            self.temp2.append(temp2)
+            self.temp1Curr.set_text("\tCurrent: " + str(temp1))
+            self.temp2Curr.set_text("\tCurrent: " + str(temp2))
+            self.tempGraph.populate(str(temp1), self.temp1.get())
+            self.tempGraph.populate(str(temp2), self.temp2.get())
+            self.tempGraph.render()
+
+        if not self.stop_measure:
+            Timer(ADC_READ_INTERVAL, self.measure).start()
+
+
+    def on_slider1_changed(self, emitter, value):
+        self.temp1SetP.set_text("Desired: " + str(int(value)))
+
+
 
 # starts the webserver
 if __name__ == "__main__":
