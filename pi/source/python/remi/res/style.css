@@ -290,6 +290,20 @@ button:active{
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .12), 0 2px 0px -1px rgba(0, 0, 0, .2);
 }
 
+
+.gp_label {
+    font-family: 'Palatino';
+    position:relative;
+    background-color: transparent;
+    color: burlywood;
+    text-align: left;
+    font-size: 100%;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    box-shadow: unset;
+}
+
+
 .gp_button {
     font-family: 'Palatino';
     position:relative;
@@ -305,22 +319,22 @@ button:active{
 
 .gp_button:hover {
     background-color: transparent;
-    color: white;
+    color: black;
 }
 
 .gp_button:focus {
     border-radius: 10%;
-    background-color: black;
+    background-color: transparent;
     color: black;
 }
 
 .gp_button:visited {
-    background-color: black;
+    background-color: transparent;
     color: black;
 }
 
 .gp_button:active {
-    background-color: black;
+    background-color: transparent;
     color: black;
 }
 
@@ -341,23 +355,23 @@ button:active{
 .menu_button:hover {
     text-align: center;
     border-radius: 10%;
-    background-color: white;
+    background-color: transparent;
     color: black;
 }
 
 .menu_button:focus {
     border-radius: 50%;
-    background-color: black;
+    background-color: transparent;
     color: black;
 }
 
 .menu_button:visited {
-    background-color: black;
+    background-color: transparent;
     color: black;
 }
 
 .menu_button:active {
-    background-color: black;
+    background-color: transparent;
     color: black;
 }
 
@@ -377,7 +391,7 @@ button:active{
 
 .innermenu_button:hover {
     opacity: 1;
-    background-color: white;
+    background-color: transparent;
 }
 
 .innermenu_button:visited {
@@ -448,7 +462,7 @@ button:active{
     position: relative;
     color: burlywood;
     background-color: transparent;
-    left:25%;
+    left:10%;
 }
 
 .homegif:hover {
@@ -457,13 +471,12 @@ button:active{
 
 .fadein {
    background-color: black;
-   transition: opacity 2s linear;
    opacity: 0.2;
+   transition: opacity 2s linear;
 }
 
 .fadein:hover {
    opacity: 1;
-   background-color: black;
 }
 
 /*

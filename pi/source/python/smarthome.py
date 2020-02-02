@@ -41,29 +41,36 @@ class smARTHome(App):
 
         self.connectBtn = cstr.createButton("Connect", 'auto', 'auto',
                                             "gp_button", self.connectBtn_clicked)
-        cstr.modifyStyle(self.connectBtn, {'top':'20%'})
+        cstr.modifyStyle(self.connectBtn, {'top':'25%'})
         self.connectStatus = cstr.createLabel("", 'auto', 'auto', "gp_button")
-        cstr.modifyStyle(self.connectStatus, {'top':'22%'})
+        cstr.modifyStyle(self.connectStatus, {'top':'28%'})
 
         # --- --- --- --- --- Home Container --- --- --- --- --- #
         self.homeContainer = cstr.createContainer('100%', '100%', "fadein", "vertical")
         centralContainer = cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
         self.menuBtn =cstr.createButton('O', '5%', 'auto', "menu_button", self.menuBtn_clicked)
         self.menuBtnEnb = 1
-        slogan = cstr.createLabel('Looks Like Art\nFeels Like Home\n', '35%', 'auto', "slogan")
-        gifContainer = cstr.createContainer('30%', '100%', "homegif", "vertical")
-        centralContainer.append([self.menuBtn, slogan, gifContainer])
+        self.slogan = cstr.createLabel('Looks Like Art\nFeels Like Home\n', '35%', 'auto', "slogan")
+        gifContainer = cstr.createContainer('40%', '100%', "homegif", "vertical")
+        centralContainer.append([self.menuBtn, self.slogan, gifContainer])
         self.homeContainer.append([self.homeBtn, centralContainer, self.connectBtn, self.connectStatus])
 
-        # --- --- --- --- --- Menu Container --- --- --- --- --- #
+        # --- --- --- --- --- Menu Container Main --- --- --- --- --- #
         self.menuContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
         centralmContainer= cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
-        modesBtn = cstr.createButton("Modes", '100px', '85%', "innermenu_button", self.modesBtn_clicked)
-        ligthsBtn = cstr.createButton("Ligths", '100px', '85%', "innermenu_button", self.lightsBtn_clicked)
-        tempBtn = cstr.createButton("Temperature", '100px', '85%', "innermenu_button", self.tempBtn_clicked)
-        securityBtn = cstr.createButton("Security", '100px', '85%', "innermenu_button", self.securityBtn_clicked)
-        centralmContainer.append([self.menuBtn, modesBtn, ligthsBtn, tempBtn, securityBtn])
+        self.modesBtn = cstr.createButton("Modes", '100px', '85%', "innermenu_button", self.modesBtn_clicked)
+        self.ligthsBtn = cstr.createButton("Ligths", '100px', '85%', "innermenu_button", self.lightsBtn_clicked)
+        self.tempBtn = cstr.createButton("Temperature", '100px', '85%', "innermenu_button", self.tempBtn_clicked)
+        self.securityBtn = cstr.createButton("Security", '100px', '85%', "innermenu_button", self.securityBtn_clicked)
+        centralmContainer.append([self.menuBtn, self.modesBtn, self.ligthsBtn, self.tempBtn, self.securityBtn])
         self.menuContainer.append([self.homeBtn, centralmContainer, self.connectBtn, self.connectStatus])
+
+
+        # --- --- --- --- --- Menu Container Small --- --- --- --- --- #
+        centralmVContainer= cstr.createContainer('50%', '10%', "menu_Container", "horizontal")
+        centralmVContainer.append([self.modesBtn, self.ligthsBtn, self.tempBtn, self.securityBtn])
+        cstr.modifyStyle(centralmVContainer, {'postion': 'relative', 'left': '10%', 'overflow-y': 'hidden',
+                                              'white-space': 'pre-wrap'})
 
         # --- --- --- --- --- Modes Container --- --- --- --- --- #
         self.modesContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
@@ -76,42 +83,47 @@ class smARTHome(App):
         self.lightsContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
         centrallContainer= cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
 
-        centrallContainer.append([self.menuBtn])
-        self.lightsContainer.append([self.homeBtn, centralmoContainer, self.connectBtn, self.connectStatus])
+        self.lightsContainer.append([self.homeBtn, centrallContainer, self.connectBtn, self.connectStatus])
 
         # --- --- --- --- --- Temperature Container --- --- --- --- --- #
         self.tempContainer = cstr.createContainer('100%', '100%', "fadein", "vertical")
-        centraltContainer = cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
+        centraltContainer = cstr.createContainer('90%', '40%', "menu_Container", "horizontal")
 
         tempGraphContainer = cstr.createContainer('50%', '80%', "menu_Container", "horizontal")
-        cstr.modifyStyle(tempGraphContainer, {'top':'0%', 'left': '5%',
+        cstr.modifyStyle(tempGraphContainer, {'top':'0%', 'left': '0%',
                                               'text-align': 'left'})
 
-        self.tempGraph = cstr.PyGal(width="100%", height="100%")
         self.temp1 = cstr.RingBuffer(ADC_KEEP_VALS, 0)
-        self.temp1Curr = cstr.createLabel("", 'auto', 'auto', "gp_button")
-        cstr.modifyStyle(self.temp1Curr, {'color': 'aliceblue', 'left': '5%', 'top': '5%'})
-
-
-        self.temp1SetP = cstr.createLabel("", 'auto', 'auto', "gp_button")
-        cstr.modifyStyle(self.temp1SetP, {'color': 'aliceblue', 'left': '5%', 'top': '5%'})
-        self.temp1Slider = cstr.SvgSlider(10, -10, 18, 1, 100, 10)
+        temp1Container = cstr.createContainer('40%', 'auto', "menu_Container", "vertical")
+        self.temp1Curr = cstr.createLabel("Current: ", 'auto', 'auto', "gp_label")
+        cstr.modifyStyle(self.temp1Curr, {'color': 'aliceblue', 'white-space': 'pre-wrap'})
+        self.temp1SetP = cstr.createLabel("Desired: ", 'auto', 'auto', "gp_label")
+        cstr.modifyStyle(self.temp1SetP, {'color': 'aliceblue', 'white-space': 'pre-wrap'})
+        self.temp1Slider = cstr.SvgSlider(10, 0, 50, 1, 100, 10)
         self.temp1Slider.onchange.connect(self.on_slider1_changed)
-        self.temp1SetP.append(self.temp1Slider)
+        temp1Container.append([self.temp1Slider, self.temp1Curr, self.temp1SetP])
+        cstr.modifyStyle(temp1Container, {'top':'15%', 'left': '2%'})
 
         self.temp2 = cstr.RingBuffer(ADC_KEEP_VALS, 0)
+        temp2Container = cstr.createContainer('40%', 'auto', "menu_Container", "vertical")
+        self.temp2Curr = cstr.createLabel("Current: ", 'auto', 'auto', "gp_label")
+        cstr.modifyStyle(self.temp2Curr, {'color': 'bisque', 'white-space': 'pre-wrap'})
+        self.temp2SetP = cstr.createLabel("Desired: ", 'auto', 'auto', "gp_label")
+        cstr.modifyStyle(self.temp2SetP, {'color': 'aliceblue', 'white-space': 'pre-wrap'})
+        self.temp2Slider = cstr.SvgSlider(10, 0, 50, 1, 100, 10)
+        self.temp2Slider.onchange.connect(self.on_slider2_changed)
+        temp2Container.append([self.temp2Slider, self.temp2Curr, self.temp2SetP])
+        cstr.modifyStyle(temp2Container, {'top':'20%', 'left': '2%'})
+
+        self.tempGraph = cstr.PyGal(width="100%", height="100%")
         self.tempGraph.create_graph("Temperature")
-        self.temp2Curr = cstr.createLabel("", 'auto', 'auto', "gp_button")
-        cstr.modifyStyle(self.temp2Curr, {'color': 'bisque', 'left': '10%', 'top': '5%'})
-
-
         self.tempGraph.populate("", self.temp1.get())
         self.tempGraph.populate("", self.temp2.get())
         self.tempGraph.render()
 
         tempGraphContainer.append([self.tempGraph])
-        centraltContainer.append([self.menuBtn, tempGraphContainer,  self.temp1SetP, self.temp1Curr, self.temp2Curr])
-        self.tempContainer.append([self.homeBtn, centraltContainer, self.connectBtn, self.connectStatus])
+        centraltContainer.append([self.menuBtn, tempGraphContainer, temp1Container, temp2Container])
+        self.tempContainer.append([self.homeBtn, centraltContainer, centralmVContainer, centralmVContainer, self.connectBtn, self.connectStatus])
 
         # --- --- --- --- --- Security Container --- --- --- --- --- #
         self.secContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
@@ -120,7 +132,20 @@ class smARTHome(App):
         centralsContainer.append([self.menuBtn])
         self.secContainer.append([self.homeBtn, centralsContainer, self.connectBtn, self.connectStatus])
 
+        self.groupActive = [self.homeBtn ,self.connectBtn ,
+                            self.connectStatus, self.menuBtn,
+                            self.temp1Curr, self.temp2Curr,
+                            self.temp1SetP, self.temp2SetP,
+                            self.modesBtn, self.ligthsBtn,
+                            self.tempBtn, self.securityBtn,
+                            self.slogan]
+
+        self.groupContainers = [self.homeContainer, self.tempContainer, self.menuContainer]
+
+        cstr.updateColorScheme("color", "black", self.groupActive)
+        cstr.updateColorScheme("background-color", "white", self.groupContainers)
         self.measure()
+
 
         return self.homeContainer
 
@@ -152,6 +177,8 @@ class smARTHome(App):
             if self.ser.connect():
                 if self.ser.isConnected():
                     self.serConnected = True
+                    cstr.updateColorScheme("color", "white", self.groupActive)
+                    cstr.updateColorScheme("background-color", "black", self.groupContainers)
                     self.connectStatus.set_text("Device Authenticated")
                     logger.info("Serial communication established.")
                     self.connectBtn.set_text("Disconnect")
@@ -162,6 +189,8 @@ class smARTHome(App):
             if self.ser.disconnect():
                 self.connectStatus.set_text("")
                 self.serConnected = False
+                cstr.updateColorScheme("color", "black", self.groupActive)
+                cstr.updateColorScheme("background-color", "white", self.groupContainers)
                 self.connectBtn.set_text("Connect")
 
         self.execute_javascript("location.reload(true);")
@@ -193,8 +222,8 @@ class smARTHome(App):
             temp1, temp2, light, humidity, empty = self.ser.readAdcData()
             self.temp1.append(temp1)
             self.temp2.append(temp2)
-            self.temp1Curr.set_text("\tCurrent: " + str(temp1))
-            self.temp2Curr.set_text("\tCurrent: " + str(temp2))
+            self.temp1Curr.set_text("Current: " + str(temp1))
+            self.temp2Curr.set_text("Current: " + str(temp2))
             self.tempGraph.populate(str(temp1), self.temp1.get())
             self.tempGraph.populate(str(temp2), self.temp2.get())
             self.tempGraph.render()
@@ -202,14 +231,15 @@ class smARTHome(App):
         if not self.stop_measure:
             Timer(ADC_READ_INTERVAL, self.measure).start()
 
-
     def on_slider1_changed(self, emitter, value):
         self.temp1SetP.set_text("Desired: " + str(int(value)))
 
+    def on_slider2_changed(self, emitter, value):
+        self.temp2SetP.set_text("Desired: " + str(int(value)))
 
-
-# starts the webserver
 if __name__ == "__main__":
 # starts the webserver
-#    import ssl
-    start(smARTHome, debug=True, address='0.0.0.0', port=8081, start_browser=True, multiple_instance=True, username='Iliya', password='admin')
+    start(smARTHome, debug=True, address='0.0.0.0',
+                     port=8081, start_browser=True,
+                     multiple_instance=True,
+                     username='Iliya', password='admin')

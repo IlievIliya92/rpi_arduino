@@ -136,3 +136,9 @@ class SvgSlider(gui.Svg):
     def get_value(self):
         return self.value
 
+
+def updateColorScheme(tp, color, widgets):
+    for widget in widgets:
+        modifyStyle(widget, {tp : color})
+
+
