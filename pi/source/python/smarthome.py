@@ -10,8 +10,6 @@ from serialcom import SerialCom
 from threading import Timer
 
 from constants import *
-
-#!/usr/bin/python3
 from logger import *
 
 # --- Smart Home app
