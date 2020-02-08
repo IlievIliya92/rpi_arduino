@@ -19,39 +19,7 @@ TEMP_GRAPH_STYLE = Style(colors=('#F0F8FF', '#FFE4C4'),
                          label_font_size = 20)
 
 
-# --- Constructors
-
-def createButton(text, w, h, bclass, callback):
-    btn = gui.Button(text, width=w, height=h)
-    btn.add_class(bclass)
-    btn.onclick.connect(callback)
-
-    return btn
-
-def createLabel(text, w, h, lclass):
-    lbl = gui.Label(text, width=w, height=h)
-    lbl.add_class(lclass)
-
-    return lbl
-
-def createContainer(w, h, cclass, orientation):
-    if orientation == 'vertical':
-        cont = gui.Container(width=w, height=h, layout_orientation=gui.Container.LAYOUT_VERTICAL)
-    elif orientation == 'horizontal':
-        cont = gui.Container(width=w, height=h, layout_orientation=gui.Container.LAYOUT_HORIZONTAL)
-    cont.add_class(cclass)
-
-    return cont
-
-def createMenu(text, w, h, mclass, callback):
-    menu = gui.MenuItem(text, width=w, height=h)
-    menu.add_class(mclass)
-    menu.onclick.connect(callback)
-
-    return menu
-
-def modifyStyle(widget, new_style):
-    widget.style.update(new_style)
+# --- Constructors objects
 
 class RingBuffer:
     def __init__(self, size, initval):
@@ -136,6 +104,54 @@ class SvgSlider(gui.Svg):
     def get_value(self):
         return self.value
 
+
+# --- Constructors
+
+def createButton(text, w, h, bclass, callback):
+    btn = gui.Button(text, width=w, height=h)
+    btn.add_class(bclass)
+    btn.onclick.connect(callback)
+
+    return btn
+
+def createLabel(text, w, h, lclass):
+    lbl = gui.Label(text, width=w, height=h)
+    lbl.add_class(lclass)
+
+    return lbl
+
+def createContainer(w, h, cclass, orientation):
+    if orientation == 'vertical':
+        cont = gui.Container(width=w, height=h, layout_orientation=gui.Container.LAYOUT_VERTICAL)
+    elif orientation == 'horizontal':
+        cont = gui.Container(width=w, height=h, layout_orientation=gui.Container.LAYOUT_HORIZONTAL)
+    cont.add_class(cclass)
+
+    return cont
+
+def createMenu(text, w, h, mclass, callback):
+    menu = gui.MenuItem(text, width=w, height=h)
+    menu.add_class(mclass)
+    menu.onclick.connect(callback)
+
+    return menu
+
+def createSpinBox(minv, maxv, w, h, sclass, callback):
+    spin = gui.SpinBox(0, minv, maxv, width=w, height=h)
+    spin.onchange.do(callback)
+    spin.add_class(sclass)
+
+    return spin
+
+def createDropDown(w, h, items, dclass):
+    dropdown = gui.DropDown.new_from_list(items, width=w, height=h)
+    dropdown.add_class(dclass)
+
+    return dropdown
+
+
+def modifyStyle(widget, new_style):
+    widget.style.update(new_style)
 
 def updateColorScheme(tp, color, widgets):
     for widget in widgets:
