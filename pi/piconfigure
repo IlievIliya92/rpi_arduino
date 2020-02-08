@@ -6,6 +6,7 @@ source ./scripts/pienv
 source ./scripts/piaddtopath
 
 # Create empty file for the logging
+mkdir ./source/python/logs
 touch  ./source/python/logs/smarthome.log
 
 printf "Commands imported:\n\n"
