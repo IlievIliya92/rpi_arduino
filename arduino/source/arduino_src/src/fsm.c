@@ -10,7 +10,6 @@
 #include "freeRTOS/semphr.h"
 #include "freeRTOS/queue.h"
 
-/* serial interface include file. */
 #include "freeRTOS/lib_io/digitalAnalog.h"
 #include "freeRTOS/lib_io/servoPWM.h"
 
@@ -20,10 +19,6 @@
 #include "dio.h"
 #include "generic_cmd_t.h"
 #include "utils/utils.h"
-
-#include "freeRTOS/lib_io/serial.h"
-
-extern xComPortHandle xSerialPort;
 
 /******************************** LOCAL DEFINES *******************************/
 
