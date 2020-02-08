@@ -53,10 +53,11 @@ typedef enum
 typedef enum
 {
     START_ID = 1, // Start                      01
-    PWM_ID,       // session_Id + Payload        02
+    PWM_ID,       // session_Id + Payload       02
     DO_ID,        // session_Id + Payload       03
     ADCC_ID,      // session_Id + Payload       04
     STOP_ID,      // Stop                       05
+    DOD_ID,       // read dios                  06
     COMMANDS
 } command_id_t;
 
@@ -74,6 +75,11 @@ typedef enum dioCh_t {
     DIO4,
     DION
 } dioCh_t;
+
+typedef struct
+{
+    uint8_t  data[DION];
+} xDIOArray, *pDIOArray;
 
 typedef enum dioStates_t {
     OFF = 0,
@@ -96,6 +102,7 @@ typedef enum
     TLR,
     PWM,
     DO,
+    DODAT,
     ADCC,
     INVD,
     END,

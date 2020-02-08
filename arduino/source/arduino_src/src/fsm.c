@@ -1,6 +1,7 @@
 /******************************** INCLUDE FILES *******************************/
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <avr/io.h>
 #include <util/delay_basic.h>
@@ -19,6 +20,10 @@
 #include "dio.h"
 #include "generic_cmd_t.h"
 #include "utils/utils.h"
+
+#include "freeRTOS/lib_io/serial.h"
+
+extern xComPortHandle xSerialPort;
 
 /******************************** LOCAL DEFINES *******************************/
 
@@ -123,7 +128,7 @@ static eSystemState pwm_handler(void *args)
 {
     genericCmdMsg_t *cmdMsg = (genericCmdMsg_t *)args;
 
-    if (cmds[0]->processData(cmdMsg->cmd_sessionId, cmdMsg->cmd_payload) == 0) {
+    if (cmds[C_PWM]->processData(cmdMsg->cmd_sessionId, cmdMsg->cmd_payload) == 0) {
         cmd_sendResponse(PWM, OK, NULL);
     } else {
         cmd_sendResponse(INVD, ERR, NULL);
@@ -135,11 +140,24 @@ static eSystemState pwm_handler(void *args)
 static eSystemState do_handler(void *args)
 {
     genericCmdMsg_t *cmdMsg = (genericCmdMsg_t *)args;
+    uint8_t dioCmdId = atoi((char *)cmdMsg->cmd_id);
 
-    if (cmds[1]->processData(cmdMsg->cmd_sessionId, cmdMsg->cmd_payload) == 0) {
-        cmd_sendResponse(DO, OK, NULL);
-    } else {
-        cmd_sendResponse(INVD, ERR, NULL);
+    if (dioCmdId == DO_ID) {
+        if (cmds[C_DIO]->processData(cmdMsg->cmd_sessionId, cmdMsg->cmd_payload) == 0) {
+            cmd_sendResponse(DO, OK, NULL);
+        } else {
+            cmd_sendResponse(INVD, ERR, NULL);
+        }
+    } else if (dioCmdId == DOD_ID) {
+        xDIOArray dioValues;
+        char values[100];
+
+        cmds[C_DIO]->getData(&dioValues);
+
+        sprintf(values, "{\"dio0\":%d,\"dio1\":%d,\"dio2\":%d,\"dio3\":%d,\"dio4\":%d}",
+                        dioValues.data[DIO0], dioValues.data[DIO1], dioValues.data[DIO2],
+                        dioValues.data[DIO3], dioValues.data[DIO4]);
+        cmd_sendResponse(DODAT, OK, values);
     }
 
     return Do_State;
@@ -150,7 +168,7 @@ static eSystemState adc_handler(void *args)
     xADCArray adcValues;
     char values[100];
 
-    cmds[2]->getData(&adcValues);
+    cmds[C_ADC]->getData(&adcValues);
 
     sprintf(values, "{\"c0\":%d,\"c1\":%d,\"c2\":%d,\"c3\":%d,\"c4\":%d}",
                     adcValues.adc0, adcValues.adc1, adcValues.adc2, adcValues.adc3, adcValues.adc4);
@@ -182,6 +200,7 @@ static eSystemEvent fsm_readEvent(uint8_t *cmd)
         case PWM_ID:
             event = pwm_Event;
             break;
+        case DOD_ID:
         case DO_ID:
             event = do_Event;
             break;
@@ -209,9 +228,9 @@ static void fsm_Init(void)
     ePreviousState = eNextState;
 
     /* Initialize the command handlers */
-    cmds[0] = getPwmCmdHandler();
-    cmds[1] = getDioCmdHandler();
-    cmds[2] = getAdcCmdHandler();
+    cmds[C_PWM] = getPwmCmdHandler();
+    cmds[C_DIO] = getDioCmdHandler();
+    cmds[C_ADC] = getAdcCmdHandler();
 
     for (i = 0; i < COMMAND_HANDLERS; i++)
         cmds[i]->initCmd();

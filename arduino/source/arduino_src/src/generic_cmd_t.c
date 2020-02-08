@@ -25,6 +25,7 @@ static command_resp_t *responses[RESPONSES] = {
     (command_resp_t *)"!T",
     (command_resp_t *)"PWM",
     (command_resp_t *)"DO",
+    (command_resp_t *)"DOD",
     (command_resp_t *)"ADC",
     (command_resp_t *)"INVD",
     (command_resp_t *)"Stp",
@@ -55,6 +56,7 @@ void cmd_sendResponse(response_id_t id, int status, char *value)
                              avrSerialxPrintf(&xSerialPort, "{\"Err\":\"%s\"}\r\n", responses[id]);
             break;
 
+        case DODAT:
         case ADCC:
             (status == OK) ? avrSerialxPrintf(&xSerialPort, "{\"Ok\":\"%s\",\"value\":%s}\r\n", responses[id], value) :
                              avrSerialxPrintf(&xSerialPort, "{\"Err\":\"%s\"}\r\n", responses[id]);

@@ -80,6 +80,12 @@ void dioSetValue(uint16_t state, uint8_t dio)
 }
 
 static
+uint8_t dioGetValue(uint8_t dio)
+{
+    return !!(PINB & (1 << dio));
+}
+
+static
 void dioInit(void)
 {
     /* Set as outputs B0 - B0 */
@@ -98,7 +104,7 @@ int dioProcessData(uint8_t *sesionId, uint8_t *dataStr)
     if (dataStr == NULL || sesionId == NULL)
         return -1;
 
-    dioCh_t dio = (dioCh_t)atoi((char *)sesionId);
+    dioCh_t dio = (dioCh_t)atoi((char *)sesionId) & 0xF;
     dioStates_t state = (dioStates_t)atoi((char *)dataStr);
 
     if (dioIsValidDio(dio) < 0 || dioIsValidState(state) < 0)
@@ -109,11 +115,25 @@ int dioProcessData(uint8_t *sesionId, uint8_t *dataStr)
     return 0;
 }
 
+
+static
+void dioGetData(void *arg)
+{
+    xDIOArray *dioValues = (xDIOArray *)arg;
+
+    int i = 0;
+
+    for (i = 0; i < DION; i++)
+        dioValues->data[i] = dioGetValue(i);
+
+    return;
+}
+
 /***************************** INTERFACE FUNCTIONS ****************************/
 genericCmdHandler_t dio = {
     dioInit,
     dioProcessData,
-    NULL
+    dioGetData
 };
 
 genericCmdHandler_t *getDioCmdHandler(void)

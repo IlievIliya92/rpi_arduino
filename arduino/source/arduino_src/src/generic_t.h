@@ -12,7 +12,12 @@ extern "C" {
 #include "freeRTOS/semphr.h"
 
 /*********************************** DEFINES **********************************/
-#define COMMAND_HANDLERS    3
+typedef enum {
+    C_PWM = 0,
+    C_DIO,
+    C_ADC,
+    COMMAND_HANDLERS
+} cmd_hndlrs_t;
 
 /************************** INTERFACE DATA DEFINITIONS ************************/
 typedef void (*voidVoid_t)(void);

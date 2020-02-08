@@ -21,6 +21,10 @@ dioCmd = {
           'dios': 5
           }
 
+dioGetCmd = {
+            'cmdid': '06',
+          }
+
 adcCmd = {
             'cmdid': '04'
          }
@@ -112,24 +116,34 @@ class TestCmd:
         ret = self.commStart('stop')
         return ret
 
-    def dioTest(self, enb = 0):
+    def dioTest(self, rw, enb = 0):
         ret = self.commStart('start')
 
         print(self.dioTest.__name__)
 
-        if ret:
-            for i in range(dioCmd['dios']):
-                cmd = dioCmd['cmdid'] + "0" + str(i)  + str(enb)
-                time.sleep(1)
-                ret = self.sendCmd(cmd)
+        if rw == 1:
+            if ret:
+                for i in range(dioCmd['dios']):
+                    cmd = dioCmd['cmdid'] + "0" + str(i)  + str(enb)
+                    time.sleep(1)
+                    ret = self.sendCmd(cmd)
+                    if not ret:
+                        print("FAILED!")
+                        self.commStart('stop')
+                        return
+
+            ret = self.commStart('stop')
+            return ret
+        elif rw == 0:
+            if ret:
+                ret = self.sendCmd(dioGetCmd['cmdid'])
                 if not ret:
                     print("FAILED!")
                     self.commStart('stop')
                     return
 
-        ret = self.commStart('stop')
-        return ret
-
+            ret = self.commStart('stop')
+            return ret
 
     def adcTest(self):
         ret = self.commStart('start')
@@ -165,17 +179,28 @@ def main():
     else:
         print("PWM ch1 test failed")
     time.sleep(1)
-
-    if testCmds.dioTest(1):
+    if testCmds.dioTest(1, 1):
         print("DIO on test passed")
     else:
         print("DIO on test failed")
     time.sleep(1)
 
     if testCmds.dioTest(0):
+        print("DIO read test passed")
+    else:
+        print("DIO read test failed")
+    time.sleep(1)
+
+    if testCmds.dioTest(1, 0):
         print("DIO off test passed")
     else:
         print("DIO off test failed")
+    time.sleep(1)
+
+    if testCmds.dioTest(0):
+        print("DIO read test passed")
+    else:
+        print("DIO read test failed")
     time.sleep(1)
 
     if testCmds.adcTest():
@@ -183,7 +208,6 @@ def main():
     else:
         print("Adc test failed")
     time.sleep(1)
-
     testCmds.close()
 
 if __name__ == "__main__":
