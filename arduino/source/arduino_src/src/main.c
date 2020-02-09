@@ -1,7 +1,6 @@
 /******************************** INCLUDE FILES *******************************/
 /* I/O include files */
 #include "freeRTOS/lib_io/serial.h"
-#include "freeRTOS/lib_io/digitalAnalog.h"
 
 #include "fsm.h"
 #include "cmd_get.h"
