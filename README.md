@@ -23,6 +23,21 @@ remi application on a host PC and having the Arduino board connected to it.
 To build and run the Arduino application follow the instructions in the  Readme.md file insed the arduino directory.
 To deploy the remi application follow the guide inside the pi directory.
 
+## Web Interface
+
+Once you have setup the project and the webserver has been started the web interface should
+be accesible from a link like this: [ip_address_of_the_server_running_the_app]:8081
+
+You should be able to see the following main page:
+
+![Boards Setup Dbg](https://github.com/IlievIliya92/rpi_arduino/blob/master/media/disconnected.png)
+
+Click the connect button in the lower left corner.
+If everything is set up properly the status under the connect button should be
+device authenticated.
+
+![Boards Setup Dbg](https://github.com/IlievIliya92/rpi_arduino/blob/master/media/connected.png)
+
 ## Built With
 
 * [Remi](https://github.com/dddomodossola/remi) - Rasbery Pi web server & web interface
