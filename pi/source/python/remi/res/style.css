@@ -319,28 +319,28 @@ button:active{
 
 .gp_button:hover {
     background-color: transparent;
-    color: black;
+    color: dodgerblue;
 }
 
 .gp_button:focus {
     border-radius: 10%;
     background-color: transparent;
-    color: black;
+    color: dodgerblue;
 }
 
 .gp_button:visited {
     background-color: transparent;
-    color: black;
+    color: dodgerblue;
 }
 
 .gp_button:active {
     background-color: transparent;
-    color: black;
+    color: dodgerblue;
 }
 
 .menu_button {
     background-color: transparent;
-    color: burlywood;
+    color: dodgerblue;
     font-size: 100%;
     text-align: center;
     display: inline-block;
@@ -476,7 +476,27 @@ button:active{
 }
 
 .fadein:hover {
-   opacity: 1;
+    opacity: 1;
+    background-attachment: fixed;
+    background-image: url("http://drive.google.com/uc?export=view&id=1fFgXcp6TfR7VolrI-Nej4d82UJRke79a");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; /* Center the image */
+}
+
+.fadeinConnected {
+   background-color: black;
+   opacity: 0.2;
+   transition: opacity 2s linear;
+}
+
+.fadeinConnected:hover {
+    opacity: 1;
+    background-attachment: fixed;
+    background-image: url("http://drive.google.com/uc?export=view&id=1FLAt_5ZGZq5SlpFONQqmjs3lJ47QDJtm");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; /* Center the image */
 }
 
 /*

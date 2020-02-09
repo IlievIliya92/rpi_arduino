@@ -157,4 +157,9 @@ def updateColorScheme(tp, color, widgets):
     for widget in widgets:
         modifyStyle(widget, {tp : color})
 
+def updateBck(bckclass, bckclassNew, containers):
+    for cont in containers:
+        cont.remove_class(bckclass)
 
+    for cont in containers:
+        cont.add_class(bckclassNew)

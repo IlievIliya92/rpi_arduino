@@ -180,7 +180,7 @@ class smARTHome(App):
 
         # --- --- --- --- --- Initialization --- --- --- --- --- #
 
-        cstr.updateColorScheme("color", "black", self.groupActive)
+        cstr.updateColorScheme("color", "#A6775B", self.groupActive)
         cstr.updateColorScheme("background-color", "white", self.groupContainers)
         self.measure()
 
@@ -215,11 +215,14 @@ class smARTHome(App):
             if self.ser.connect():
                 if self.ser.isConnected():
                     self.serConnected = True
-                    cstr.updateColorScheme("color", "white", self.groupActive)
-                    cstr.updateColorScheme("background-color", "black", self.groupContainers)
+                    cstr.updateColorScheme("color", "#A6775B", self.groupActive)
+                    cstr.updateColorScheme("background-color", "white", self.groupContainers)
+                    cstr.updateBck("fadein", "fadeinConnected", self.groupContainers)
                     self.connectStatus.set_text("Device Authenticated")
                     logger.info("Serial communication established.")
                     self.connectBtn.set_text("Disconnect")
+
+
             else:
                 self.serConnected = False
                 self.connectStatus.set_text("Failed to Authenticate the Device")
@@ -227,12 +230,12 @@ class smARTHome(App):
             if self.ser.disconnect():
                 self.connectStatus.set_text("")
                 self.serConnected = False
-                cstr.updateColorScheme("color", "black", self.groupActive)
+                cstr.updateColorScheme("color", "#A6775B", self.groupActive)
                 cstr.updateColorScheme("background-color", "white", self.groupContainers)
+                cstr.updateBck("fadeinConnected", "fadein", self.groupContainers)
                 self.connectBtn.set_text("Connect")
 
         self.execute_javascript("location.reload(true);")
-
 
     def modesBtn_clicked(self, widget):
         self.set_root_widget(self.modesContainer)
