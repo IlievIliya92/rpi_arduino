@@ -18,6 +18,14 @@ TEMP_GRAPH_STYLE = Style(colors=('#F0F8FF', '#FFE4C4'),
                          font_family='Palatino',
                          label_font_size = 20)
 
+LIGHT_GRAPH_STYLE = Style(colors=('#F0F8FF', '#F0F8FF'),
+                         background = 'transparent',
+                         plot_background = 'transparent',
+                         legend_font_size = 20,
+                         transition = '250ms ease-in',
+                         foreground ='white',
+                         font_family='Palatino',
+                         label_font_size = 20)
 
 # --- Constructors objects
 
@@ -40,8 +48,8 @@ class PyGal(gui.Svg):
         self.remove_child("line")
         self.add_child("line", self.data)
 
-    def create_graph(self, title):
-        self.graph  = pygal.Line(style=TEMP_GRAPH_STYLE, show_legend=False)
+    def create_graph(self, title, gstyle):
+        self.graph  = pygal.Line(style=gstyle, show_legend=False)
         self.graph.title = title
 
     def populate(self, label, content):

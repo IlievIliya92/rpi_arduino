@@ -5,6 +5,7 @@ import os
 import time
 import constructors as cstr
 
+from constructors import TEMP_GRAPH_STYLE, LIGHT_GRAPH_STYLE
 from remi import start, App
 from serialcom import SerialCom
 from threading import Timer
@@ -106,7 +107,7 @@ class smARTHome(App):
         cstr.modifyStyle(light1Container, {'top':'15%', 'left': '2%'})
 
         self.lightGraph = cstr.PyGal(width="100%", height="100%")
-        self.lightGraph.create_graph("Light")
+        self.lightGraph.create_graph("Light", LIGHT_GRAPH_STYLE)
         self.lightGraph.populate("", self.light1.get())
         self.lightGraph.render()
 
@@ -146,7 +147,7 @@ class smARTHome(App):
         cstr.modifyStyle(temp2Container, {'top':'20%', 'left': '2%'})
 
         self.tempGraph = cstr.PyGal(width="100%", height="100%")
-        self.tempGraph.create_graph("Temperature")
+        self.tempGraph.create_graph("Temperature", TEMP_GRAPH_STYLE)
         self.tempGraph.populate("", self.temp1.get())
         self.tempGraph.populate("", self.temp2.get())
         self.tempGraph.render()
@@ -260,14 +261,27 @@ class smARTHome(App):
     def measure(self):
         if self.ser.isConnected():
             #print("measure")
-            temp1, temp2, light, humidity, empty = self.ser.readAdcData()
+            temp1, temp2, light1, humidity, empty = self.ser.readAdcData()
+
+            temp1 = (temp1/1024.0)*5000;
+            temp1 =  round(temp1/10, 2)
+
+            temp2 = (temp2/1024.0)*5000;
+            temp2 =  round(temp2/10, 2)
+
             self.temp1.append(temp1)
             self.temp2.append(temp2)
+            self.light1.append(light1)
+
             self.temp1Curr.set_text("Current: " + str(temp1))
             self.temp2Curr.set_text("Current: " + str(temp2))
+            self.light1Curr.set_text("Current: " + str(light1))
             self.tempGraph.populate(str(temp1), self.temp1.get())
             self.tempGraph.populate(str(temp2), self.temp2.get())
             self.tempGraph.render()
+            self.lightGraph.populate(str(light1), self.light1.get())
+            self.lightGraph.render()
+
 
         if not self.stop_measure:
             Timer(ADC_READ_INTERVAL, self.measure).start()
