@@ -347,6 +347,7 @@ button:active{
     position:relative;
     top: 40%;
     left: 2%;
+    text-decoration: none;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     box-shadow: unset;
@@ -354,6 +355,7 @@ button:active{
 
 .menu_button:hover {
     text-align: center;
+    text-decoration: line-through;
     border-radius: 10%;
     background-color: transparent;
     color: black;
@@ -376,7 +378,7 @@ button:active{
 }
 
 .innermenu_button {
-    background-color: transparent;
+    background-color: darkgrey;
     color: burlywood;
     font-size: 100%;
     left: 5%;
@@ -391,7 +393,7 @@ button:active{
 
 .innermenu_button:hover {
     opacity: 1;
-    background-color: transparent;
+    background-color: white;
 }
 
 .innermenu_button:visited {
@@ -444,15 +446,18 @@ button:active{
 
 .menu_Container {
     position: relative;
+    background-color: transparent;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     top: 20%;
     left: 2%;
-    background-color: transparent;
+    transition: opacity 2s linear;
+    opacity: 0.8;
     color: burlywood;
 }
 
 .menu_Container:hover {
+    opacity: 1;
     background-color: transparent;
 }
 

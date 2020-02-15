@@ -300,7 +300,7 @@ class smARTHome(App):
 
 if __name__ == "__main__":
 # starts the webserver
-    start(smARTHome, debug=True, address='0.0.0.0',
-                     port=8081, start_browser=True,
-                     multiple_instance=True,
+    start(smARTHome, debug=False, address='0.0.0.0',
+                     port=8081, start_browser=False,
+                     multiple_instance=False,
                      username='Iliya', password='admin')
