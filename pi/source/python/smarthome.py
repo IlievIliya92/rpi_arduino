@@ -7,9 +7,12 @@ import constructors as cstr
 
 from constructors import TEMP_GRAPH_STYLE, LIGHT_GRAPH_STYLE
 from remi import start, App
+from modes import modesContol
 from serialcom import SerialCom
 from threading import Timer
 
+
+from utils import *
 from constants import *
 from logger import *
 
@@ -20,11 +23,15 @@ class smARTHome(App):
         super(smARTHome, self).__init__(*args, static_file_path={'resources':res_path})
 
     def idle(self):
+        if self.ser.isConnected():
+            self.modes.manageLights(self.light1.getLast(), self.ser)
+
         pass
 
     def main(self):
         # --- --- --- --- State  --- --- --- --- --- #
         self.ser = SerialCom(ARD_DEVICE_ID)
+        self.modes = modesContol()
         self.serConnected = False
         self.stop_measure = False
 
@@ -76,7 +83,8 @@ class smARTHome(App):
         centralmoContainer= cstr.createContainer('90%', '40%', "menu_Container", "horizontal")
 
         centralmoContainer.append([self.menuBtn])
-        self.modesContainer.append([self.homeBtn, centralmoContainer, centralmVContainer, self.connectBtn, self.connectStatus])
+        self.modesContainer.append([self.homeBtn, centralmoContainer, centralmVContainer,
+                                    self.connectBtn, self.connectStatus])
 
         # --- --- --- --- --- Lights Container --- --- --- --- --- #
         self.lightsContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
@@ -114,7 +122,8 @@ class smARTHome(App):
         lightGraphContainer.append([self.lightGraph])
         centrallContainer.append([self.menuBtn, lightGraphContainer, light1Container])
 
-        self.lightsContainer.append([self.homeBtn, centrallContainer, centralmVContainer, self.connectBtn, self.connectStatus])
+        self.lightsContainer.append([self.homeBtn, centrallContainer, centralmVContainer,
+                                     self.connectBtn, self.connectStatus])
 
         # --- --- --- --- --- Temperature Container --- --- --- --- --- #
         self.tempContainer = cstr.createContainer('100%', '100%', "fadein", "vertical")
@@ -154,14 +163,16 @@ class smARTHome(App):
 
         tempGraphContainer.append([self.tempGraph])
         centraltContainer.append([self.menuBtn, tempGraphContainer, temp1Container, temp2Container])
-        self.tempContainer.append([self.homeBtn, centraltContainer, centralmVContainer, self.connectBtn, self.connectStatus])
+        self.tempContainer.append([self.homeBtn, centraltContainer, centralmVContainer,
+                                   self.connectBtn, self.connectStatus])
 
         # --- --- --- --- --- Security Container --- --- --- --- --- #
         self.secContainer =cstr.createContainer('100%', '100%', "fadein", "vertical")
         centralsContainer= cstr.createContainer('90%', '40%', "menu_Container", "horizontal")
 
         centralsContainer.append([self.menuBtn])
-        self.secContainer.append([self.homeBtn, centralsContainer, centralmVContainer, self.connectBtn, self.connectStatus])
+        self.secContainer.append([self.homeBtn, centralsContainer, centralmVContainer,
+                                 self.connectBtn, self.connectStatus])
 
 
         # --- --- --- --- --- Groups --- --- --- --- --- #
@@ -180,6 +191,9 @@ class smARTHome(App):
                                 self.modesContainer, self.secContainer]
 
         # --- --- --- --- --- Initialization --- --- --- --- --- #
+
+        # -- Enable auto lights mode for light 1
+        self.modes.modesEnableLights(0, False)
 
         cstr.updateColorScheme("color", "#A6775B", self.groupActive)
         cstr.updateColorScheme("background-color", "white", self.groupContainers)
@@ -223,7 +237,6 @@ class smARTHome(App):
                     logger.info("Serial communication established.")
                     self.connectBtn.set_text("Disconnect")
 
-
             else:
                 self.serConnected = False
                 self.connectStatus.set_text("Failed to Authenticate the Device")
@@ -260,14 +273,10 @@ class smARTHome(App):
 
     def measure(self):
         if self.ser.isConnected():
-            #print("measure")
             temp1, temp2, light1, humidity, empty = self.ser.readAdcData()
 
-            temp1 = (temp1/1024.0)*5000;
-            temp1 =  round(temp1/10, 2)
-
-            temp2 = (temp2/1024.0)*5000;
-            temp2 =  round(temp2/10, 2)
+            temp1 = utilsTempConverter(temp1)
+            temp2 = utilsTempConverter(temp2)
 
             self.temp1.append(temp1)
             self.temp2.append(temp2)
@@ -281,7 +290,6 @@ class smARTHome(App):
             self.tempGraph.render()
             self.lightGraph.populate(str(light1), self.light1.get())
             self.lightGraph.render()
-
 
         if not self.stop_measure:
             Timer(ADC_READ_INTERVAL, self.measure).start()
@@ -300,7 +308,7 @@ class smARTHome(App):
 
 if __name__ == "__main__":
 # starts the webserver
-    start(smARTHome, debug=False, address='0.0.0.0',
-                     port=8081, start_browser=False,
+    start(smARTHome, debug=True, address='0.0.0.0',
+                     port=8081, start_browser=True,
                      multiple_instance=False,
                      username='Iliya', password='admin')

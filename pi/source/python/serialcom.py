@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import json
 import time
 import glob
@@ -5,6 +7,30 @@ import glob
 from serial import *
 from constants import *
 from logger import *
+
+
+# --- Constants --- #
+# --- Arduino Serial Commands --- #
+cmds = {
+        'h': 'S>',
+        'start': '01',
+        'pwm': '02',
+        'dio': '03',
+        'adc': '04',
+        'stop': '05',
+        'trl':  '<E*'
+        }
+
+
+START_CMD = cmds['h'] + cmds['start'] + cmds['trl']
+STOP_CMD = cmds['h'] + cmds['stop'] + cmds['trl']
+ADC_CMD = cmds['h'] + cmds['adc'] + cmds['trl']
+DIO_CMD = cmds['h'] + cmds['dio']
+
+POSITIVE_RESPONSE = "Ok"
+
+
+# --- Local helper functions --- #
 
 def _findPorts():
     ports = glob.glob('/dev/ttyACM[0-9]*')
@@ -19,6 +45,7 @@ def _findPorts():
 
     return res
 
+# --- Interface class --- #
 
 class SerialCom:
     def __init__(self, dev_id):
@@ -88,6 +115,7 @@ class SerialCom:
 
     def sendCmd(self, cmd):
             try:
+                logger.debug(cmd)
                 self.ser.write(cmd.encode('utf-8'))
             except Exception as e:
                 logger.error("Failed to send command! " + str(e))
@@ -95,6 +123,7 @@ class SerialCom:
             else:
                 time.sleep(self.send_delay)
                 response = self.ser.readline().decode()
+                logger.debug(response)
                 return response
 
     def readAdcData(self):
@@ -112,7 +141,7 @@ class SerialCom:
             return None, None, None, None, None
 
     def lightEnable(self, light, enb):
-        lightCmd = DIO_CMD + "0" + str(light)  + str(enb) + CMD_TRAILER
+        lightCmd = DIO_CMD + "0" + str(light)  + str(enb) + cmds['trl']
         ret = self.sendCmd(lightCmd)
         if not self.verifyResponse(ret):
             logger.info("Setting up light "  + str(light) + " failed.")
@@ -120,3 +149,7 @@ class SerialCom:
 
         logger.info("Light "  + str(light) + " status " + str(enb) + " updated.")
         return True
+
+
+
+

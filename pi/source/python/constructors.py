@@ -9,6 +9,7 @@ import time
 import pygal
 from pygal.style import Style
 
+# --- Styles ---#
 TEMP_GRAPH_STYLE = Style(colors=('#F0F8FF', '#FFE4C4'),
                          background = 'transparent',
                          plot_background = 'transparent',
@@ -41,6 +42,10 @@ class RingBuffer:
 
     def get(self):
         return self.data
+
+    def getLast(self):
+        return self.data[-1]
+
 
 class PyGal(gui.Svg):
     def render(self):

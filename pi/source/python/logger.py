@@ -7,7 +7,7 @@ from constants import *
 
 # Deafults
 LOG_FILENAME = LOGFILE
-LOG_LEVEL = logging.INFO
+LOG_LEVEL = logging.DEBUG
 
 # Define and parse command line arguments
 parser = argparse.ArgumentParser(description="Smart Home logging service")
