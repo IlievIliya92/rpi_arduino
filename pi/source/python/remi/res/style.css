@@ -303,6 +303,24 @@ button:active{
     box-shadow: unset;
 }
 
+.outliner {
+    font-family: 'Palatino';
+    position:relative;
+    border: 1px solid #F5F5F5;
+    left: 0%;
+    top: 10%;
+    background-color: black;
+    font-size: 100%;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    box-shadow: unset;
+    min-height: 20px;
+}
+
+.outliner:hover {
+    background-color: lightgrey;
+}
+
 
 .gp_button {
     font-family: 'Palatino';
@@ -393,7 +411,7 @@ button:active{
 
 .innermenu_button:hover {
     opacity: 1;
-    background-color: white;
+    background-color: black;
 }
 
 .innermenu_button:visited {
@@ -425,10 +443,13 @@ button:active{
     position:relative;
     white-space: pre-wrap;
     display: block;
+    text-shadow: -1px 0 darkgrey, 0 1px darkgrey, 1px 0 darkgrey, 0 -1px darkgrey;
     letter-spacing: 3px;
     top: 30%;
     left: 5%;
-    font-size: 220%;
+    font-size: 300%;
+    letter-spacing: 5px;
+    line-height: 45px;
     background-color: transparent;
     color: white;
 }

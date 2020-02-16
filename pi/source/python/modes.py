@@ -2,7 +2,6 @@
 from logger import *
 
 # --- Constants
-LIGHT_TRESHOLD = 70
 
 # --- lights class
 
@@ -13,8 +12,7 @@ class modesLights:
 
     light2Enable = False
     light2State = 0
-
-    lightsThreshold = LIGHT_TRESHOLD
+    light2StatePrev = 0
 
 # --- Modes control
 
@@ -22,10 +20,10 @@ class modesContol:
     def __init__(self):
         self.lights = modesLights()
 
-    def _evaluateLights(self, value):
-        if value < self.lights.lightsThreshold:
+    def _evaluateLights(self, value, setpoint):
+        if value < setpoint:
             return 1
-        elif value >= self.lights.lightsThreshold:
+        elif value >= setpoint:
             return 0
 
     def modesEnableLights(self, light, state):
@@ -34,9 +32,9 @@ class modesContol:
         elif light == 1:
             self.lights.light2Enable = state
 
-    def manageLights(self, valuel1, ser):
+    def manageLights(self, valuel1, setpoint, ser):
         if self.lights.light1Enable:
-            self.lights.light1State = self._evaluateLights(valuel1)
+            self.lights.light1State = self._evaluateLights(valuel1, setpoint)
             if self.lights.light1State != self.lights.light1StatePrev:
                 self.lights.light1StatePrev = self.lights.light1State
                 ser.lightEnable(0, self.lights.light1State)
