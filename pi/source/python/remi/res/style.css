@@ -322,6 +322,25 @@ button:active{
 }
 
 
+.home_page_text {
+    font-family: 'Palatino';
+    position:relative;
+    font-weight: bold;
+    left: 4%;
+    top: 10%;
+    background-color: transparent;
+    color: burlywood;
+    font-size: 160%;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    box-shadow: unset;
+}
+
+.home_page_text:hover {
+    background-color: transparent;
+    color: dodgerblue;
+}
+
 .gp_button {
     font-family: 'Palatino';
     position:relative;
@@ -359,7 +378,7 @@ button:active{
 .menu_button {
     background-color: transparent;
     color: dodgerblue;
-    font-size: 100%;
+    font-size: 200%;
     text-align: center;
     display: inline-block;
     position:relative;

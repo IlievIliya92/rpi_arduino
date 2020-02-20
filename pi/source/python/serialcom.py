@@ -7,7 +7,7 @@ import glob
 from serial import *
 from constants import *
 from logger import *
-
+from threading import Lock
 
 # --- Constants --- #
 # --- Arduino Serial Commands --- #
@@ -53,6 +53,9 @@ class SerialCom:
         self.send_delay = 0.001
         self.connected = False
         self.dev_id = dev_id
+        self.busy = False
+        self.mutex = Lock()
+
         try:
             self.ports = _findPorts()
         except Exception as e:
@@ -115,16 +118,25 @@ class SerialCom:
 
     def sendCmd(self, cmd):
             try:
+                self.mutex.acquire()
+                self.busy = True
                 logger.debug(cmd)
                 self.ser.write(cmd.encode('utf-8'))
             except Exception as e:
                 logger.error("Failed to send command! " + str(e))
-                return ''
+                response = ''
             else:
                 time.sleep(self.send_delay)
                 response = self.ser.readline().decode()
                 logger.debug(response)
+            finally:
+                self.busy = False
+                self.mutex.release()
                 return response
+
+
+    def isBusy(self):
+        return self.busy
 
     def readAdcData(self):
         ret = self.sendCmd(ADC_CMD)
