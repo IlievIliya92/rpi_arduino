@@ -80,7 +80,7 @@ class smARTHome(App):
 
 
         # --- --- --- --- --- Menu Container Small --- --- --- --- --- #
-        centralmVContainer= cstr.createContainer('50%', '10%', "menu_Container", "horizontal")
+        centralmVContainer= cstr.createContainer('80%', '10%', "menu_Container", "horizontal")
         centralmVContainer.append([self.modesBtn, self.ligthsBtn, self.tempBtn, self.securityBtn])
         cstr.modifyStyle(centralmVContainer, {'postion': 'relative', 'left': '10%', 'overflow': 'hidden',
                                               'white-space': 'pre-wrap'})

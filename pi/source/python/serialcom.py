@@ -50,7 +50,7 @@ def _findPorts():
 class SerialCom:
     def __init__(self, dev_id):
         self.ser = None
-        self.send_delay = 0.08
+        self.send_delay = 0.001
         self.connected = False
         self.dev_id = dev_id
         try:
