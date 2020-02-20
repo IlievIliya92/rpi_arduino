@@ -118,7 +118,7 @@ class WebSocketsHandler(socketserver.StreamRequestHandler):
     def __init__(self, headers, *args, **kwargs):
         self.headers = headers
         self.handshake_done = False
-        self._log = logging.getLogger('remi.server.ws')
+        self._log = logging.getLogger('smarthome.server.ws')
         socketserver.StreamRequestHandler.__init__(self, *args, **kwargs)
 
     def setup(self):
@@ -215,8 +215,8 @@ class WebSocketsHandler(socketserver.StreamRequestHandler):
         self.request.sendall(response.encode("utf-8"))
         self.handshake_done = True
 
-        #if an update happens since the websocket connection to its handshake, 
-        # it gets not displayed. it is required to inform App about handshake done, 
+        #if an update happens since the websocket connection to its handshake,
+        # it gets not displayed. it is required to inform App about handshake done,
         # to get a full refresh
         clients[self.session].websocket_handshake_done(self)
 
@@ -302,7 +302,7 @@ class App(BaseHTTPRequestHandler, object):
     def __init__(self, request, client_address, server, **app_args):
         self._app_args = app_args
         self.root = None
-        self._log = logging.getLogger('remi.request')
+        self._log = logging.getLogger('smarthome.request  ')
         super(App, self).__init__(request, client_address, server)
 
     def _get_list_from_app_args(self, name):
@@ -347,11 +347,11 @@ class App(BaseHTTPRequestHandler, object):
             self.update_interval = self.server.update_interval
 
             from remi import gui
-            
+
             head = gui.HEAD(self.server.title)
             # use the default css, but append a version based on its hash, to stop browser caching
             head.add_child('internal_css', "<link href='/res:style.css' rel='stylesheet' />\n")
-            
+
             body = gui.BODY()
             body.onload.connect(self.onload)
             body.onerror.connect(self.onerror)
@@ -391,7 +391,7 @@ class App(BaseHTTPRequestHandler, object):
             self._need_update_flag = client._need_update_flag
             if hasattr(client, '_update_thread'):
                 self._update_thread = client._update_thread
-                
+
         net_interface_ip = self.headers.get('Host', "%s:%s"%(self.connection.getsockname()[0],self.server.server_address[1]))
         websocket_timeout_timer_ms = str(self.server.websocket_timeout_timer_ms)
         pending_messages_queue_length = str(self.server.pending_messages_queue_length)
@@ -418,7 +418,7 @@ class App(BaseHTTPRequestHandler, object):
                     try:
                         self.do_gui_update()
                     except:
-                        self._log.error('''exception during gui update. It is advisable to 
+                        self._log.error('''exception during gui update. It is advisable to
                             use App.update_lock using external threads.''', exc_info=True)
 
     def idle(self):
@@ -433,7 +433,7 @@ class App(BaseHTTPRequestHandler, object):
         else:
             #will be updated after idle loop
             self._need_update_flag = True
-                
+
     def do_gui_update(self):
         """ This method gets called also by Timer, a new thread, and so needs to lock the update
         """
@@ -461,7 +461,7 @@ class App(BaseHTTPRequestHandler, object):
 
         msg = "0" + self.root.identifier + ',' + to_websocket(self.page.children['body'].innerHTML({}))
         self._send_spontaneous_websocket_message(msg)
-        
+
     def _send_spontaneous_websocket_message(self, message):
         for ws in self.websockets[:]:
             # noinspection PyBroadException
@@ -554,7 +554,7 @@ class App(BaseHTTPRequestHandler, object):
         # if this is a ws req, instance a ws handler, add it to App's ws list, return
         if "Upgrade" in self.headers:
             if self.headers['Upgrade'] == 'websocket':
-                #passing arguments to websocket handler, otherwise it will lost the last message, 
+                #passing arguments to websocket handler, otherwise it will lost the last message,
                 # and will be unable to handshake
                 ws = WebSocketsHandler(self.headers, self.request, self.client_address, self.server)
                 return
@@ -619,14 +619,14 @@ class App(BaseHTTPRequestHandler, object):
             self.send_header("Set-Cookie", "remi_session=%s"%(self.session))
             self.send_header('Content-type', 'text/html')
             self.end_headers()
-            
+
             with self.update_lock:
                 # render the HTML
                 page_content = self.page.repr()
 
             self.wfile.write(encode_text("<!DOCTYPE html>\n"))
             self.wfile.write(encode_text(page_content))
-            
+
         elif static_file:
             filename = self._get_static_file(static_file.groups()[0])
             if not filename:
@@ -693,7 +693,7 @@ class App(BaseHTTPRequestHandler, object):
     def onerror(self, emitter, message, source, lineno, colno):
         """ WebPage Event that occurs on webpage errors
         """
-        self._log.debug("""App.onerror event occurred in webpage: 
+        self._log.debug("""App.onerror event occurred in webpage:
             \nMESSAGE:%s\nSOURCE:%s\nLINENO:%s\nCOLNO:%s\n"""%(message, source, lineno, colno))
 
     def ononline(self, emitter):
@@ -748,7 +748,7 @@ class Server(object):
     # noinspection PyShadowingNames
     def __init__(self, gui_class, title='', start=True, address='127.0.0.1', port=0, username=None, password=None,
                  multiple_instance=False, enable_file_cache=True, update_interval=0.1, start_browser=True,
-                 websocket_timeout_timer_ms=1000, pending_messages_queue_length=1000, 
+                 websocket_timeout_timer_ms=1000, pending_messages_queue_length=1000,
                  certfile=None, keyfile=None, ssl_version=None,  userdata=()):
 
         self._gui = gui_class
@@ -776,7 +776,7 @@ class Server(object):
         if not isinstance(userdata, tuple):
             raise ValueError('userdata must be a tuple')
 
-        self._log = logging.getLogger('remi.server')
+        self._log = logging.getLogger('smarthome.server   ')
         self._alive = True
         if start:
             self._myid = threading.Thread.ident
@@ -797,7 +797,7 @@ class Server(object):
         self._sserver = ThreadedHTTPServer((self._address, self._sport), self._gui, self._auth,
                                            self._multiple_instance, self._enable_file_cache,
                                            self._update_interval, self._websocket_timeout_timer_ms,
-                                           self._pending_messages_queue_length, self._title, 
+                                           self._pending_messages_queue_length, self._title,
                                            self, self._certfile, self._keyfile, self._ssl_version, *self._userdata)
         shost, sport = self._sserver.socket.getsockname()[:2]
         self._log.info('Started httpserver http://%s:%s/'%(shost,sport))

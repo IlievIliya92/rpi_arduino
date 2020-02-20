@@ -20,7 +20,7 @@ if args.log:
 
 # Configure logging to log to a file, making a new file at midnight and keeping the last 3 day's data
 # Give the logger a unique name (good practice)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("smarthome.gui      ")
 
 # Set the log level to LOG_LEVEL
 logger.setLevel(LOG_LEVEL)

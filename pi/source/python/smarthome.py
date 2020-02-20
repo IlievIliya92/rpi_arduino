@@ -278,7 +278,7 @@ class smARTHome(App):
         if self.ser.isConnected():
             while(self.ser.isBusy()):
                 logger.debug("Waiting to finish transaction.")
-                time.sleep(0.001)
+                time.sleep(0.0001)
 
             self.ser.disconnect()
 

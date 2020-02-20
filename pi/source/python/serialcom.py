@@ -89,7 +89,8 @@ class SerialCom:
 
                     device_ID = json.loads(ret)['ID']
                     if device_ID == self.dev_id:
-                        logger.info("Serial port opened & start confirmed.")
+                        logger.info("Arduino device with ID: %s found on port: %s." % (self.dev_id, port))
+                        logger.info("Serial port opened & started confirmed.")
                         self.connected = True
                         return True
                     else:
@@ -119,7 +120,6 @@ class SerialCom:
     def sendCmd(self, cmd):
             try:
                 self.mutex.acquire()
-                self.busy = True
                 logger.debug(cmd)
                 self.ser.write(cmd.encode('utf-8'))
             except Exception as e:
@@ -130,13 +130,12 @@ class SerialCom:
                 response = self.ser.readline().decode()
                 logger.debug(response)
             finally:
-                self.busy = False
                 self.mutex.release()
                 return response
 
 
     def isBusy(self):
-        return self.busy
+        return self.mutex.locked()
 
     def readAdcData(self):
         ret = self.sendCmd(ADC_CMD)
