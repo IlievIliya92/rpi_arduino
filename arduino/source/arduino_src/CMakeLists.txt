@@ -26,6 +26,7 @@ set(DEVICE_ID 1U)
 add_definitions(
     -DF_CPU=${F_CPU}
     -DBAUD=${BAUD}
+#   -DDEBUG
     -D${MCUFOS}
     -DDEVICE_ID=${DEVICE_ID}
 )

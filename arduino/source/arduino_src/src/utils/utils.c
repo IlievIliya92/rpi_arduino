@@ -5,7 +5,6 @@
 #include "../freeRTOS/lib_io/serial.h"
 
 /******************************** LOCAL DEFINES *******************************/
-//#define DEBUG
 
 /******************************** GLOBALDATA *******************************/
 extern xComPortHandle xSerialPort;
