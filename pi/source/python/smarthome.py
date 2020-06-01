@@ -44,14 +44,14 @@ class smARTHome(App):
         # --- --- --- --- --- --- --- --- --- --- --- #
 
         self.homeBtn = cstr.createButton("smART\nHOME", 'auto', 'auto',
-                                         "gp_button", self.homeBtn_clicked)
-        self.homeBtnCOnt = cstr.createContainer('100%', '4%', "outliner", "horizontal")
+                                         "home_page_text", self.homeBtn_clicked)
+        self.homeBtnCOnt = cstr.createContainer('100%', 'auto', "outliner", "vertical")
         self.homeBtnCOnt.append(self.homeBtn)
 
 
         self.connectBtn = cstr.createButton("Connect", 'auto', 'auto',
-                                            "gp_button", self.connectBtn_clicked)
-        self.connectStatus = cstr.createLabel("", 'auto', '40%', "gp_button")
+                                            "home_page_text", self.connectBtn_clicked)
+        self.connectStatus = cstr.createLabel("", 'auto', '40%', "home_page_text")
 
         self.connectBtnCOnt = cstr.createContainer('100%', 'auto', "outliner", "vertical")
         self.connectBtnCOnt.append([self.connectBtn, self.connectStatus])
@@ -61,7 +61,7 @@ class smARTHome(App):
         # --- --- --- --- --- Home Container --- --- --- --- --- #
         self.homeContainer = cstr.createContainer('100%', '100%', "fadein", "vertical")
         centralContainer = cstr.createContainer('90%', '50%', "menu_Container", "horizontal")
-        self.menuBtn =cstr.createButton('O', '5%', 'auto', "menu_button", self.menuBtn_clicked)
+        self.menuBtn =cstr.createButton(HOMEON, '5%', 'auto', "menu_button", self.menuBtn_clicked)
         self.menuBtnEnb = 1
         self.slogan = cstr.createLabel('Looks Like Art\nFeels Like Home\n', '35%', 'auto', "slogan")
         gifContainer = cstr.createContainer('40%', '100%', "homegif", "vertical")
@@ -80,7 +80,7 @@ class smARTHome(App):
 
 
         # --- --- --- --- --- Menu Container Small --- --- --- --- --- #
-        centralmVContainer= cstr.createContainer('50%', '10%', "menu_Container", "horizontal")
+        centralmVContainer= cstr.createContainer('80%', '10%', "menu_Container", "horizontal")
         centralmVContainer.append([self.modesBtn, self.ligthsBtn, self.tempBtn, self.securityBtn])
         cstr.modifyStyle(centralmVContainer, {'postion': 'relative', 'left': '10%', 'overflow': 'hidden',
                                               'white-space': 'pre-wrap'})
@@ -209,7 +209,6 @@ class smARTHome(App):
         cstr.updateColorScheme("background-color", "white", self.groupContainers)
         self.measure()
 
-
         return self.homeContainer
 
     # listener functions
@@ -222,16 +221,16 @@ class smARTHome(App):
 
     def menuBtn_clicked(self, widget):
         if self.menuBtnEnb == 1:
-            self.menuBtn.set_text("X")
+            self.menuBtn.set_text(HOME)
             self.set_root_widget(self.menuContainer)
             self.menuBtnEnb = 0
         elif self.menuBtnEnb == 0:
-            self.menuBtn.set_text("O")
+            self.menuBtn.set_text(HOMEON)
             self.set_root_widget(self.homeContainer)
             self.menuBtnEnb = 1
 
     def homeBtn_clicked(self, widget):
-        self.menuBtn.set_text("O")
+        self.menuBtn.set_text(HOME)
         self.set_root_widget(self.homeContainer)
         self.menuBtnEnb = 1
 
@@ -277,6 +276,10 @@ class smARTHome(App):
         self.stop_measure = True
 
         if self.ser.isConnected():
+            while(self.ser.isBusy()):
+                logger.debug("Waiting to finish transaction.")
+                time.sleep(0.0001)
+
             self.ser.disconnect()
 
         super(smARTHome, self).on_close()

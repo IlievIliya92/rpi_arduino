@@ -39,5 +39,5 @@ if [ -z "$1" ]
 fi
 
 cd ${ARDUINO_PROJECT_ROOT}/arduino_src/Debug
-avrdude -patmega328p -carduino -P$1 -D -Uflash:w:server.hex:i
+avrdude -patmega328p -carduino -P$1 -D -Uflash:w:smarthome.hex:i
 #minicom -D $1

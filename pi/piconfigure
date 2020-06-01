@@ -6,8 +6,12 @@ source ./scripts/pienv
 source ./scripts/piaddtopath
 
 # Create empty file for the logging
-mkdir ./source/python/logs
-touch  ./source/python/logs/smarthome.log
+if [ ! -d "./python/logs" ]
+then
+    mkdir ./python/logs
+fi
+
+touch  ./python/logs/smarthome.log
 
 printf "Commands imported:\n\n"
 printf "picheck_requirements - check project requirements\n"

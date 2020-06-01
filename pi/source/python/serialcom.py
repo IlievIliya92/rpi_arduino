@@ -7,7 +7,7 @@ import glob
 from serial import *
 from constants import *
 from logger import *
-
+from threading import Lock
 
 # --- Constants --- #
 # --- Arduino Serial Commands --- #
@@ -50,9 +50,12 @@ def _findPorts():
 class SerialCom:
     def __init__(self, dev_id):
         self.ser = None
-        self.send_delay = 0.08
+        self.send_delay = 0.001
         self.connected = False
         self.dev_id = dev_id
+        self.busy = False
+        self.mutex = Lock()
+
         try:
             self.ports = _findPorts()
         except Exception as e:
@@ -86,7 +89,8 @@ class SerialCom:
 
                     device_ID = json.loads(ret)['ID']
                     if device_ID == self.dev_id:
-                        logger.info("Serial port opened & start confirmed.")
+                        logger.info("Arduino device with ID: %s found on port: %s." % (self.dev_id, port))
+                        logger.info("Serial port opened & started confirmed.")
                         self.connected = True
                         return True
                     else:
@@ -115,16 +119,23 @@ class SerialCom:
 
     def sendCmd(self, cmd):
             try:
+                self.mutex.acquire()
                 logger.debug(cmd)
                 self.ser.write(cmd.encode('utf-8'))
             except Exception as e:
                 logger.error("Failed to send command! " + str(e))
-                return ''
+                response = ''
             else:
                 time.sleep(self.send_delay)
                 response = self.ser.readline().decode()
                 logger.debug(response)
+            finally:
+                self.mutex.release()
                 return response
+
+
+    def isBusy(self):
+        return self.mutex.locked()
 
     def readAdcData(self):
         ret = self.sendCmd(ADC_CMD)

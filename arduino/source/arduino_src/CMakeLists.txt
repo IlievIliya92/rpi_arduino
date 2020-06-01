@@ -8,8 +8,8 @@ set(CMAKE_ASM_COMPILER avr-gcc)
 set(OBJCOPY avr-objcopy)
 set(STRIP avr-strip)
 
-set(APP_NAME server)
-project("Arduino Server Project")
+set(APP_NAME smarthome)
+project("Arduino smarthome Project")
 
 # The upload to the target is currently not included in the make process
 #set(PORT /dev/ttyACM0)

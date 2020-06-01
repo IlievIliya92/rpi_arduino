@@ -322,6 +322,25 @@ button:active{
 }
 
 
+.home_page_text {
+    font-family: 'Palatino';
+    position:relative;
+    font-weight: bold;
+    left: 4%;
+    top: 10%;
+    background-color: transparent;
+    color: burlywood;
+    font-size: 160%;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    box-shadow: unset;
+}
+
+.home_page_text:hover {
+    background-color: transparent;
+    color: dodgerblue;
+}
+
 .gp_button {
     font-family: 'Palatino';
     position:relative;
@@ -359,7 +378,7 @@ button:active{
 .menu_button {
     background-color: transparent;
     color: dodgerblue;
-    font-size: 100%;
+    font-size: 200%;
     text-align: center;
     display: inline-block;
     position:relative;
@@ -506,6 +525,7 @@ button:active{
     background-attachment: fixed;
     background-image: url("http://drive.google.com/uc?export=view&id=1fFgXcp6TfR7VolrI-Nej4d82UJRke79a");
     background-size:cover;
+    overflow: hidden;
     background-repeat: no-repeat;
     background-position: center; /* Center the image */
 }
@@ -521,6 +541,7 @@ button:active{
     background-attachment: fixed;
     background-image: url("http://drive.google.com/uc?export=view&id=1FLAt_5ZGZq5SlpFONQqmjs3lJ47QDJtm");
     background-size:cover;
+    overflow: hidden;
     background-repeat: no-repeat;
     background-position: center; /* Center the image */
 }
