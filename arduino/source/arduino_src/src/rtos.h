@@ -9,11 +9,19 @@ extern "C" {
 #include "generic_t.h"
 
 /*********************************** DEFINES **********************************/
-#define TASKS   2
+typedef enum tasks_t
+{
+    GETCMD = 0,
+    FSM,
+    SCHEDULER,
+    TASKS
+} tasks_t;
 
 /************************** INTERFACE DATA DEFINITIONS ************************/
 
 /************************* INTERFACE FUNCTION PROTOTYPES **********************/
+genericTask_t *getSchedulerTask(void);
+
 void rtos_start(genericTask_t *task[]);
 
 #ifdef __cplusplus

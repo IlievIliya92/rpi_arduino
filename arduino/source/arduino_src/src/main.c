@@ -26,8 +26,9 @@ int main(void)
     /* Tasks array */
     genericTask_t *rtosTasks[TASKS];
 
-    rtosTasks[0] = getCmdGetTask();
-    rtosTasks[1] = getFsmTask();
+    rtosTasks[GETCMD] = getCmdGetTask();
+    rtosTasks[FSM] = getFsmTask();
+    rtosTasks[SCHEDULER] = getSchedulerTask();
 
     /* Starts all the tasks from Tasks array & starts the scheduler */
     rtos_start(rtosTasks);
