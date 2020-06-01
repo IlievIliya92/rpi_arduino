@@ -16,7 +16,7 @@ project("Arduino Server Project")
 #set(PROG_TYPE arduino)
 
 set(F_CPU 16000000UL)
-set(BAUD 38400)
+set(BAUD 115200)
 set(MCUFOS __AVR_ATmega328P__)
 set(MCU atmega328p)
 

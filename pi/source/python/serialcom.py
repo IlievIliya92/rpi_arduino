@@ -69,7 +69,7 @@ class SerialCom:
             for port in self.ports:
                 try:
 
-                    self.ser = Serial(port, 38400, timeout=1,
+                    self.ser = Serial(port, 115200, timeout=1,
                                       parity=PARITY_NONE,
                                       stopbits=STOPBITS_ONE,
                                       bytesize=EIGHTBITS)

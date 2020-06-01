@@ -190,14 +190,10 @@ static void cmd_getCmd(void)
 static void cmd_getTask(void *pvParameters)
 {
     (void) pvParameters;
-    TickType_t xLastWakeTime;
-
-    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         cmd_getCmd();
-        vTaskDelayUntil( &xLastWakeTime, (30 / portTICK_PERIOD_MS));
     }
 
     return;

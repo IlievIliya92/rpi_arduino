@@ -30,7 +30,7 @@ adcCmd = {
          }
 
 class TestCmd:
-    def __init__(self, br = 38400, timeout = 2):
+    def __init__(self, br = 115200, timeout = 2):
         self.port = self.findPort()
         self.ser = self.openSerial(br, timeout)
         self.sendDelay = 0.2
