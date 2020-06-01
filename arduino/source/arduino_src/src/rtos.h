@@ -9,20 +9,20 @@ extern "C" {
 #include "generic_t.h"
 
 /*********************************** DEFINES **********************************/
-typedef enum tasks_t
+typedef enum taskId_t
 {
     GETCMD = 0,
     FSM,
     SCHEDULER,
     TASKS
-} tasks_t;
+} taskId_t;
 
 /************************** INTERFACE DATA DEFINITIONS ************************/
 
 /************************* INTERFACE FUNCTION PROTOTYPES **********************/
 genericTask_t *getSchedulerTask(void);
 
-void rtos_start(genericTask_t *task[]);
+void rtos_start(genericTask_t *tasks[]);
 
 #ifdef __cplusplus
 }

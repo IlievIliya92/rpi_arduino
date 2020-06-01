@@ -51,13 +51,16 @@ genericTask_t *getSchedulerTask(void)
 }
 
 
-void rtos_start(genericTask_t *task[])
+void rtos_start(genericTask_t *tasks[])
 {
-    int i = 0;
+    taskId_t taskId = 0;
 
-    for (i = 0; i < TASKS; i++) {
-        task[i]->initTask();
-        rtos_createTask(task[i]);
+    for (taskId = 0; taskId < TASKS; taskId++) {
+        tasks[taskId]->initTask();
+
+        /* No need to run createTask to start the scheduler */
+        if (taskId != SCHEDULER)
+            rtos_createTask(tasks[taskId]);
     }
 
     return;
