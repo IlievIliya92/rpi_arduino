@@ -129,13 +129,14 @@ void dioGetData(void *arg)
     return;
 }
 
-/***************************** INTERFACE FUNCTIONS ****************************/
+static
 genericCmdHandler_t dio = {
     dioInit,
     dioProcessData,
     dioGetData
 };
 
+/***************************** INTERFACE FUNCTIONS ****************************/
 genericCmdHandler_t *getDioCmdHandler(void)
 {
     return &dio;

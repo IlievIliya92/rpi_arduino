@@ -263,8 +263,7 @@ static void fsm_Task(void *pvParameters)
     return;
 }
 
-
-/***************************** INTERFACE FUNCTIONS ****************************/
+static
 genericTask_t fsm = {
     fsm_Init,
     fsm_Task,
@@ -274,6 +273,8 @@ genericTask_t fsm = {
     NULL,
     NULL
 };
+
+/***************************** INTERFACE FUNCTIONS ****************************/
 
 genericTask_t *getFsmTask(void)
 {

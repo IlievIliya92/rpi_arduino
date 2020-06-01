@@ -83,13 +83,14 @@ static void adc_readSensors(void *args)
     return;
 }
 
-/***************************** INTERFACE FUNCTIONS ****************************/
+static
 genericCmdHandler_t adc = {
     adc_Init,
     NULL,
     adc_readSensors
 };
 
+/***************************** INTERFACE FUNCTIONS ****************************/
 genericCmdHandler_t *getAdcCmdHandler(void)
 {
     return &adc;

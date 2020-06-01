@@ -199,7 +199,7 @@ static void cmd_getTask(void *pvParameters)
     return;
 }
 
-/***************************** INTERFACE FUNCTIONS ****************************/
+static
 genericTask_t cmd = {
     cmd_getInit,
     cmd_getTask,
@@ -210,6 +210,7 @@ genericTask_t cmd = {
     NULL
 };
 
+/***************************** INTERFACE FUNCTIONS ****************************/
 genericTask_t *getCmdGetTask(void)
 {
     return &cmd;

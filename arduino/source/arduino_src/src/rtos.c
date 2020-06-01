@@ -24,6 +24,14 @@ static void rtos_schedulerInit(void)
     return;
 }
 
+static void rtos_createTask(genericTask_t *task)
+{
+    xTaskCreate(task->runTask, (const portCHAR *)task->name,
+                task->stackDepth, task->args, task->priority, NULL );
+
+    return;
+}
+
 
 static
 genericTask_t scheduler = {
@@ -35,15 +43,6 @@ genericTask_t scheduler = {
     NULL,
     NULL
 };
-
-static void rtos_createTask(genericTask_t *task)
-{
-    xTaskCreate(task->runTask, (const portCHAR *)task->name,
-                task->stackDepth, task->args, task->priority, NULL );
-
-    return;
-}
-
 
 /***************************** INTERFACE FUNCTIONS ****************************/
 genericTask_t *getSchedulerTask(void)

@@ -106,14 +106,14 @@ int pwmProcessData(uint8_t *sesionId, uint8_t *dataStr)
     return 0;
 }
 
-/***************************** INTERFACE FUNCTIONS ****************************/
-
+static
 genericCmdHandler_t pwm = {
     pwmInit,
     pwmProcessData,
     NULL
 };
 
+/***************************** INTERFACE FUNCTIONS ****************************/
 genericCmdHandler_t *getPwmCmdHandler(void)
 {
     return &pwm;
