@@ -1,5 +1,49 @@
 #!/bin/bash
 
-sudo apt-get update
-sudo apt install cmake gcc-avr avr-libc avrdude python-tk
+ask_forUpdate() {
+    printf "\n Do you want to update the system packages? [y/n]\n"
+    while : ; do
+    read -n 1 k <&1
+    if [[ $k = n ]] ; then
+    printf "\n Skipping system update...\n"
+    break
+    elif [[ $k = y ]] ; then
+    printf "\ Updating system packages...\n"
+    sudo apt-get update
+    break
+    else
+    printf "\n Skipping dependencies update...\n"
+    break
+    fi
+    done
+}
+
+install_ubuntuPackage() {
+    dpkg -s $1 &> /dev/null
+
+    if [ $? -eq 0 ]; then
+        echo "[+] $1 found"
+    else
+        echo "[+] $1 not found"
+        echo "Installing $1 ..."
+        sudo apt-get -y install $1
+    fi
+}
+
+checkPackages() {
+    ask_forUpdate
+
+    printf "\n Checking for required Ubuntu packages...\n\n"
+    install_ubuntuPackage cmake
+    install_ubuntuPackage gcc-avr
+    install_ubuntuPackage avr-libc
+    install_ubuntuPackage avrdude
+    install_ubuntuPackage minicom
+
+    echo ""
+    echo " All the required packages are installed.
+         "
+}
+
+checkPackages
 
