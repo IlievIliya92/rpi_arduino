@@ -32,7 +32,6 @@ typedef struct {
    char *name;
    const configSTACK_DEPTH_TYPE stackDepth;
    UBaseType_t priority;
-   void *data;
    void *args;
 } genericTask_t;
 

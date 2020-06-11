@@ -54,6 +54,7 @@ extern "C" {
 // Use the Watchdog timer, and choose the rate at which scheduler interrupts will occur.
 
 #define portUSE_WDTO        WDTO_15MS    // portUSE_WDTO to use the Watchdog Timer for xTaskIncrementTick
+                                         // xTaskIncrementTick() in non preemtive mode will always return pdTRUE, so the tick interrupt will not cause a context switch.
 
 /* Watchdog period options: WDTO_15MS
                             WDTO_30MS

@@ -206,7 +206,6 @@ genericTask_t cmd = {
     "CMDTASK",
     256,
     1,
-    NULL,
     NULL
 };
 

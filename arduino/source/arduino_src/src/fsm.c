@@ -270,7 +270,6 @@ genericTask_t fsm = {
     "FSMTASK",
     256,
     2,
-    NULL,
     NULL
 };
 

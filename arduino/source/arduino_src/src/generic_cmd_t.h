@@ -10,7 +10,7 @@ extern "C" {
 
 /*********************************** DEFINES **********************************/
 
-/* S> / CMID / SED / 30 bytest DATA / <E */
+/* S> / CMID / SED /  DATA / <E */
 
 /* S>01<E*  - START */
 

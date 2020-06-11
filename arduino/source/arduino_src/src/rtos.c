@@ -40,7 +40,6 @@ genericTask_t scheduler = {
     "SHDLRTASK",
     256,
     1,
-    NULL,
     NULL
 };
 

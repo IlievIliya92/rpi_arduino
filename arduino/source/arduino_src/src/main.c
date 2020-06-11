@@ -8,8 +8,6 @@
 #include "rtos.h"
 #include "generic_t.h"
 
-
-
 /******************************** LOCAL DEFINES *******************************/
 
 /******************************** GLOBALDATA *******************************/
@@ -34,5 +32,7 @@ int main(void)
     rtos_start(rtosTasks);
 
     avrSerialxPrint_P(&xSerialPort, PSTR("\r\n\n Failed to start the application!\r\n"));
+
+    return 0;
 }
 
