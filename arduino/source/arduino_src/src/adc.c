@@ -36,6 +36,9 @@ static void adc_Init(void)
     enbAnalogInput(analogIn3);
     enbAnalogInput(analogIn4);
 
+    /* 10-bit analogue-to-digital conversions */
+    setAnalogMode(MODE_10_BIT);
+
     vSemaphoreCreateBinary(xADCSemaphore);
 
     return;
@@ -49,8 +52,6 @@ static void adc_readSensors(void *args)
     {
         if( xSemaphoreTake(xADCSemaphore, (TickType_t)10) == pdTRUE)
         {
-            setAnalogMode(MODE_10_BIT);    // 10-bit analogue-to-digital conversions
-
             startAnalogConversion(analogIn0, EXTERNAL_REF);   // start next conversion
             while(analogIsConverting())
                 _delay_loop_2(2);
