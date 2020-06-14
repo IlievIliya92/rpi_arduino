@@ -19,6 +19,10 @@
 static void rtos_schedulerInit(void)
 {
     utils_dbgPrint("Server Started!");
+
+    /* Run the init led animation before starting the scheduler */
+    utils_initAnimation();
+
     vTaskStartScheduler();
 
     return;

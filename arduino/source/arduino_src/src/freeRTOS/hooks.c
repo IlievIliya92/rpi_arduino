@@ -36,6 +36,8 @@
 #include "timers.h"
 #include "stack_macros.h"
 
+#include "../utils/utils.h"
+
 /*-----------------------------------------------------------*/
 #if ( configUSE_IDLE_HOOK == 1 )
 
@@ -43,6 +45,8 @@ void vApplicationIdleHook( void ) __attribute__((weak));
 
 void vApplicationIdleHook( void )
 {
+    utils_hearBeat();
+
     // Digital Input Disable on Analogue Pins
     // When this bit is written logic one, the digital input buffer on the corresponding ADC pin is disabled.
     // The corresponding PIN Register bit will always read as zero when this bit is set. When an

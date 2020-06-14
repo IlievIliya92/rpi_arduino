@@ -21,6 +21,9 @@ extern "C" {
 /**************************  DATA DEFINITIONS ************************/
 
 /************************* FUNCTION PROTOTYPES **********************/
+void utils_hearBeat(void);
+void utils_initAnimation(void);
+
 int utils_atoI(uint8_t *str, int base);
 void utils_dbgPrint(char *str);
 

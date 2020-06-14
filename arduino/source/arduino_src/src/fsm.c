@@ -204,7 +204,7 @@ static eSystemEvent fsm_readEvent(uint8_t *cmd)
             break;
 
         default:
-            /* You should be here */
+            /* You shouldn't be here */
             event = invalid_Event;
             break;
     }
