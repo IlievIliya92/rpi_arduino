@@ -29,7 +29,6 @@ typedef enum {
     Pwm_State,
     Do_State,
     Adc_State,
-    Stop_State,
     last_State
 }eSystemState;
 
