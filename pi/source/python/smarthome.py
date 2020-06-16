@@ -1,39 +1,31 @@
 #!/usr/bin/python3
 
-import sqlite3
 import os
 import time
-import constructors as cstr
 
-from constructors import TEMP_GRAPH_STYLE, LIGHT_GRAPH_STYLE
 from remi import start, App
-from modes import modesContol
-from serialcom import SerialCom
 from threading import Timer
 
-
+import constructors as cstr
+from constructors import TEMP_GRAPH_STYLE, LIGHT_GRAPH_STYLE
+from modes import modesContol
+from serialcom import SerialCom
 from utils import *
 from constants import *
 from logger import *
 
 # --- Smart Home app
-class smARTHome(App):
+class SmartHome(App):
     def __init__(self, *args):
         res_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'remi/res')
-        super(smARTHome, self).__init__(*args, static_file_path={'resources':res_path})
-
-    def idle(self):
-        if self.ser.isConnected():
-            self.modes.manageLights(self.light1.getLast(), self.lightSetPoint, self.ser)
-
-        pass
+        super(SmartHome, self).__init__(*args, static_file_path={'resources':res_path})
 
     def main(self):
-        # --- --- --- --- State  --- --- --- --- --- #
+        # --- --- --- --- ---  --- --- --- --- --- #
         self.ser = SerialCom(ARD_DEVICE_ID)
         self.modes = modesContol()
-        self.lightSetPoint = 60
         self.serConnected = False
+        self.lightSetPoint = 60
         self.stop_measure = False
 
         # --- --- --- --- --- --- --- --- --- --- --- #
@@ -211,6 +203,12 @@ class smARTHome(App):
 
         return self.homeContainer
 
+    def idle(self):
+        if self.ser.isConnected():
+            self.modes.manageLights(self.light1.getLast(), self.lightSetPoint, self.ser)
+
+        pass
+
     # listener functions
     def onload(self, emitter):
         logger.info("Application loaded succesfuly.")
@@ -282,7 +280,7 @@ class smARTHome(App):
 
             self.ser.disconnect()
 
-        super(smARTHome, self).on_close()
+        super(SmartHome, self).on_close()
 
     def measure(self):
         if self.ser.isConnected():
@@ -339,7 +337,7 @@ class smARTHome(App):
 
 if __name__ == "__main__":
 # starts the webserver
-    start(smARTHome, debug=True, address='0.0.0.0',
+    start(SmartHome, debug=True, address='0.0.0.0',
                      port=8081, start_browser=True,
                      multiple_instance=False,
                      username='Iliya', password='admin')

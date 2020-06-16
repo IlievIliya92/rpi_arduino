@@ -9,7 +9,6 @@ LIGHT_KEEP_VALS = 20
 LOGFILE = "./logs/smarthome.log"
 
 # --- Unicodes --- #
-USSR = '☭'
 HOME = ' ⌂'
 HOMEON = ' ☗'
 KEY = ' ⚿'
@@ -31,7 +30,6 @@ SMILE = ' ☺'
 MOON = ' ☾'
 QUATER_MOON = '☽'
 PEACE = ' ☮'
-WHITESTAR = ' ⚝'
 
 # --- Modes --- #
 
