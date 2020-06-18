@@ -284,14 +284,20 @@ class SmartHome(App):
 
     def measure(self):
         if self.ser.isConnected():
-            temp1, temp2, light1, humidity, empty = self.ser.readAdcData()
+            temp1, temp2, light1, empty, empty = self.ser.readAdcData()
 
-            temp1 = utilsTempConverter(temp1)
-            temp2 = utilsTempConverter(temp2)
+            if temp1 != None:
+                temp1 = utilsTempConverter(temp1)
+
+            if temp2 != None:
+                temp2 = utilsTempConverter(temp2)
+
 
             self.temp1.append(temp1)
             self.temp2.append(temp2)
-            self.light1.append(light1)
+
+            if light1 != None:
+                self.light1.append(light1)
 
             self.temp1Curr.set_text("Current: " + str(temp1))
             self.temp2Curr.set_text("Current: " + str(temp2))

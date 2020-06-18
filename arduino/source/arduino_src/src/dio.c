@@ -26,8 +26,6 @@ extern xComPortHandle xSerialPort;
 
 /******************************* INTERFACE DATA *******************************/
 
-/************************ LOCAL FUNCTIONS PROTOTYPES***************************/
-
 /******************************* LOCAL FUNCTIONS ******************************/
 static
 int dioIsValidDio(dioCh_t dio)

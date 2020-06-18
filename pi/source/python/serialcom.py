@@ -50,9 +50,9 @@ def _findPorts():
 class SerialCom:
     def __init__(self, dev_id):
         self.ser = None
-        self.send_delay = 0.001
-        self.connected = False
         self.dev_id = dev_id
+#        self.send_delay = 0.000001
+        self.connected = False
         self.busy = False
         self.mutex = Lock()
 
@@ -126,7 +126,7 @@ class SerialCom:
                 logger.error("Failed to send command! " + str(e))
                 response = ''
             else:
-                time.sleep(self.send_delay)
+#                time.sleep(self.send_delay)
                 response = self.ser.readline().decode()
                 logger.debug(response)
             finally:
@@ -145,7 +145,8 @@ class SerialCom:
                 ret = self.sendCmd(ADC_CMD)
 
             adc = json.loads(ret)
-            return adc['value']['c0'], adc['value']['c1'], adc['value']['c2'], adc['value']['c3'], adc['value']['c4']
+#            return adc['value']['c0'], adc['value']['c1'], adc['value']['c2'], adc['value']['c3'], adc['value']['c4']
+            return adc['value']['c0'], None, adc['value']['c2'], adc['value']['c3'], adc['value']['c4']
 
         except Exception as e:
             logger.error("Failed to read ADC data. " + str(e))
