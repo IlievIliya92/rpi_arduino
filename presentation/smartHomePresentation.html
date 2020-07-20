@@ -17,72 +17,221 @@
                 <!-- Slides are separated by three dashes (quick 'n dirty regular expression) -->
                 <section data-markdown data-separator="---">
                     <script type="text/template">
-                        ## Система за сградна автоматизация
-                        Текст
+                        ![](../media/presentation/slide1.png) <!-- .element height="100%" width="100%"-->
                         ---
-
-                        ### Слайд 1
-                        Текст
-                        ---
-
-                        ### Слайд 2
-                        Текст
-
-                        Снимка
-                        ![Sample image](../media/smartHome.png)
-                        ---
-
-                        ### Слайд 3
-                        Текст
-
-                        [Линк](https://github.com/IlievIliya92/rpi_arduino/ "Линк")
+                        ### Сградна автоматизация
+                        ![](../media/presentation/slide2.png) <!-- .element height="100%" width="100%"-->
                     </script>
                 </section>
 
 
-                <!-- No "extra" slides, since there are no separators defined (so they'll become horizontal rulers) -->
-                <section data-markdown>
+                <section>
+                    <h3>Конфигурация</h3>
+                    <div class="r-stack">
+                        <img src="../media/presentation/slide3.png" width="auto" height="auto" class="fragment fade-out" data-fragment-index="0">
+                        <img src="../media/presentation/slide4.png" width="auto" height="auto" class="fragment current-visible" data-fragment-index="0">
+                    </div>
+                </section>
+
+                <section data-markdown data-separator="---">
                     <script type="text/template">
-                        Линия 1
-
+                        ### Контролирани Величини
+                        ![](../media/presentation/slide5.png)
                         ---
-
-                        Линия 2
-
-                        ---
-
-                        Линия 3
+                        ### Блок схема на системата
+                        ![](../media/presentation/slide6.png)
                     </script>
                 </section>
 
-                <!-- Slide attributes -->
-                <section data-markdown>
-                    <script type="text/template">
-                        <!-- .slide: data-background="#000000" -->
-                        ## Тест Слайд
-                    </script>
+                <section data-auto-animate style="height: 600px">
+                    <h2 data-id="title">Команди</h2>
+                    <div data-id="1" style="background: magenta; position: absolute; top: 150px; left: 180px; width: 200px; height: 24px;
+                                            font-size: 20px">
+                         <b>Хедър (2 байта) </b>
+                    </div>
+                    <div data-id="2" style="background: gray; position: absolute; top: 150px; left: 380px; width: 200px; height: 24px;
+                                            font-size: 20px">
+                         <b>Ком. ID (2 байта) </b>
+                    </div>
+                    <div data-id="3" style="background: skyblue; position: absolute; top: 150px; left: 580px; width: 200px; height: 24px;
+                                            font-size: 20px">
+                         <b>Ком. *ID (2 байта) </b>
+                    </div>
+                    <div data-id="4" style="background: green; position: absolute; top: 174px; left: 180px; width: 600px; height: 24px;
+                                            font-size: 20px">
+                         <b>Данни (10 байта) </b>
+                    </div>
+                    <div data-id="5" style="background: indigo; position: absolute; top: 196px; left: 180px; width: 200px; height: 24px;
+                                            font-size: 20px">
+                         <b>Трейлър (2 байта) </b>
+                    </div>
+                    <div data-id="6" style="background: olive; position: absolute; top: 196px; left: 380px; width: 200px; height: 24px;
+                                            font-size: 20px">
+                         <b>Символ за край </b>
+                    </div>
+
                 </section>
 
-                <!-- Element attributes -->
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Снимки
-                        ![Sample image](../media/smartHome.png) <!-- .element: class="fragment" data-fragment-index="1" -->
-                    </script>
+                <section data-auto-animate style="height: 600px">
+                    <h3 style="opacity: 0.3; font-size: 18px;">Синтаксис</h2>
+                    <h2 data-id="title" style="margin-top: 500px">Команди</h2>
+
+                    <div data-id="s1" style="background: magenta; position: absolute;
+                                            top: 174px; left: 180px; width: 40px;
+                                            text-align:  center;
+                                            height: 200px; font-size: 15px">
+                         <b>К<br>О<br>Н<br>С<br>Т<br>А<br>Н<br>Т<br>А</b>
+                    </div>
+
+
+                    <div data-id="s2" style="background: gray; position: absolute;
+                                            top: 174px; left: 220px; width: 90px;
+                                            text-align:  center;
+                                            height: 200px; font-size: 20px">
+                         <b><br>1 - старт<br>2 - ШИМ<br>3 - I/O<br>4 - АЦП<br>5 - стоп</b>
+                    </div>
+
+
+                    <div data-id="s3" style="background: skyblue; position: absolute;
+                                            top: 174px; left: 310px; width: 160px;
+                                            text-align:  center;
+                                            height: 200px; font-size: 20px">
+                         <b><br><br>Специфично ID за отделните команди</b>
+                    </div>
+
+                    <div data-id="s4" style="background: green; position: absolute;
+                                            top: 174px; left: 470px; width: 160px;
+                                            text-align:  center;
+                                            height: 200px; font-size: 20px">
+                         <b><br><br>Специфични данни за отделните команди</b>
+                    </div>
+
+
+                    <div data-id="s5" style="background: indigo; position: absolute;
+                                            top: 174px; left: 630px; width: 40px;
+                                            text-align:  center;
+                                            height: 200px; font-size: 15px">
+                         <b>К<br>О<br>Н<br>С<br>Т<br>А<br>Н<br>Т<br>А</b>
+                    </div>
+
+                    <div data-id="s6" style="background: olive; position: absolute;
+                                            top: 174px; left: 670px; width: 80px;
+                                            text-align:  center;
+                                            height: 200px; font-size: 15px">
+                         <b>К<br>О<br>Н<br>С<br>Т<br>А<br>Н<br>Т<br>А</b>
+                    </div>
+
+                    <div data-id="1" style="background: magenta; position: absolute;
+                                            bottom: 190px; left: 180px; width: 40px;
+                                            height: auto;font-size: 20px">
+                         <b> S > </b>
+                    </div>
+
+                    <div data-id="2" style="background: gray; position: absolute;
+                                            bottom: 190px; left: 220px; width: 90px;
+                                            height: auto;font-size: 20px">
+                         <b> 1/2/3/4/5 </b>
+                    </div>
+
+                    <div data-id="3" style="background: skyblue; position: absolute;
+                                            bottom: 190px; left: 310px; width: 160px;
+                                            height: auto; font-size: 20px">
+                         <b> ком. специф. </b>
+                    </div>
+
+                    <div data-id="4" style="background: green; position: absolute;
+                                            bottom: 190px; left: 470px; width: 160px;
+                                            height: auto; font-size: 20px">
+                         <b> ком. специф. </b>
+                    </div>
+
+                    <div data-id="5" style="background: indigo; position: absolute;
+                                            bottom: 190px; left: 630px; width: 40px;
+                                            height: auto;font-size: 20px">
+                         <b> < E </b>
+                    </div>
+
+                    <div data-id="6" style="background: olive; position: absolute;
+                                            bottom: 190px; left: 670px; width: 80px;
+                                            height: auto;font-size: 20px">
+                         <b> * </b>
+                    </div>
+
                 </section>
+
 
                 <!-- Code -->
-                <section data-markdown>
+                <section data-markdown data-separator="---">
                     <script type="text/template">
-                        ## Код
-                        ```php [1|3-5]
+                        ## Arduino - "main" функция
+                        ```php [1|3-8]
                         int main(void)
                         {
-                            printf("Smart Home App");
+                            genericTask_t *rtosTasks[TASKS];
 
+                            rtosTasks[GETCMD] = getCmdGetTask();
+                            rtosTasks[FSM] = getFsmTask();
+                            rtosTasks[SCHEDULER] = getSchedulerTask();
+                            rtos_start(rtosTasks);
+                            .
+                            .
+                            .
                             return 0;
                         }
                         ```
+                        ---
+
+                        ### Тип "genericTask_t"
+                        ```php [8|2-7]
+                        typedef struct {
+                               voidVoid_t initTask;
+                               voidVoidPtr_t runTask;
+                               char *name;
+                               const configSTACK_DEPTH_TYPE stackDepth;
+                               UBaseType_t priority;
+                               void *args;
+                        } genericTask_t;
+
+                        ```
+                        ---
+                        ### Комуникация между "GETCMD" и "FSM" задачи
+                        ```php [7|2-6]
+                        typedef struct {
+                            uint8_t cmd_cookie[CMD_COKIE_LEN];
+                            uint8_t cmd_id[CMD_ID_LEN];
+                            uint8_t cmd_sId[CMD_S_ID_LEN];
+                            uint8_t cmd_payload[CMD_PAYLOAD_LEN];
+                            uint8_t cmd_trailer[CMD_TRAILER_LEN];
+                        } genericCmdMsg_t;
+                        ```
+                        ---
+                        ### Задача "FSM" - инициализация
+                        ```php [1|6|8-9|12-14|16-17]
+                        static void fsm_Init(void)
+                        {
+                            int i = 0;
+
+                            /* Initialize L diode as output */
+                            DDRB |= _BV(DDB5);
+
+                            eNextState = Idle_State;
+                            ePreviousState = eNextState;
+
+                            /* Initialize the command handlers */
+                            cmds[C_PWM] = getPwmCmdHandler();
+                            cmds[C_DIO] = getDioCmdHandler();
+                            cmds[C_ADC] = getAdcCmdHandler();
+
+                            for (i = 0; i < COMMAND_HANDLERS; i++)
+                                cmds[i]->initCmd();
+
+                            return;
+                        }
+
+                        ```
+                        --- Задача "FSM" - граф на състоянията
+                        ![](../media/presentation/slide12.png)
+
                     </script>
                 </section>
             </div>
@@ -100,6 +249,10 @@
 				progress: true,
 				history: true,
 				center: true,
+                slideNumber: true, //Display the page number of the current slide
+                transition: 'convex', //none/fade/slide/convex/concave/zoom
+                backgroundTransition: 'convex', //none/fade/slide/convex/concave/zoom
+                transitionSpeed: 'slow', //default/slow/fast
 
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
