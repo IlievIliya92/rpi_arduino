@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Smart Home Presentation</title>
+		<link rel="stylesheet" href="./dist/reveal.css">
+		<link rel="stylesheet" href="./dist/theme/black.css" id="theme">
+        <link rel="stylesheet" href="./plugin/highlight/monokai.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+                <!-- Slides are separated by three dashes (quick 'n dirty regular expression) -->
+                <section data-markdown data-separator="---">
+                    <script type="text/template">
+                        ## Система за сградна автоматизация
+                        Текст
+                        ---
+
+                        ### Слайд 1
+                        Текст
+                        ---
+
+                        ### Слайд 2
+                        Текст
+
+                        Снимка
+                        ![Sample image](../media/smartHome.png)
+                        ---
+
+                        ### Слайд 3
+                        Текст
+
+                        [Линк](https://github.com/IlievIliya92/rpi_arduino/ "Линк")
+                    </script>
+                </section>
+
+
+                <!-- No "extra" slides, since there are no separators defined (so they'll become horizontal rulers) -->
+                <section data-markdown>
+                    <script type="text/template">
+                        Линия 1
+
+                        ---
+
+                        Линия 2
+
+                        ---
+
+                        Линия 3
+                    </script>
+                </section>
+
+                <!-- Slide attributes -->
+                <section data-markdown>
+                    <script type="text/template">
+                        <!-- .slide: data-background="#000000" -->
+                        ## Тест Слайд
+                    </script>
+                </section>
+
+                <!-- Element attributes -->
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Снимки
+                        ![Sample image](../media/smartHome.png) <!-- .element: class="fragment" data-fragment-index="1" -->
+                    </script>
+                </section>
+
+                <!-- Code -->
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Код
+                        ```php [1|3-5]
+                        int main(void)
+                        {
+                            printf("Smart Home App");
+
+                            return 0;
+                        }
+                        ```
+                    </script>
+                </section>
+            </div>
+		</div>
+
+		<script src="./dist/reveal.js"></script>
+        <script src="./plugin/markdown/markdown.js"></script>
+        <script src="./plugin/highlight/highlight.js"></script>
+        <script src="./plugin/notes/notes.js"></script>
+
+		<script>
+
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+
+		</script>
+
+	</body>
+</html>
