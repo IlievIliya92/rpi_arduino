@@ -28,8 +28,10 @@
                 <section>
                     <h3>Конфигурация</h3>
                     <div class="r-stack">
-                        <img src="../media/presentation/slide3.png" width="auto" height="auto" class="fragment fade-out" data-fragment-index="0">
-                        <img src="../media/presentation/slide4.png" width="auto" height="auto" class="fragment current-visible" data-fragment-index="0">
+                        <img src="../media/presentation/slide3.png"
+                            width="auto" height="auto" class="fragment fade-out" data-fragment-index="0">
+                        <img src="../media/presentation/slide4.png"
+                            width="auto" height="auto" class="fragment current-visible" data-fragment-index="0">
                     </div>
                 </section>
 
@@ -45,27 +47,33 @@
 
                 <section data-auto-animate style="height: 600px">
                     <h2 data-id="title">Команди</h2>
-                    <div data-id="1" style="background: magenta; position: absolute; top: 150px; left: 180px; width: 200px; height: 24px;
+                    <div data-id="1" style="background: magenta; position: absolute; top: 150px;
+                                            left: 180px; width: 200px; height: 24px;
                                             font-size: 20px">
                          <b>Хедър (2 байта) </b>
                     </div>
-                    <div data-id="2" style="background: gray; position: absolute; top: 150px; left: 380px; width: 200px; height: 24px;
+                    <div data-id="2" style="background: gray; position: absolute; top: 150px;
+                                            left: 380px; width: 200px; height: 24px;
                                             font-size: 20px">
                          <b>Ком. ID (2 байта) </b>
                     </div>
-                    <div data-id="3" style="background: skyblue; position: absolute; top: 150px; left: 580px; width: 200px; height: 24px;
+                    <div data-id="3" style="background: skyblue; position: absolute; top: 150px;
+                                            left: 580px; width: 200px; height: 24px;
                                             font-size: 20px">
                          <b>Ком. *ID (2 байта) </b>
                     </div>
-                    <div data-id="4" style="background: green; position: absolute; top: 174px; left: 180px; width: 600px; height: 24px;
+                    <div data-id="4" style="background: green; position: absolute; top: 174px;
+                                            left: 180px; width: 600px; height: 24px;
                                             font-size: 20px">
                          <b>Данни (10 байта) </b>
                     </div>
-                    <div data-id="5" style="background: indigo; position: absolute; top: 196px; left: 180px; width: 200px; height: 24px;
+                    <div data-id="5" style="background: indigo; position: absolute; top: 196px;
+                                            left: 180px; width: 200px; height: 24px;
                                             font-size: 20px">
                          <b>Трейлър (2 байта) </b>
                     </div>
-                    <div data-id="6" style="background: olive; position: absolute; top: 196px; left: 380px; width: 200px; height: 24px;
+                    <div data-id="6" style="background: olive; position: absolute; top: 196px;
+                                            left: 380px; width: 200px; height: 24px;
                                             font-size: 20px">
                          <b>Символ за край </b>
                     </div>
@@ -163,7 +171,7 @@
                 <!-- Code -->
                 <section data-markdown data-separator="---">
                     <script type="text/template">
-                        ## Arduino - "main" функция
+                        ###### Arduino - "main" функция
                         ```php [1|3-8]
                         int main(void)
                         {
@@ -173,15 +181,10 @@
                             rtosTasks[FSM] = getFsmTask();
                             rtosTasks[SCHEDULER] = getSchedulerTask();
                             rtos_start(rtosTasks);
-                            .
-                            .
-                            .
                             return 0;
                         }
                         ```
-                        ---
-
-                        ### Тип "genericTask_t"
+                        ###### Тип "genericTask_t"
                         ```php [8|2-7]
                         typedef struct {
                                voidVoid_t initTask;
@@ -193,6 +196,7 @@
                         } genericTask_t;
 
                         ```
+
                         ---
                         ### Комуникация между "GETCMD" и "FSM" задачи
                         ```php [7|2-6]
@@ -251,8 +255,22 @@
 
                         ---
                         ### Опитни Резултати
+                        ###### Визуализация на данните от АЦП
+                        ![](../media/presentation/slide16.png) <!-- .element height="50%" width="50%"-->
+
+                        ---
+                        ### Опитни Резултати
+                        ###### Достъп през мобилно устройство
+                        ![](../media/presentation/slide17.png) <!-- .element height="40%" width="40%"-->
+
+                        ---
+                        ### Опитни Резултати
                         ###### Спиране на сървъра
-                        ![](../media/presentation/slide16.png) <!-- .element height="70%" width="70%"-->
+                        ![](../media/presentation/slide_final.png) <!-- .element height="70%" width="70%"-->
+
+                        ---
+                        ### Край
+                        [Линк към проекта](https://github.com/IlievIliya92/rpi_arduino)
 
                     </script>
                 </section>
@@ -275,6 +293,7 @@
                 transition: 'convex', //none/fade/slide/convex/concave/zoom
                 backgroundTransition: 'convex', //none/fade/slide/convex/concave/zoom
                 transitionSpeed: 'slow', //default/slow/fast
+//                autoSlide: 1500,
 
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
